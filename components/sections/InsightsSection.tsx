@@ -141,7 +141,14 @@ export default function InsightsSection() {
     if (!isDragging.current) return;
     isDragging.current = false;
     const dx = e.changedTouches[0].pageX - startX.current;
-    if (Math.abs(dx) > 40) {
+    const timeDelta = Math.max(Date.now() - lastTime.current, 16);
+    const velocity = (lastX.current - e.changedTouches[0].pageX) / timeDelta;
+
+    // Threshold: 25px or velocity > 0.5px/ms
+    const threshold = 25;
+    const shouldMove = Math.abs(dx) > threshold || Math.abs(velocity) > 0.5;
+
+    if (shouldMove) {
       goTo(dx < 0 ? index + 1 : index - 1);
     } else {
       goTo(index);
@@ -177,6 +184,28 @@ export default function InsightsSection() {
     return () => window.removeEventListener("resize", handler);
   }, [index, maxIndex, offsetForIndex]);
 
+  // Measure container width on mount to ensure proper centering
+  useEffect(() => {
+    if (containerRef.current) {
+      const observer = new ResizeObserver(() => {
+        if (containerRef.current) {
+          const width = containerRef.current.getBoundingClientRect().width;
+          setContainerWidth(width);
+        }
+      });
+
+      observer.observe(containerRef.current);
+
+      // Trigger initial measurement
+      const width = containerRef.current.getBoundingClientRect().width;
+      if (width > 0) {
+        setContainerWidth(width);
+      }
+
+      return () => observer.disconnect();
+    }
+  }, []);
+
   const centerOffset = containerWidth > 0 ? (containerWidth - getCardWidth()) / 2 : 0;
   const translateX = -(animOffset.current + (isDragging.current ? dragDelta : 0)) + centerOffset;
   const isTransitioning = !isDragging.current;
@@ -202,14 +231,14 @@ export default function InsightsSection() {
       </Container>
 
       {/* Carousel */}
-      <div ref={containerRef} className="relative overflow-hidden pl-0 pr-6 lg:pr-8">
+      <div ref={containerRef} className="relative overflow-hidden px-3 lg:px-4">
         {/* Left padding aligns with Container */}
         <div
           ref={trackRef}
           className={`flex gap-0 select-none ${isDragging.current ? "cursor-grabbing" : "cursor-grab"}`}
           style={{
             transform: `translate3d(${translateX}px, 0, 0)`,
-            transition: isTransitioning ? "transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)" : "none",
+            transition: isTransitioning ? "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)" : "none",
             paddingLeft: 0,
             paddingRight: 0,
           }}
@@ -225,7 +254,7 @@ export default function InsightsSection() {
               className="relative min-w-0 mx-2 flex flex-[0_0_86%] items-stretch justify-stretch first:ml-0 last:mr-0 md:flex-[0_0_calc(50%-8px)] xl:flex-[0_0_calc(25%-12px)]"
             >
               <article className="group flex w-full flex-col gap-4">
-                <figure className="relative aspect-square w-full shrink-0 grow overflow-hidden rounded-2xl">
+                <figure className="relative aspect-[10/9] w-full shrink-0 grow overflow-hidden rounded-2xl">
                   <Image
                     src={IMAGES[i].src}
                     alt={IMAGES[i].alt}

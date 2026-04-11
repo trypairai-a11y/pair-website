@@ -332,7 +332,7 @@ export default function HeroSection() {
       )}
 
       {/* Content area */}
-      <div className="mt-32 h-[calc(100%-(var(--spacing)*32))] xl:mt-56 xl:h-[calc(100%-(var(--spacing)*56))]">
+      <div className="mt-20 h-[calc(100%-(var(--spacing)*20))] xl:mt-36 xl:h-[calc(100%-(var(--spacing)*36))]">
         <div className="mx-auto w-full max-w-[1160px] px-6 lg:px-10 relative z-10 h-full">
           <h1 className="mb-4 text-headline-xl font-normal whitespace-pre-wrap text-white md:mb-6">
             {"Better customer\nexperiences.\nBuilt on Pair."}

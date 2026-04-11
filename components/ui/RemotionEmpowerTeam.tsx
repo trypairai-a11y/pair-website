@@ -9,7 +9,10 @@ export default function RemotionEmpowerTeam() {
       style={{
         display: "flex",
         flex: 1,
-        backgroundColor: "transparent",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
       }}
     >
       <Player
@@ -22,8 +25,8 @@ export default function RemotionEmpowerTeam() {
         loop
         acknowledgeRemotionLicense
         style={{
-          width: "100%",
-          height: "100%",
+          width: 590,
+          height: 744,
         }}
       />
     </div>
