@@ -1,0 +1,188 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Pair" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Pair" [ref=e6]
+      - generic:
+        - generic:
+          - link "Product":
+            - /url: "#product"
+            - text: Product
+            - img
+        - generic:
+          - link "Industries":
+            - /url: "#industries"
+            - text: Industries
+            - img
+        - generic:
+          - link "Customers":
+            - /url: "#customers"
+        - generic:
+          - link "Company":
+            - /url: "#company"
+            - text: Company
+            - img
+      - generic [ref=e7]:
+        - link "Learn more" [ref=e8] [cursor=pointer]:
+          - /url: /learn-more
+        - button "Menu" [ref=e9]:
+          - img [ref=e10]
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - button "Product":
+            - text: Product
+            - img
+          - button "Industries":
+            - text: Industries
+            - img
+          - link "Customers":
+            - /url: "#customers"
+          - button "Company":
+            - text: Company
+            - img
+        - generic:
+          - link "Sign in":
+            - /url: /login
+      - generic:
+        - generic:
+          - button "Back":
+            - img
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e17]:
+        - heading "Better customer experiences. Built on Pair." [level=1] [ref=e18]
+        - link "Learn more" [ref=e19] [cursor=pointer]:
+          - /url: /learn-more
+      - generic [ref=e20]:
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - figure [ref=e25]:
+              - img "Yoshiro" [ref=e26]
+            - generic [ref=e27]: Yoshiro
+          - generic [ref=e28]: I don't recognize this $95 charge. Can you help?
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - figure [ref=e33]:
+              - img "Pair" [ref=e34]
+            - generic [ref=e35]: Pair Agent
+          - generic [ref=e36]: I see that charge, Yoshiro. It looks like a duplicate from your last order. I've submitted a refund for you.
+        - generic [ref=e39]:
+          - generic [ref=e40]: $95.00 refund initiated
+          - img [ref=e41]
+  - contentinfo [ref=e44]:
+    - generic [ref=e45]:
+      - img "Pair" [ref=e48]
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - heading "Product" [level=3] [ref=e51]
+          - list [ref=e52]:
+            - listitem [ref=e53]:
+              - link "Product overview" [ref=e54] [cursor=pointer]:
+                - /url: /product
+            - listitem [ref=e55]:
+              - link "Meet your agent" [ref=e56] [cursor=pointer]:
+                - /url: /product/meet-your-agent
+            - listitem [ref=e57]:
+              - link "Agent Studio" [ref=e58] [cursor=pointer]:
+                - /url: /product/agent-studio
+            - listitem [ref=e59]:
+              - link "Agent SDK" [ref=e60] [cursor=pointer]:
+                - /url: /product/agent-sdk
+            - listitem [ref=e61]:
+              - link "Insights" [ref=e62] [cursor=pointer]:
+                - /url: /product/insights
+            - listitem [ref=e63]:
+              - link "Live Assist" [ref=e64] [cursor=pointer]:
+                - /url: /product/live-assist
+            - listitem [ref=e65]:
+              - link "Voice" [ref=e66] [cursor=pointer]:
+                - /url: /product/voice
+            - listitem [ref=e67]:
+              - link "Trust and reliability" [ref=e68] [cursor=pointer]:
+                - /url: /product/trust-and-reliability
+        - generic [ref=e69]:
+          - heading "Industries" [level=3] [ref=e70]
+          - list [ref=e71]:
+            - listitem [ref=e72]:
+              - link "Industries overview" [ref=e73] [cursor=pointer]:
+                - /url: /industries
+            - listitem [ref=e74]:
+              - link "Financial services" [ref=e75] [cursor=pointer]:
+                - /url: /industries/financial-services
+            - listitem [ref=e76]:
+              - link "Healthcare" [ref=e77] [cursor=pointer]:
+                - /url: /industries/healthcare
+            - listitem [ref=e78]:
+              - link "Telecommunications" [ref=e79] [cursor=pointer]:
+                - /url: /industries/telecommunications
+            - listitem [ref=e80]:
+              - link "Media" [ref=e81] [cursor=pointer]:
+                - /url: /industries/media
+            - listitem [ref=e82]:
+              - link "Travel and hospitality" [ref=e83] [cursor=pointer]:
+                - /url: /industries/travel-transportation-hospitality
+            - listitem [ref=e84]:
+              - link "Retail and consumer goods" [ref=e85] [cursor=pointer]:
+                - /url: /industries/retail
+            - listitem [ref=e86]:
+              - link "Technology" [ref=e87] [cursor=pointer]:
+                - /url: /industries/technology
+        - generic [ref=e88]:
+          - heading "Customers" [level=3] [ref=e89]
+          - list [ref=e90]:
+            - listitem [ref=e91]:
+              - link "Customer stories" [ref=e92] [cursor=pointer]:
+                - /url: /customers
+        - generic [ref=e93]:
+          - heading "Company" [level=3] [ref=e94]
+          - list [ref=e95]:
+            - listitem [ref=e96]:
+              - link "About" [ref=e97] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e98]:
+              - link "Blog" [ref=e99] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e100]:
+              - link "Resources" [ref=e101] [cursor=pointer]:
+                - /url: /resources
+            - listitem [ref=e102]:
+              - link "Careers" [ref=e103] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=e104]:
+              - link "Trust Center" [ref=e105] [cursor=pointer]:
+                - /url: https://trust.pair.ai/
+            - listitem [ref=e106]:
+              - link "Events" [ref=e107] [cursor=pointer]:
+                - /url: /events
+      - button "United States (English)" [ref=e109]:
+        - generic [ref=e110]:
+          - text: United States
+          - generic [ref=e111]: (English)
+        - img [ref=e112]
+      - generic [ref=e114]:
+        - link "Privacy Policy" [ref=e115] [cursor=pointer]:
+          - /url: /privacy-policy
+        - link "Terms & Conditions" [ref=e116] [cursor=pointer]:
+          - /url: /terms-and-conditions
+        - link "Modern Slavery Statement" [ref=e117] [cursor=pointer]:
+          - /url: /modern-slavery-statement
+        - link "Cookie Preferences" [ref=e118] [cursor=pointer]:
+          - /url: "#manage-cookies"
+      - generic [ref=e119]:
+        - generic [ref=e120]: © 2026 Pair
+        - generic [ref=e121]:
+          - link "LinkedIn" [ref=e122] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/sierra
+            - img [ref=e123]
+          - link "Instagram" [ref=e125] [cursor=pointer]:
+            - /url: https://instagram.com/pairplatform
+            - img [ref=e126]
+          - link "X" [ref=e128] [cursor=pointer]:
+            - /url: https://x.com/pairplatform
+            - img [ref=e129]
+  - button "Open Next.js Dev Tools" [ref=e136] [cursor=pointer]:
+    - img [ref=e137]
+  - alert [ref=e140]

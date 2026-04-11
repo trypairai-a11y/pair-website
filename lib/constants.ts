@@ -1,0 +1,222 @@
+export const NAV_LINKS = [
+  { label: "Product", href: "#product", hasDropdown: true },
+  { label: "Industries", href: "#industries", hasDropdown: true },
+  { label: "Customers", href: "#customers", hasDropdown: false },
+  { label: "Company", href: "#company", hasDropdown: true },
+];
+
+export const COMPANY_LOGOS = [
+  // Top row
+  { name: "Boutiqaat",          src: "/logos/Boutiqaat.png",  imgClassName: "h-20 w-auto max-w-[160px] object-contain" },
+  { name: "ktech",              src: "/logos/ktech.png" },
+  { name: "Flare Fitness",      src: "/logos/flare fitness.png" },
+  // Middle
+  { name: "CCK",                src: "/logos/cck.png" },
+  { name: "Future Kid",         src: "/logos/future kid.png",  imgClassName: "h-12 w-auto max-w-[100px] object-contain" },
+  { name: "Cinescape",          src: "/logos/cinescape.png",  imgClassName: "h-5 w-auto max-w-[180px] object-contain" },
+  { name: "Macro",              src: "/logos/macro.png" },
+  { name: "Taiba Hospital",     src: "/logos/taiba.png",       imgClassName: "h-20 w-auto max-w-[160px] object-contain" },
+  // Bottom rows
+  { name: "Flash",              src: "/logos/flash.png",       imgClassName: "h-14 w-auto max-w-[130px] object-contain" },
+  { name: "Provin",             src: "/logos/provin.png" },
+  { name: "Yaqoub Al-Sanea",    src: "/logos/yaqoub alsanea.png" },
+  { name: "Yiswa",              src: "/logos/yiswa.png" },
+];
+
+export const FEATURE_CARDS = [
+  {
+    title: "Increase the lifetime value of your customers",
+    description:
+      "Deliver truly personalized experiences across every moment that matters.",
+    gradient:
+      "linear-gradient(130deg, rgb(141, 164, 111) 0%, rgb(74, 109, 78) 100%)",
+  },
+  {
+    title: "Empower every team",
+    description:
+      "Build powerful AI agents quickly with or without engineering support.",
+    gradient:
+      "linear-gradient(131deg, rgb(61, 120, 182) 29.8%, rgb(3, 189, 245) 175.51%)",
+  },
+  {
+    title: "Unify your channels",
+    description:
+      "Deploy a single agent across chat, SMS, WhatsApp, email, voice, and ChatGPT.",
+    gradient:
+      "linear-gradient(130deg, rgb(156, 125, 145) 0%, rgb(181, 69, 101) 100%)",
+  },
+  {
+    title: "Pay for a job well done",
+    description:
+      "Ensure you only pay for the value Pair delivers with outcome-based pricing.",
+    gradient:
+      "linear-gradient(130deg, rgb(194, 103, 77) 0%, rgb(162, 70, 45) 100%)",
+  },
+];
+
+export const TESTIMONIALS = [
+  {
+    company: "Boutiqaat",
+    logoSrc: "/logos/Boutiqaat.png",
+    quote:
+      "\u201cPair has transformed how we connect with our customers. Every interaction feels personal and on‑brand.\u201d",
+    name: "Abdulwahab Alessa",
+    title: "Founder & Chief Executive Officer",
+  },
+  {
+    company: "Cinescape",
+    logoSrc: "/logos/cinescape.png",
+    logoClassName: "h-5 w-auto object-contain",
+    logoContainerClassName: "mb-3 mt-4 flex items-center justify-center min-h-[48px]",
+    quote:
+      "\u201cOur guests now get instant answers at any hour. Pair made that possible without adding headcount.\u201d",
+    name: "Nasser Bader Al Rowdan",
+    title: "Chief Executive Officer",
+  },
+  {
+    company: "Provin",
+    logoSrc: "/logos/provin.png",
+    quote:
+      "\u201cThe AI agent understands our customers and responds in a way that feels natural and helpful every time.\u201d",
+    name: "Nezar Al Saleh",
+    title: "Founder & Chief Executive Officer",
+  },
+  {
+    company: "ktech",
+    logoSrc: "/logos/ktech.png",
+    quote:
+      "\u201cPair gave us a competitive edge. We resolve customer issues faster and with far greater satisfaction.\u201d",
+    name: "Rogerio Barreto Rodrigues",
+    title: "Chief Executive Officer",
+  },
+];
+
+export const INSIGHT_CARDS = [
+  {
+    title: "Explorer",
+    description:
+      "Analyze agent performance with ChatGPT-style Deep Research for conversations.",
+  },
+  {
+    title: "Monitors",
+    description:
+      "Identify conversations needing extra attention proactively.",
+  },
+  {
+    title: "Experiments",
+    description:
+      "Run multivariate tests to optimize conversation design and agent performance.",
+  },
+  {
+    title: "Observability",
+    description:
+      "Understand every agent action, from tool calls, knowledge lookups, latency and more.",
+  },
+];
+
+export const AGENT_DATA_CARDS = [
+  {
+    title: "Agent memory",
+    description:
+      "Personalize experiences for each customer based on real-time context from conversation history.",
+  },
+  {
+    title: "Customer data",
+    description:
+      "Integrate structured data from  systems of record and existing data warehouses.",
+  },
+  {
+    title: "Recommendations",
+    description:
+      'Configure strategies, audiences, and available "inventory" to power your agent\'s decisioning engine.',
+  },
+  {
+    title: "Proactive engagement",
+    description:
+      "Respond to real-world signals by triggering next best action workflows across any channel.",
+  },
+];
+
+export const INSIGHTS_CARDS = [
+  {
+    title: "Explorer",
+    description:
+      "Analyze agent performance with ChatGPT-style Deep Research for conversations.",
+  },
+  {
+    title: "Monitors",
+    description:
+      "Identify conversations needing extra attention proactively.",
+  },
+  {
+    title: "Experiments",
+    description:
+      "Run multivariate tests to optimize conversation design and agent performance.",
+  },
+  {
+    title: "Observability",
+    description:
+      "Understand every agent action - from tool calls, knowledge lookups, latency and more.",
+  },
+];
+
+export const TRUST_BADGES = [
+  { name: "SOC 2", abbreviation: "SOC 2" },
+  { name: "ISO 27001", abbreviation: "ISO 27001" },
+  { name: "ISO 42001", abbreviation: "ISO 42001" },
+  { name: "HIPAA", abbreviation: "HIPAA" },
+  { name: "GDPR", abbreviation: "GDPR" },
+  { name: "EU AI Act", abbreviation: "EU AI Act" },
+  { name: "STAR Level One", abbreviation: "STAR" },
+];
+
+export const FOOTER_COLUMNS = [
+  {
+    heading: "Product",
+    links: [
+      { label: "Product overview", href: "/product" },
+      { label: "Meet your agent", href: "/product/meet-your-agent" },
+      { label: "Agent Studio", href: "/product/agent-studio" },
+      { label: "Agent SDK", href: "/product/agent-sdk" },
+      { label: "Insights", href: "/product/insights" },
+      { label: "Live Assist", href: "/product/live-assist" },
+      { label: "Voice", href: "/product/voice" },
+      { label: "Trust and reliability", href: "/product/trust-and-reliability" },
+    ],
+  },
+  {
+    heading: "Industries",
+    links: [
+      { label: "Industries overview", href: "/industries" },
+      { label: "Financial services", href: "/industries/financial-services" },
+      { label: "Healthcare", href: "/industries/healthcare" },
+      { label: "Telecommunications", href: "/industries/telecommunications" },
+      { label: "Media", href: "/industries/media" },
+      { label: "Travel and hospitality", href: "/industries/travel-transportation-hospitality" },
+      { label: "Retail and consumer goods", href: "/industries/retail" },
+      { label: "Technology", href: "/industries/technology" },
+    ],
+  },
+  {
+    heading: "Customers",
+    links: [{ label: "Customer stories", href: "/customers" }],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
+      { label: "Resources", href: "/resources" },
+      { label: "Careers", href: "/careers" },
+      { label: "Trust Center", href: "https://trust.pair.ai/" },
+      { label: "Events", href: "/events" },
+    ],
+  },
+];
+
+export const LEGAL_LINKS = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-and-conditions" },
+  { label: "Modern Slavery Statement", href: "/modern-slavery-statement" },
+  { label: "Cookie Preferences", href: "#manage-cookies" },
+];

@@ -1,0 +1,46 @@
+[     466ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[     490ms] [LOG] [HMR] connected @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   15837ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   15977ms] [LOG] [Fast Refresh] done in 244ms @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   29438ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   29455ms] [LOG] [Fast Refresh] done in 101ms @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   30528ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   30535ms] [LOG] [Fast Refresh] done in 110ms @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   30637ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   30645ms] [LOG] [Fast Refresh] done in 109ms @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   87167ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[   87230ms] [LOG] [Fast Refresh] done in 114ms @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  223080ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  223195ms] [ERROR] ./components/sections/HeroSection.tsx:247:1
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  245 |     </header>
+  246 |   );
+> 247 | }
+      | ^
+  248 |
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[  223283ms] [ERROR] ./components/sections/HeroSection.tsx:247:1
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  245 |     </header>
+  246 |   );
+> 247 | }
+      | ^
+  248 |
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:3272
+[  223360ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  227054ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  227068ms] [LOG] [Fast Refresh] done in 92ms @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  227179ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431
+[  227207ms] [LOG] [Fast Refresh] done in 129ms @ http://localhost:3004/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431

@@ -1,0 +1,438 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Pair" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Pair" [ref=e6]
+      - generic:
+        - generic:
+          - link "Product":
+            - /url: "#product"
+            - text: Product
+            - img
+        - generic:
+          - link "Industries":
+            - /url: "#industries"
+            - text: Industries
+            - img
+        - generic:
+          - link "Customers":
+            - /url: "#customers"
+        - generic:
+          - link "Company":
+            - /url: "#company"
+            - text: Company
+            - img
+      - generic [ref=e7]:
+        - link "Learn more" [ref=e8] [cursor=pointer]:
+          - /url: /learn-more
+        - button "Menu" [ref=e9]:
+          - img [ref=e10]
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - button "Product":
+            - text: Product
+            - img
+          - button "Industries":
+            - text: Industries
+            - img
+          - link "Customers":
+            - /url: "#customers"
+          - button "Company":
+            - text: Company
+            - img
+        - generic:
+          - link "Sign in":
+            - /url: /login
+      - generic:
+        - generic:
+          - button "Back":
+            - img
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e17]:
+        - heading "Better customer experiences. Built on Pair." [level=1] [ref=e18]
+        - link "Learn more" [ref=e19] [cursor=pointer]:
+          - /url: /learn-more
+      - generic [ref=e21]:
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - figure [ref=e26]:
+              - img "Othman" [ref=e27]
+            - generic [ref=e28]: Othman
+          - generic [ref=e29]: I don't recognize this 29 KD charge. Can you help?
+        - generic [ref=e32]:
+          - generic [ref=e33]:
+            - figure [ref=e34]:
+              - img "Pair" [ref=e35]
+            - generic [ref=e36]: Pair Agent
+          - generic [ref=e37]: I see that charge, Othman. It looks like a duplicate from your last order. I've submitted a refund for you.
+        - generic [ref=e40]:
+          - generic [ref=e41]: 29 KD refund initiated
+          - img [ref=e42]
+    - generic [ref=e47]:
+      - generic [ref=e48]:
+        - heading "Leading brands succeed with Pair" [level=2] [ref=e49]
+        - link "Customer stories" [ref=e50] [cursor=pointer]:
+          - /url: /customers
+      - generic [ref=e51]:
+        - img "Boutiqaat" [ref=e53]
+        - img "Cinescape" [ref=e55]
+        - img "Flare Fitness" [ref=e57]
+        - img "CCK" [ref=e59]
+        - img "Future Kid" [ref=e61]
+        - img "ktech" [ref=e63]
+        - img "Macro" [ref=e65]
+        - img "Taiba Hospital" [ref=e67]
+        - img "Flash" [ref=e69]
+        - img "Provin" [ref=e71]
+        - img "Yaqoub Al-Sanea" [ref=e73]
+        - img "Yiswa" [ref=e75]
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - heading "Transform your customer experience" [level=2] [ref=e80]:
+          - text: Transform your
+          - text: customer experience
+        - paragraph [ref=e81]: Pair helps the great companies of the world show up at their best.
+      - generic [ref=e82]:
+        - heading "Increase the lifetime value of your customers" [level=3] [ref=e83]
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - generic [ref=e87]:
+              - paragraph [ref=e88]: Flair Fitness
+              - generic [ref=e89]:
+                - generic [ref=e90]:
+                  - paragraph [ref=e91]: Next class
+                  - paragraph [ref=e92]: Sun, Sep 7
+                  - paragraph [ref=e93]: 6:00 PM
+                - generic [ref=e94]:
+                  - paragraph [ref=e95]: Membership
+                  - paragraph [ref=e96]: Gold Tier
+                  - paragraph [ref=e97]: Since Jan 2024
+            - generic [ref=e98]:
+              - paragraph [ref=e99]: Visits
+              - paragraph [ref=e100]: "142"
+              - paragraph [ref=e101]: this year
+            - generic [ref=e102]:
+              - paragraph [ref=e103]: Your usual order
+              - generic [ref=e104]:
+                - generic [ref=e105]:
+                  - paragraph [ref=e106]: Diet Pepsi × 1
+                  - paragraph [ref=e107]: French Fries × 1 · 0.750 KD
+                - generic [ref=e108]: Reorder
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - img "Pair" [ref=e114]
+              - generic [ref=e115]: AI Agent
+            - paragraph [ref=e116]: Hi, Danah! Ready to reorder your usual?
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - img [ref=e121]
+                - generic [ref=e124]:
+                  - paragraph [ref=e125]: Flair Fitness
+                  - paragraph [ref=e126]: Upgrade confirmed
+              - generic [ref=e127]:
+                - img [ref=e128]
+                - img [ref=e130]
+                - img [ref=e132]
+                - img [ref=e134]
+                - img [ref=e136]
+            - generic [ref=e138]:
+              - generic [ref=e139]:
+                - generic [ref=e140]:
+                  - img [ref=e141]
+                  - generic [ref=e144]: Delivery
+                - generic [ref=e145]: On its way
+              - paragraph [ref=e146]: ETA 12:05 PM
+        - button "Pause animation" [ref=e149]:
+          - img [ref=e150]
+        - button "Expand" [ref=e153]:
+          - img [ref=e154]
+      - generic [ref=e155]:
+        - generic [ref=e156]:
+          - heading "Empower every team" [level=3] [ref=e157]
+          - img "Pair" [ref=e162]
+          - button "Pause animation" [ref=e179]:
+            - img [ref=e180]
+          - button "Expand" [ref=e183]:
+            - img [ref=e184]
+        - generic [ref=e185]:
+          - heading "Unify your channels" [level=3] [ref=e186]
+          - button "Pause animation" [ref=e190]:
+            - img [ref=e191]
+          - button "Expand" [ref=e194]:
+            - img [ref=e195]
+        - generic [ref=e196]:
+          - heading "Pay for a job well done" [level=3] [ref=e197]
+          - button "Pause animation" [ref=e201]:
+            - img [ref=e202]
+          - button "Expand" [ref=e205]:
+            - img [ref=e206]
+    - generic [ref=e209]:
+      - heading "The results speak for themselves" [level=2] [ref=e210]
+      - generic [ref=e211]:
+        - generic [ref=e212]:
+          - img "Boutiqaat" [ref=e214]
+          - blockquote [ref=e215]: “Pair has transformed how we connect with our customers. Every interaction feels personal and on‑brand.”
+          - paragraph [ref=e216]: Abdulwahab Alessa
+          - paragraph [ref=e217]: Founder & Chief Executive Officer
+        - generic [ref=e218]:
+          - img "Cinescape" [ref=e220]
+          - blockquote [ref=e221]: “Our guests now get instant answers at any hour. Pair made that possible without adding headcount.”
+          - paragraph [ref=e222]: Nasser Bader Al Rowdan
+          - paragraph [ref=e223]: Chief Executive Officer
+        - generic [ref=e224]:
+          - img "Provin" [ref=e226]
+          - blockquote [ref=e227]: “The AI agent understands our customers and responds in a way that feels natural and helpful every time.”
+          - paragraph [ref=e228]: Nezar Al Saleh
+          - paragraph [ref=e229]: Founder & Chief Executive Officer
+        - generic [ref=e230]:
+          - img "ktech" [ref=e232]
+          - blockquote [ref=e233]: “Pair gave us a competitive edge. We resolve customer issues faster and with far greater satisfaction.”
+          - paragraph [ref=e234]: Rogerio Barreto Rodrigues
+          - paragraph [ref=e235]: Chief Executive Officer
+    - generic [ref=e238]:
+      - heading "Pair Agent OS" [level=2] [ref=e239]
+      - paragraph [ref=e240]: Build, test, and optimize the best AI agents.
+    - img "Pair Agent OS dashboard showing insights, conversations, and analytics" [ref=e245]
+    - generic [ref=e248]:
+      - generic [ref=e250]:
+        - heading "Use AI to improve your AI" [level=3] [ref=e251]
+        - link "Insights" [ref=e252] [cursor=pointer]:
+          - /url: /product/insights
+          - img [ref=e253]
+          - text: Insights
+      - generic [ref=e257]:
+        - group "1 of 4" [ref=e258]:
+          - article [ref=e259]:
+            - figure [ref=e260]:
+              - img "Report asking 'Why are conversations being transferred to human agents?' and listing 'Package stuck in transit' as a reason from 120k conversations."
+            - generic [ref=e261]:
+              - heading "Explorer" [level=3] [ref=e262]
+              - paragraph [ref=e263]: Analyze agent performance with ChatGPT-style Deep Research for conversations.
+        - group "2 of 4" [ref=e264]:
+          - article [ref=e265]:
+            - figure [ref=e266]:
+              - img "Data cards displaying an upward trending line graph for 'Great sNPS 32%' and a partial bar chart."
+            - generic [ref=e267]:
+              - heading "Monitors" [level=3] [ref=e268]
+              - paragraph [ref=e269]: Identify conversations needing extra attention proactively.
+        - group "3 of 4" [ref=e270]:
+          - article [ref=e271]:
+            - figure [ref=e272]:
+              - 'img "Two agent chat bubbles addressing Scott: ''Hey Scott, how can I help?'' and ''Hello Scott, how are you this evening?''"'
+            - generic [ref=e273]:
+              - heading "Experiments" [level=3] [ref=e274]
+              - paragraph [ref=e275]: Run multivariate tests to optimize conversation design and agent performance.
+        - group "4 of 4" [ref=e276]:
+          - article [ref=e277]:
+            - figure [ref=e278]:
+              - img "Agent reasoning panel listing Supervisors, Decisions, and Responses, each marked complete with a green checkmark."
+            - generic [ref=e279]:
+              - heading "Observability" [level=3] [ref=e280]
+              - paragraph [ref=e281]: Understand every agent action - from tool calls, knowledge lookups, latency and more.
+      - generic [ref=e283]:
+        - button "Previous slide" [disabled] [ref=e284]:
+          - img [ref=e285]
+        - button "Next slide" [disabled] [ref=e287]:
+          - img [ref=e288]
+    - generic [ref=e292]:
+      - generic [ref=e293]:
+        - heading "Empower every team to build quickly" [level=3] [ref=e294]
+        - generic [ref=e295]:
+          - link "Agent Studio" [ref=e296] [cursor=pointer]:
+            - /url: /product/agent-studio
+            - img [ref=e297]
+            - text: Agent Studio
+          - link "Agent SDK" [ref=e299] [cursor=pointer]:
+            - /url: /product/agent-sdk
+            - img [ref=e300]
+            - text: Agent SDK
+      - generic [ref=e305]:
+        - article [ref=e306]:
+          - figure [ref=e307]:
+            - img "A user interface for flight booking, detailing customer intent, an action goal, and a list of booking policies." [ref=e308]
+          - generic [ref=e309]:
+            - heading "Agent Studio" [level=3] [ref=e310]
+            - paragraph [ref=e311]: Build powerful agents without engineering support that adhere to goals and guardrails, integrate knowledge and third-party tools, and improve over time using simulations.
+        - article [ref=e312]:
+          - figure [ref=e313]:
+            - img "A timeline graph showing AI agent traces, including transcription, initialization, supervisor actions, and user intent classifications." [ref=e314]
+          - generic [ref=e315]:
+            - heading "Agent SDK" [level=3] [ref=e316]
+            - paragraph [ref=e317]: State of the art conversational AI in your software development lifecycle, with declarative development, CI/CD tooling, multi-agent orchestration, and more.
+    - generic [ref=e319]:
+      - generic [ref=e321]:
+        - heading "Turn conversations into lasting relationships" [level=3] [ref=e322]
+        - link "Agent Data Platform" [ref=e324] [cursor=pointer]:
+          - /url: /blog/agent-data-platform
+          - text: Agent Data Platform
+          - img [ref=e325]
+      - generic [ref=e329]:
+        - group "1 of 4" [ref=e330]:
+          - article [ref=e331]:
+            - figure [ref=e332]:
+              - 'img "User profile for Jess Rivers (jess@acme.co), member since 2012, with reason for calling: Activation, and current sentiment: Positive."'
+            - generic [ref=e333]:
+              - heading "Agent memory" [level=3] [ref=e334]
+              - paragraph [ref=e335]: Personalize experiences for each customer based on real-time context from conversation history.
+        - group "2 of 4" [ref=e336]:
+          - article [ref=e337]:
+            - figure [ref=e338]:
+              - img "A database icon connected to logos for Google Cloud, Databricks, Snowflake, Redis, and AWS."
+            - generic [ref=e339]:
+              - heading "Customer data" [level=3] [ref=e340]
+              - paragraph [ref=e341]: Integrate structured data from systems of record and existing data warehouses.
+        - group "3 of 4" [ref=e342]:
+          - article [ref=e343]:
+            - figure [ref=e344]:
+              - 'img "UI elements for a churn prevention strategy, showing Audience: High churn risk (100k) and Outcomes: Lifetime value."'
+            - generic [ref=e345]:
+              - heading "Recommendations" [level=3] [ref=e346]
+              - paragraph [ref=e347]: Configure strategies, audiences, and available "inventory" to power your agent's decisioning engine.
+        - group "4 of 4" [ref=e348]:
+          - article [ref=e349]:
+            - figure [ref=e350]:
+              - img "Chat about activating a new iPhone 17S for a daughter, with an agent suggesting a family plan."
+            - generic [ref=e351]:
+              - heading "Proactive engagement" [level=3] [ref=e352]
+              - paragraph [ref=e353]: Respond to real-world signals by triggering next best action workflows across any channel.
+      - generic [ref=e355]:
+        - button "Previous slide" [disabled] [ref=e356]:
+          - img [ref=e357]
+        - button "Next slide" [disabled] [ref=e359]:
+          - img [ref=e360]
+    - generic [ref=e364]:
+      - generic [ref=e365]:
+        - heading "Trust and reliability" [level=2] [ref=e366]
+        - paragraph [ref=e367]: Pair is designed with the highest commitment to trust, security, and compliance.
+      - generic [ref=e368]:
+        - img "SOC 2" [ref=e370]
+        - img "ISO 27001" [ref=e372]
+        - img "ISO 42001" [ref=e374]
+        - img "HIPAA" [ref=e376]
+        - img "GDPR" [ref=e378]
+        - img "EU AI Act" [ref=e380]
+        - img "STAR Level 1" [ref=e382]
+    - generic [ref=e386]:
+      - heading "Discover what Pair can do for you" [level=2] [ref=e387]
+      - paragraph [ref=e388]: Find out how Pair can help your business build better, more human customer experiences with AI.
+      - link "Learn more" [ref=e389] [cursor=pointer]:
+        - /url: /learn-more
+  - contentinfo [ref=e390]:
+    - generic [ref=e391]:
+      - img "Pair" [ref=e394]
+      - generic [ref=e395]:
+        - generic [ref=e396]:
+          - heading "Product" [level=3] [ref=e397]
+          - list [ref=e398]:
+            - listitem [ref=e399]:
+              - link "Product overview" [ref=e400] [cursor=pointer]:
+                - /url: /product
+            - listitem [ref=e401]:
+              - link "Meet your agent" [ref=e402] [cursor=pointer]:
+                - /url: /product/meet-your-agent
+            - listitem [ref=e403]:
+              - link "Agent Studio" [ref=e404] [cursor=pointer]:
+                - /url: /product/agent-studio
+            - listitem [ref=e405]:
+              - link "Agent SDK" [ref=e406] [cursor=pointer]:
+                - /url: /product/agent-sdk
+            - listitem [ref=e407]:
+              - link "Insights" [ref=e408] [cursor=pointer]:
+                - /url: /product/insights
+            - listitem [ref=e409]:
+              - link "Live Assist" [ref=e410] [cursor=pointer]:
+                - /url: /product/live-assist
+            - listitem [ref=e411]:
+              - link "Voice" [ref=e412] [cursor=pointer]:
+                - /url: /product/voice
+            - listitem [ref=e413]:
+              - link "Trust and reliability" [ref=e414] [cursor=pointer]:
+                - /url: /product/trust-and-reliability
+        - generic [ref=e415]:
+          - heading "Industries" [level=3] [ref=e416]
+          - list [ref=e417]:
+            - listitem [ref=e418]:
+              - link "Industries overview" [ref=e419] [cursor=pointer]:
+                - /url: /industries
+            - listitem [ref=e420]:
+              - link "Financial services" [ref=e421] [cursor=pointer]:
+                - /url: /industries/financial-services
+            - listitem [ref=e422]:
+              - link "Healthcare" [ref=e423] [cursor=pointer]:
+                - /url: /industries/healthcare
+            - listitem [ref=e424]:
+              - link "Telecommunications" [ref=e425] [cursor=pointer]:
+                - /url: /industries/telecommunications
+            - listitem [ref=e426]:
+              - link "Media" [ref=e427] [cursor=pointer]:
+                - /url: /industries/media
+            - listitem [ref=e428]:
+              - link "Travel and hospitality" [ref=e429] [cursor=pointer]:
+                - /url: /industries/travel-transportation-hospitality
+            - listitem [ref=e430]:
+              - link "Retail and consumer goods" [ref=e431] [cursor=pointer]:
+                - /url: /industries/retail
+            - listitem [ref=e432]:
+              - link "Technology" [ref=e433] [cursor=pointer]:
+                - /url: /industries/technology
+        - generic [ref=e434]:
+          - heading "Customers" [level=3] [ref=e435]
+          - list [ref=e436]:
+            - listitem [ref=e437]:
+              - link "Customer stories" [ref=e438] [cursor=pointer]:
+                - /url: /customers
+        - generic [ref=e439]:
+          - heading "Company" [level=3] [ref=e440]
+          - list [ref=e441]:
+            - listitem [ref=e442]:
+              - link "About" [ref=e443] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e444]:
+              - link "Blog" [ref=e445] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e446]:
+              - link "Resources" [ref=e447] [cursor=pointer]:
+                - /url: /resources
+            - listitem [ref=e448]:
+              - link "Careers" [ref=e449] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=e450]:
+              - link "Trust Center" [ref=e451] [cursor=pointer]:
+                - /url: https://trust.pair.ai/
+            - listitem [ref=e452]:
+              - link "Events" [ref=e453] [cursor=pointer]:
+                - /url: /events
+      - button "United States (English)" [ref=e455]:
+        - generic [ref=e456]:
+          - text: United States
+          - generic [ref=e457]: (English)
+        - img [ref=e458]
+      - generic [ref=e460]:
+        - link "Privacy Policy" [ref=e461] [cursor=pointer]:
+          - /url: /privacy-policy
+        - link "Terms & Conditions" [ref=e462] [cursor=pointer]:
+          - /url: /terms-and-conditions
+        - link "Modern Slavery Statement" [ref=e463] [cursor=pointer]:
+          - /url: /modern-slavery-statement
+        - link "Cookie Preferences" [ref=e464] [cursor=pointer]:
+          - /url: "#manage-cookies"
+      - generic [ref=e465]:
+        - generic [ref=e466]: © 2026 Pair
+        - generic [ref=e467]:
+          - link "LinkedIn" [ref=e468] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/sierra
+            - img [ref=e469]
+          - link "Instagram" [ref=e471] [cursor=pointer]:
+            - /url: https://instagram.com/pairplatform
+            - img [ref=e472]
+          - link "X" [ref=e474] [cursor=pointer]:
+            - /url: https://x.com/pairplatform
+            - img [ref=e475]
+  - button "Open Next.js Dev Tools" [ref=e482] [cursor=pointer]:
+    - img [ref=e483]
+  - alert [ref=e486]
