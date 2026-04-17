@@ -7,48 +7,48 @@ export const NAV_LINKS = [
 
 export const COMPANY_LOGOS = [
   // Top row
-  { name: "Boutiqaat",          src: "/logos/Boutiqaat.png",  imgClassName: "h-20 w-auto max-w-[160px] object-contain" },
-  { name: "ktech",              src: "/logos/ktech.png" },
-  { name: "Flare Fitness",      src: "/logos/flare fitness.png" },
+  { name: "Boutiqaat",          src: "/logos/Boutiqaat.png",     imgClassName: "h-28 w-[200px]", opacityClass: "opacity-50 group-hover:opacity-100" },
+  { name: "ktech",              src: "/logos/ktech.png",         imgClassName: "h-20 w-[164px]" },
+  { name: "Flare Fitness",      src: "/logos/flare fitness.png", imgClassName: "h-20 w-[164px]" },
   // Middle
-  { name: "CCK",                src: "/logos/cck.png" },
-  { name: "Future Kid",         src: "/logos/future kid.png",  imgClassName: "h-12 w-auto max-w-[100px] object-contain" },
-  { name: "Cinescape",          src: "/logos/cinescape.png",  imgClassName: "h-5 w-auto max-w-[180px] object-contain" },
-  { name: "Macro",              src: "/logos/macro.png" },
-  { name: "Taiba Hospital",     src: "/logos/taiba.png",       imgClassName: "h-20 w-auto max-w-[160px] object-contain" },
+  { name: "CCK",                src: "/logos/cck.png",           imgClassName: "h-20 w-[164px]" },
+  { name: "Future Kid",         src: "/logos/future kid.png",    imgClassName: "h-16 w-[132px]" },
+  { name: "Cinescape",          src: "/logos/cinescape.png",     imgClassName: "h-5 w-[174px]" },
+  { name: "Macro",              src: "/logos/macro.png",         imgClassName: "h-24 w-[182px] brightness-75 group-hover:brightness-100", opacityClass: "opacity-100" },
+  { name: "Taiba Hospital",     src: "/logos/taiba.png",         imgClassName: "h-28 w-[200px]" },
   // Bottom rows
-  { name: "Flash",              src: "/logos/flash.png",       imgClassName: "h-14 w-auto max-w-[130px] object-contain" },
-  { name: "Provin",             src: "/logos/provin.png" },
-  { name: "Yaqoub Al-Sanea",    src: "/logos/yaqoub alsanea.png" },
-  { name: "Yiswa",              src: "/logos/yiswa.png" },
+  { name: "The Burrow",         src: "/logos/The Burrow.png",    imgClassName: "h-24 w-[120px]", opacityClass: "opacity-40 group-hover:opacity-100" },
+  { name: "Provin",             src: "/logos/provin.png",        imgClassName: "h-20 w-[164px]" },
+  { name: "Portarage",          src: "/logos/portarage.png",     imgClassName: "h-24 w-[200px]" },
+  { name: "Yiswa",              src: "/logos/yiswa.png",         imgClassName: "h-20 w-[164px]" },
 ];
 
 export const FEATURE_CARDS = [
   {
-    title: "Increase the lifetime value of your customers",
+    title: "Known, not numbered.",
     description:
-      "Deliver truly personalized experiences across every moment that matters.",
+      "The best customer service is the one the customer never has to explain.",
     gradient:
-      "linear-gradient(130deg, rgb(141, 164, 111) 0%, rgb(74, 109, 78) 100%)",
+      "linear-gradient(130deg, rgb(42, 95, 74) 0%, rgb(26, 62, 48) 100%)",
   },
   {
-    title: "Empower every team",
+    title: "AI up front. Humans where it matters.",
     description:
-      "Build powerful AI agents quickly with or without engineering support.",
+      "Your team stops answering the same question for the 100th time. Pair does that. They do the hard stuff.",
     gradient:
       "linear-gradient(131deg, rgb(61, 120, 182) 29.8%, rgb(3, 189, 245) 175.51%)",
   },
   {
-    title: "Unify your channels",
+    title: "One agent. Every channel.",
     description:
-      "Deploy a single agent across chat, SMS, WhatsApp, email, voice, and ChatGPT.",
+      "Voice. Chat. Email. WhatsApp. SMS. Same brain.",
     gradient:
       "linear-gradient(130deg, rgb(156, 125, 145) 0%, rgb(181, 69, 101) 100%)",
   },
   {
     title: "Pay for a job well done",
     description:
-      "Ensure you only pay for the value Pair delivers with outcome-based pricing.",
+      "No resolution. No bill.",
     gradient:
       "linear-gradient(130deg, rgb(194, 103, 77) 0%, rgb(162, 70, 45) 100%)",
   },
