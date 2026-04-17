@@ -48,7 +48,7 @@ export const FEATURE_CARDS = [
   {
     title: "Results, not promises.",
     description:
-      "No resolution. No bill.",
+      "You only pay when Pair actually resolves a customer issue, which means every invoice is proof of work delivered and never a promise of it.",
     gradient:
       "linear-gradient(130deg, rgb(194, 103, 77) 0%, rgb(162, 70, 45) 100%)",
   },
