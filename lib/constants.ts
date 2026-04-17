@@ -58,34 +58,31 @@ export const TESTIMONIALS = [
   {
     company: "Boutiqaat",
     logoSrc: "/logos/Boutiqaat.png",
-    quote:
-      "\u201cPair has transformed how we connect with our customers. Every interaction feels personal and on‑brand.\u201d",
-    name: "Abdulwahab Alessa",
-    title: "Founder & Chief Executive Officer",
+    quote: "It sounds like us. That is the part we did not expect.",
+    name: "Abdullah Aljulaibi",
+    title: "Co-Founder & Chief Executive Officer",
   },
   {
     company: "Cinescape",
     logoSrc: "/logos/cinescape.png",
     logoClassName: "h-5 w-auto object-contain",
     logoContainerClassName: "mb-3 mt-4 flex items-center justify-center min-h-[48px]",
-    quote:
-      "\u201cOur guests now get instant answers at any hour. Pair made that possible without adding headcount.\u201d",
+    quote: "3 AM. Eid weekend. Sold out shows. Pair handled it.",
     name: "Nasser Bader Al Rowdan",
     title: "Chief Executive Officer",
   },
   {
-    company: "Provin",
-    logoSrc: "/logos/provin.png",
-    quote:
-      "\u201cThe AI agent understands our customers and responds in a way that feels natural and helpful every time.\u201d",
-    name: "Nezar Al Saleh",
-    title: "Founder & Chief Executive Officer",
+    company: "Flare Fitness",
+    logoSrc: "/logos/flare fitness.png",
+    quote: "Our members stopped asking if they were talking to a bot.",
+    // TODO: confirm signatory with Bayan before deploy
+    name: "",
+    title: "",
   },
   {
     company: "ktech",
     logoSrc: "/logos/ktech.png",
-    quote:
-      "\u201cPair gave us a competitive edge. We resolve customer issues faster and with far greater satisfaction.\u201d",
+    quote: "We cut response time to seconds. Satisfaction went up, not down.",
     name: "Rogerio Barreto Rodrigues",
     title: "Chief Executive Officer",
   },

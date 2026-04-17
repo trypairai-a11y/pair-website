@@ -7,7 +7,7 @@ export default function TestimonialsSection() {
     <section className="relative z-10 bg-white pt-10 pb-20 rounded-b-[2rem] [box-shadow:0_60px_80px_-10px_rgba(140,170,210,0.3)]">
       <Container>
         <h2 className="text-[24px] leading-tight font-normal text-sierra-text-dark text-center mb-9 whitespace-nowrap">
-          The results speak for themselves
+          Hear it from them.
         </h2>
 
         <div className="max-w-[680px] mx-auto flex flex-col gap-0">
