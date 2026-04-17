@@ -46,7 +46,7 @@ export const FEATURE_CARDS = [
       "linear-gradient(130deg, rgb(156, 125, 145) 0%, rgb(181, 69, 101) 100%)",
   },
   {
-    title: "Pay when they love it.",
+    title: "Results, not promises.",
     description:
       "No resolution. No bill.",
     gradient:
