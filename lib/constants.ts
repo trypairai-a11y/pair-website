@@ -46,7 +46,7 @@ export const FEATURE_CARDS = [
       "linear-gradient(130deg, rgb(156, 125, 145) 0%, rgb(181, 69, 101) 100%)",
   },
   {
-    title: "Pay for a job well done",
+    title: "Pay when they love it.",
     description:
       "No resolution. No bill.",
     gradient:
@@ -58,7 +58,10 @@ export const TESTIMONIALS = [
   {
     company: "Boutiqaat",
     logoSrc: "/logos/Boutiqaat.png",
-    quote: "It sounds like us. That is the part we did not expect.",
+    quote: [
+      "It sounds like us.",
+      "That is the part we did not expect.",
+    ],
     name: "Abdullah Aljulaibi",
     title: "Co-Founder & Chief Executive Officer",
   },
@@ -67,22 +70,30 @@ export const TESTIMONIALS = [
     logoSrc: "/logos/cinescape.png",
     logoClassName: "h-5 w-auto object-contain",
     logoContainerClassName: "mb-3 mt-4 flex items-center justify-center min-h-[48px]",
-    quote: "3 AM. Eid weekend. Sold out shows. Pair handled it.",
+    quote: [
+      "3 AM on Eid weekend. Sold out shows.",
+      "Pair handled every call.",
+    ],
     name: "Nasser Bader Al Rowdan",
     title: "Chief Executive Officer",
   },
   {
     company: "Flare Fitness",
     logoSrc: "/logos/flare fitness.png",
-    quote: "Our members stopped asking if they were talking to a bot.",
-    // TODO: confirm signatory with Bayan before deploy
-    name: "",
-    title: "",
+    quote: [
+      "Our members stopped asking if they were talking to a bot.",
+      "That is when we knew it was working.",
+    ],
+    name: "Yousef Alshaea",
+    title: "Chief Executive Officer",
   },
   {
     company: "ktech",
     logoSrc: "/logos/ktech.png",
-    quote: "We cut response time to seconds. Satisfaction went up, not down.",
+    quote: [
+      "We cut response time to seconds.",
+      "Satisfaction went up, not down.",
+    ],
     name: "Rogerio Barreto Rodrigues",
     title: "Chief Executive Officer",
   },
