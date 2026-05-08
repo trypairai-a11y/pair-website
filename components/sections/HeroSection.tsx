@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 /* ------------------------------------------------------------------ */
 /*  Hero items: video + paired chat scenario                           */
@@ -11,7 +12,7 @@ const HERO_ITEMS = [
   {
     video: "/hero/Timeline 2.mp4",
     bubbles: [
-      { type: "user", name: "Maryam", avatar: "/photos/stock/healthcare-headshot.jpg", text: "My WiFi keeps dropping." },
+      { type: "user", name: "Maryam", avatar: "/photos/headshots/spiral-1.png", text: "My WiFi keeps dropping." },
       { type: "agent", text: "Hi Maryam! That's frustrating. I've reset it remotely. Your WiFi should be steady again within minutes." },
       { type: "confirm", variant: "wifi", title: "Home_Network_5GHz", text: "Connected" },
     ],
@@ -19,7 +20,7 @@ const HERO_ITEMS = [
   {
     video: "/hero/Timeline 3.mp4",
     bubbles: [
-      { type: "user", name: "Faisal", avatar: "/photos/stock/ben-levick-headshot.jpg", text: "Same suite next week?" },
+      { type: "user", name: "Faisal", avatar: "/photos/headshots/spiral-3.png", text: "Same suite next week?" },
       { type: "agent", text: "Done. Oct 15-17 at Four Seasons. Sea view. Confirmation sent." },
       { type: "confirm", text: "Booked." },
     ],
@@ -27,7 +28,7 @@ const HERO_ITEMS = [
   {
     video: "/hero/Timeline 1.mp4",
     bubbles: [
-      { type: "user", name: "Danah", avatar: "/photos/stock/leala-francis-headshot.jpg", text: "Any appointments today?" },
+      { type: "user", name: "Danah", avatar: "/photos/headshots/spiral-5.png", text: "Any appointments today?" },
       { type: "agent", text: "8:00, 8:30, 9:30, or 10:00. Which works?" },
       { type: "confirm", text: "Booked for 9:30." },
     ],
@@ -74,7 +75,7 @@ function GlassBubble({ align, className, headerRef, blurBg, children }: {
     <div className={align === "end" ? "place-self-end" : "place-self-start"}>
       <div
         ref={ref}
-        className={`relative overflow-hidden w-[75vw] max-w-[334px] rounded-2xl text-white ${className ?? ""}`}
+        className={`relative overflow-hidden w-full max-w-none rounded-2xl text-white md:w-[75vw] md:max-w-[334px] ${className ?? ""}`}
       >
         {/* Blurred video frame, positioned to match the header crop */}
         <div
@@ -118,15 +119,15 @@ const arabicFont = (text: string) => (isArabic(text) ? { fontFamily: "var(--font
 
 function UserBubble({ name, avatar, text, headerRef, blurBg }: { name: string; avatar: string; text: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
   return (
-    <GlassBubble align="end" headerRef={headerRef} blurBg={blurBg} className="p-4 md:p-4">
+    <GlassBubble align="end" headerRef={headerRef} blurBg={blurBg} className="p-5 md:p-4">
       <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2 text-label-md text-white/80 md:text-[12px]">
-          <figure className="relative aspect-square size-4 overflow-hidden rounded-full">
-            <Image src={avatar} alt={name} fill sizes="16px" className="object-cover" />
+        <div className="flex items-center gap-2 text-[14px] text-white/80 md:text-[12px]">
+          <figure className="relative aspect-square size-5 overflow-hidden rounded-full md:size-4">
+            <Image src={avatar} alt={name} fill sizes="20px" className="object-cover" />
           </figure>
           <span style={arabicFont(name)}>{name}</span>
         </div>
-        <div dir="auto" className="text-[14px] md:text-[14px] font-normal text-white leading-snug" style={arabicFont(text)}>{text}</div>
+        <div dir="auto" className="text-[17px] md:text-[14px] font-normal text-white leading-snug" style={arabicFont(text)}>{text}</div>
       </div>
     </GlassBubble>
   );
@@ -134,15 +135,15 @@ function UserBubble({ name, avatar, text, headerRef, blurBg }: { name: string; a
 
 function AgentBubble({ text, agentName, headerRef, blurBg }: { text: string; agentName?: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
   return (
-    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="p-4">
+    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="p-5 md:p-4">
       <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2 text-label-md text-white/80 md:text-[12px]">
-          <figure className="relative aspect-square size-4 overflow-hidden">
-            <Image src="/branding/pair-icon-white.png" alt="Pair" width={16} height={16} className="block h-auto w-full object-cover" />
+        <div className="flex items-center gap-2 text-[14px] text-white/80 md:text-[12px]">
+          <figure className="relative aspect-square size-5 overflow-hidden md:size-4">
+            <Image src="/branding/pair-icon-white.png" alt="Pair" width={20} height={20} className="block h-auto w-full object-cover" />
           </figure>
           <span>{agentName ?? "Pair Agent"}</span>
         </div>
-        <div dir="auto" className="text-[14px] font-normal text-white leading-snug" style={arabicFont(text)}>{text}</div>
+        <div dir="auto" className="text-[17px] md:text-[14px] font-normal text-white leading-snug" style={arabicFont(text)}>{text}</div>
       </div>
     </GlassBubble>
   );
@@ -151,10 +152,10 @@ function AgentBubble({ text, agentName, headerRef, blurBg }: { text: string; age
 function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: string; title?: string; variant?: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
   if (variant === "wifi") {
     return (
-      <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="px-4 py-3">
+      <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="px-5 py-4 md:px-4 md:py-3">
         <div className="flex items-center gap-3">
-          <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#34C759]">
-            <svg viewBox="0 0 24 24" fill="none" className="size-5 text-white">
+          <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#34C759] md:size-9">
+            <svg viewBox="0 0 24 24" fill="none" className="size-6 text-white md:size-5">
               <path d="M2.5 9.5C5.2 7 8.5 5.5 12 5.5s6.8 1.5 9.5 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               <path d="M5.5 12.5C7.4 10.9 9.6 10 12 10s4.6.9 6.5 2.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               <path d="M8.5 15.5C9.5 14.7 10.7 14.2 12 14.2s2.5.5 3.5 1.3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -162,10 +163,10 @@ function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: stri
             </svg>
           </div>
           <div className="flex flex-col gap-0.5 min-w-0">
-            <span className="text-[14px] font-medium text-white truncate" style={arabicFont(title ?? "")}>{title}</span>
-            <span className="flex items-center gap-1.5 text-[12px] text-white/80">
+            <span className="text-[17px] md:text-[14px] font-medium text-white truncate" style={arabicFont(title ?? "")}>{title}</span>
+            <span className="flex items-center gap-1.5 text-[14px] md:text-[12px] text-white/80">
               <span style={arabicFont(text)}>{text}</span>
-              <svg viewBox="0 0 16 16" fill="none" className="size-3.5 text-white/70">
+              <svg viewBox="0 0 16 16" fill="none" className="size-4 md:size-3.5 text-white/70">
                 <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.2"/>
                 <path d="M5 8l2 2 4-4.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -176,10 +177,10 @@ function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: stri
     );
   }
   return (
-    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="px-4 py-3">
-      <div className="flex items-center justify-between">
-        <span dir="auto" className="text-[13px] font-medium text-white" style={arabicFont(text)}>{text}</span>
-        <svg viewBox="0 0 16 16" fill="none" className="size-4 text-pair-blue">
+    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="px-6 py-5 md:px-4 md:py-3">
+      <div className="flex items-center justify-between gap-3">
+        <span dir="auto" className="text-[17px] md:text-[13px] font-medium text-white" style={arabicFont(text)}>{text}</span>
+        <svg viewBox="0 0 16 16" fill="none" className="size-6 md:size-4 text-pair-blue">
           <circle cx="8" cy="8" r="7" fill="currentColor"/>
           <path d="M5.5 8l2 2 3-3.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
@@ -365,17 +366,17 @@ export default function HeroSection() {
       <div className="mt-28 h-[calc(100%-(var(--spacing)*28))] xl:mt-32 xl:h-[calc(100%-(var(--spacing)*32))] relative">
         <div className="mx-auto w-full max-w-[1160px] px-7 lg:px-10 xl:pl-6 relative h-full">
           <h1
-            className="mt-32 mb-4 text-[28px] leading-[1.1] font-normal whitespace-pre-wrap text-white md:mt-48 md:mb-8 md:text-[44px] md:font-normal lg:mt-[6rem] lg:text-[40px] lg:font-normal xl:mt-[16rem] xl:text-[48px]"
+            className="mt-36 mb-6 text-[32px] leading-[1.05] font-normal whitespace-pre-wrap text-white md:mt-48 md:mb-8 md:text-[44px] md:font-normal lg:mt-[6rem] lg:text-[40px] lg:font-normal xl:mt-[16rem] xl:text-[48px]"
             style={{ WebkitFontSmoothing: "subpixel-antialiased", MozOsxFontSmoothing: "auto", color: "#ffffff" }}
           >
-            {"The first AI\nthat sounds\nlike a TK."}
+            {"The first AI\nthat sounds\nlike a Kuwaiti."}
           </h1>
-          <a
+          <Link
             href="/learn-more"
-            className="inline-flex items-center rounded-full bg-white text-black font-normal h-10 px-4 text-[12px] md:h-auto md:px-7 md:py-5 md:text-[13px] md:bg-white/95 md:hover:bg-white md:hover:text-pair-blue lg:h-14 lg:px-10 lg:py-0 lg:text-[14px] hover:text-blue-600 transition-colors duration-75"
+            className="inline-flex items-center rounded-full bg-white text-black font-light h-10 px-4 text-[13px] md:font-normal md:h-auto md:px-7 md:py-5 md:text-[13px] md:bg-white/95 md:hover:bg-white md:hover:text-pair-blue lg:h-14 lg:px-10 lg:py-0 lg:text-[14px] hover:text-blue-600 transition-colors duration-75"
           >
             Learn more
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -385,8 +386,8 @@ export default function HeroSection() {
           horizontal padding; the inner stack right-aligns within that track.
           pointer-events-none keeps the Learn more button clickable. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-[10px] flex justify-center">
-        <div className="relative w-full max-w-[1160px] px-7 lg:px-10 xl:pl-6">
-          <div className="ml-auto flex w-[min(88%,454px)] flex-col gap-2 pr-2">
+        <div className="relative w-full max-w-[1160px] px-5 md:px-7 lg:px-10 xl:pl-6">
+          <div className="ml-auto flex w-full flex-col gap-2 md:w-[min(88%,454px)] md:pr-2">
             {scenario.bubbles.slice(0, visibleCount).map((bubble, i) => (
               <div
                 key={`${activeIndex}-${i}`}

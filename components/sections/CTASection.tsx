@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Container from "@/components/layout/Container";
 
 export default function CTASection() {
@@ -12,12 +13,12 @@ export default function CTASection() {
             Find out how Pair can help your business build better, more human
             customer experiences with AI.
           </p>
-          <a
+          <Link
             href="/learn-more"
             className="inline-flex items-center rounded-full bg-sierra-green px-8 py-5 text-[13px] font-normal text-white hover:bg-sierra-green-light transition-colors md:px-7 md:py-5 md:text-sm"
           >
             Learn more
-          </a>
+          </Link>
         </div>
       </Container>
     </section>

@@ -176,7 +176,14 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .agent-os-layer { animation: none; }
+  .agent-os-layer,
+  .animate-hero-bubble,
+  .animate-hero-ambient,
+  .animate-hero-progress,
+  .animate-hero-pulse,
+  .animate-hero-star {
+    animation: none;
+  }
 }
 
 /* --- Hero card animation (35s loop, 5 scenarios × 7s stagger) ---

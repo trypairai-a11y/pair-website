@@ -56,7 +56,7 @@ export default function ValuesAccordion() {
                         strokeWidth={1.75}
                         aria-hidden="true"
                       />
-                      <span className="text-body-md font-medium">
+                      <span className="text-body-md font-normal">
                         {value.label}
                       </span>
                     </span>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Container from "@/components/layout/Container";
 
 export default function PageCTA({
@@ -10,21 +11,21 @@ export default function PageCTA({
   narrow?: boolean;
 }) {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 md:py-20 bg-white">
       <Container narrow={narrow}>
         <div className="text-center">
-          <h2 className="text-[32px] leading-9 font-normal text-sierra-text-dark mb-4">
+          <h2 className="text-[22px] leading-tight md:text-[32px] md:leading-9 font-normal text-sierra-text-dark mb-3 md:mb-4">
             {title}
           </h2>
-          <p className="text-base text-sierra-gray mb-8 max-w-md mx-auto">
+          <p className="text-[13px] md:text-base text-sierra-gray mb-6 md:mb-8 max-w-md mx-auto">
             {description}
           </p>
-          <a
+          <Link
             href="/learn-more"
-            className="inline-flex items-center rounded-full bg-sierra-green px-5 py-4.5 text-xs font-normal text-white hover:bg-sierra-green-light transition-colors md:px-6 md:py-5 md:text-sm"
+            className="inline-flex items-center rounded-full bg-sierra-green px-5 py-4.5 text-sm font-medium text-white hover:bg-sierra-green-light transition-colors md:px-6 md:py-5 md:text-sm"
           >
             Learn more
-          </a>
+          </Link>
         </div>
       </Container>
     </section>

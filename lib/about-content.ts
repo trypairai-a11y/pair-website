@@ -94,11 +94,11 @@ export const CUSTOMERS: CustomerCardData[] = [
     company: "Future Kid",
     logoSrc: "/logos/future-kid.png",
     logoAlt: "Future Kid logo",
-    logoClass: "max-h-16 md:max-h-20",
+    logoClass: "max-h-14 md:max-h-16",
     imageSrc: "/photos/customers/future-kid.png",
     imageAlt: "A child playing at Future Kid",
     quote: "Parents book birthday parties before they reach the front desk. The whole night runs smoother.",
-    authorName: "Future Kid Team",
+    authorName: "Sarah Alkhaled",
     authorTitle: "",
   },
 ];
@@ -123,11 +123,11 @@ export const OFFICES: {
 
 export const MOSAIC = {
   small: {
-    src: "/photos/lifestyle/orange-sweater.png",
+    src: "/photos/lifestyle/nexus.png",
     alt: "A Pair team member at work",
   },
   large: {
-    src: "/photos/lifestyle/modern-building.png",
+    src: "/photos/lifestyle/headband-phone.png",
     alt: "Pair's headquarters in Kuwait City",
   },
 };

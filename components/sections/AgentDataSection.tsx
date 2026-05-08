@@ -304,7 +304,6 @@ export default function AgentDataSection({
                         sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 86vw"
                         className="object-cover pointer-events-none"
                         draggable={false}
-                        unoptimized
                       />
                     )}
                   </figure>

@@ -1,19 +1,20 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { CustomerCardData } from "@/lib/about-content";
 
 export default function CustomerCard({ data }: { data: CustomerCardData }) {
   return (
-    <a
+    <Link
       href={data.href}
       aria-label={`${data.company} customer story`}
-      className="group relative flex aspect-square xl:aspect-auto xl:min-h-[450px] flex-col justify-between gap-y-6 overflow-hidden rounded-2xl border border-[#e4e0dc] bg-[#f6f5f3] p-4 xl:p-6 focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-pair-blue outline-none"
+      className="group relative flex aspect-square lg:aspect-auto lg:min-h-[450px] flex-col justify-between gap-y-6 overflow-hidden rounded-2xl border border-[#e4e0dc] bg-[#f6f5f3] p-4 lg:p-6 focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-pair-blue outline-none"
     >
       <Image
         src={data.imageSrc}
         alt={data.imageAlt}
         fill
-        sizes="(min-width:1280px) 33vw, (min-width:768px) 50vw, 90vw"
+        sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 90vw"
         className="absolute inset-0 object-cover opacity-0 motion-safe:transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
       />
 
@@ -48,7 +49,7 @@ export default function CustomerCard({ data }: { data: CustomerCardData }) {
           )}
         </div>
 
-        <div className="flex flex-col gap-y-4 opacity-100 motion-safe:transition-opacity duration-300 group-hover:opacity-0 group-focus-visible:opacity-0 xl:gap-y-5">
+        <div className="flex flex-col gap-y-4 opacity-100 motion-safe:transition-opacity duration-300 group-hover:opacity-0 group-focus-visible:opacity-0 lg:gap-y-5">
           <blockquote className="text-body-md text-sierra-text-dark max-w-prose pr-4 md:pr-0">
             &ldquo;{data.quote}&rdquo;
           </blockquote>
@@ -68,6 +69,6 @@ export default function CustomerCard({ data }: { data: CustomerCardData }) {
           <ArrowRight className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

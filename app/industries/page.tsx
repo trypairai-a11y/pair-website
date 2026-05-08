@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { pageMetadata } from "@/lib/constants";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/ui/PageHero";
@@ -26,11 +27,11 @@ export default function IndustriesPage() {
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {industries.map((ind) => (
-              <a key={ind.title} href={ind.href} className="rounded-xl bg-white p-6">
+              <Link key={ind.title} href={ind.href} className="rounded-xl bg-white p-6">
                 <div className="w-10 h-10 rounded-lg bg-sierra-green/10 flex items-center justify-center text-sierra-green mb-4">{ind.icon}</div>
                 <h3 className="text-base font-medium text-sierra-text-dark mb-2">{ind.title}</h3>
                 <p className="text-sm text-sierra-gray leading-relaxed">{ind.description}</p>
-              </a>
+              </Link>
             ))}
           </div>
         </Container>

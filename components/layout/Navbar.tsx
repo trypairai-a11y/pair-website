@@ -124,7 +124,7 @@ export default function Navbar() {
       <nav className="relative mx-auto flex max-w-[1160px] items-center justify-between px-7 py-4 lg:px-10 xl:pt-4 xl:pb-4">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
-          <PairLogo color={darkTheme ? "#4d98e2" : "white"} />
+          <PairLogo color={darkTheme ? "#4d98e2" : "white"} sizeClass="h-6 sm:h-5" />
         </Link>
 
         {/* Desktop nav links - shown inline at xl, hidden below in favor of burger */}
@@ -203,6 +203,8 @@ export default function Navbar() {
               scrolled && !mobileOpen ? "hidden" : ""
             } ${mobileOpen || darkTheme ? "text-sierra-gray hover:text-sierra-text-dark" : "text-white/90 hover:text-gray-300"}`}
             aria-label="Menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
             onClick={() => { setMobileOpen(!mobileOpen); if (mobileOpen) setMobileSubmenu(null); }}
           >
             <AnimatedMenuIcon open={mobileOpen} size={24} />
@@ -213,7 +215,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3 md:gap-5 xl:hidden">
           <Link
             href={onLearnMore ? "/product" : "/learn-more"}
-            className={`inline-flex items-center gap-1 rounded-full h-8 px-3 text-[12px] font-medium leading-4 transition-colors ${
+            className={`inline-flex items-center gap-1 rounded-full h-8 px-3 text-[11px] sm:text-[12px] font-medium leading-4 transition-colors ${
               darkTheme
                 ? "bg-sierra-green text-white hover:bg-sierra-green-light"
                 : "bg-white/10 text-white hover:bg-white/20"
@@ -230,10 +232,12 @@ export default function Navbar() {
             className="p-1 group"
             onClick={() => { setMobileOpen(!mobileOpen); if (mobileOpen) setMobileSubmenu(null); }}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             <AnimatedMenuIcon
               open={mobileOpen}
-              size={24}
+              size={22}
               className={`transition-colors ${scrolled || mobileOpen || darkTheme ? "text-sierra-gray group-hover:text-sierra-text-dark" : "text-white/90 group-hover:text-gray-300"}`}
             />
           </button>
@@ -244,6 +248,11 @@ export default function Navbar() {
 
     {/* Full-screen mobile menu overlay - rendered below the navbar */}
     <div
+      id="mobile-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site menu"
+      aria-hidden={!mobileOpen}
       className={`fixed inset-0 z-40 ${navBg} flex flex-col transition-opacity duration-300 overflow-hidden ${
         mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/ui/PageHero";
 
@@ -52,7 +53,7 @@ export default function BlogPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((post) => (
-              <a key={post.slug} href={`/blog/${post.slug}`} className="rounded-xl overflow-hidden block">
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="rounded-xl overflow-hidden block">
                 <div className="h-40 bg-gradient-to-br from-sierra-bg to-white" />
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-3">
@@ -62,7 +63,7 @@ export default function BlogPage() {
                   <h3 className="text-base font-medium text-sierra-text-dark mb-2">{post.title}</h3>
                   <p className="text-sm text-sierra-gray leading-relaxed">{post.excerpt}</p>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </Container>

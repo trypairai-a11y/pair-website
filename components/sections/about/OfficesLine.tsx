@@ -5,7 +5,7 @@ export default function OfficesLine() {
   return (
     <section className="py-section bg-white">
       <Container narrow>
-        <div className="grid grid-cols-12 gap-x-4 gap-y-6 items-start">
+        <div className="grid grid-cols-12 gap-x-4 gap-y-2 md:gap-y-6 items-start">
           <h2 className="col-span-12 md:col-span-3 xl:col-span-4 text-headline-lg text-sierra-text-dark">
             {OFFICES.headline}
           </h2>

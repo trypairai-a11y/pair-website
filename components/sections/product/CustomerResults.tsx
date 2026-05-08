@@ -35,6 +35,7 @@ export default function CustomerResults() {
               tagline={c.tagline}
               naturalLogo={c.naturalLogo}
               hideLogo={c.hideLogo}
+              largerLogo={c.largerLogo}
             />
           ))}
         </div>

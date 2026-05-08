@@ -18,6 +18,7 @@ const almarai = Almarai({
   variable: "--font-almarai",
   subsets: ["arabic"],
   weight: ["300", "400", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Container from "@/components/layout/Container";
 import { INSIGHTS_CARDS } from "@/lib/constants";
 import { TrendingUp } from "lucide-react";
@@ -228,17 +229,17 @@ export default function InsightsSection() {
   return (
     <section className="bg-white pt-10 pb-16 md:pt-12 md:pb-20 xl:pt-16 xl:pb-24 overflow-hidden">
       <Container>
-        <div className="text-center mb-20">
+        <div className="text-center mb-8 md:mb-20">
           <h3 className="text-headline-xl font-normal text-sierra-text-dark mb-3 text-balance">
             Better, every day.
           </h3>
-          <a
+          <Link
             href="/product/insights"
-            className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-transparent px-4 py-2.5 mt-1 mb-16 text-[12px] font-normal text-sierra-text-dark cursor-pointer transition-colors hover:border-blue-400/40 hover:bg-blue-50/40"
+            className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-transparent px-4 py-2.5 mt-1 mb-2 md:mb-16 text-[12px] font-normal text-sierra-text-dark cursor-pointer transition-colors hover:border-blue-400/40 hover:bg-blue-50/40"
           >
             <TrendingUp size={11} />
             Insights
-          </a>
+          </Link>
         </div>
       </Container>
 

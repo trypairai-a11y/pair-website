@@ -58,7 +58,6 @@ function TrustedLogos({ className = "" }: { className?: string }) {
             alt={logo.name}
             width={300}
             height={120}
-            unoptimized
             className={`${LOGO_SIZE[logo.name] ?? "h-12"} w-auto object-contain grayscale opacity-60`}
           />
         ))}
@@ -69,9 +68,9 @@ function TrustedLogos({ className = "" }: { className?: string }) {
 
 export default function LearnMorePage() {
   return (
-    <section className="pt-32 lg:pt-36 pb-12 md:pb-40 lg:pb-56 bg-[#f6f5f3]">
+    <section className="pt-32 lg:pt-36 pb-4 md:pb-40 lg:pb-56 bg-[#f6f5f3]">
       <div className="mx-auto max-w-[1160px] px-7 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-6 md:gap-12 lg:gap-16">
           {/* Left column */}
           <div className="flex flex-col lg:pt-2 xl:pt-4">
             <div className="md:max-w-3xl md:mx-0 lg:max-w-none w-full">

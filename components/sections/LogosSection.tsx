@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Container from "@/components/layout/Container";
 import { COMPANY_LOGOS } from "@/lib/constants";
 
@@ -10,12 +11,12 @@ export default function LogosSection() {
           <h2 className="text-headline-sm font-normal text-sierra-text-dark mb-6 text-balance">
             Leading brands succeed with Pair
           </h2>
-          <a
+          <Link
             href="/customers"
             className="inline-flex items-center rounded-full bg-sierra-green text-white h-10 px-5 text-[12px] font-medium hover:bg-sierra-green-light transition-colors"
           >
             Customer stories
-          </a>
+          </Link>
         </div>
 
         <div className="mt-12 grid grid-cols-3 gap-0 items-stretch max-w-3xl mx-auto">
@@ -29,7 +30,6 @@ export default function LogosSection() {
                 alt={logo.name}
                 width={200}
                 height={120}
-                unoptimized
                 className={`${logo.imgClassName ?? "h-16 w-auto max-w-[140px]"} object-contain scale-[0.75] md:scale-100 lg:grayscale ${logo.opacityClass ?? "lg:opacity-60 lg:group-hover:opacity-100"} transition-[filter,opacity] duration-300 ease-out lg:group-hover:grayscale-0`}
               />
             </div>
