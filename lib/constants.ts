@@ -7,17 +7,17 @@ export const NAV_LINKS = [
 
 export const COMPANY_LOGOS = [
   // Top row
-  { name: "Boutiqaat",          src: "/logos/Boutiqaat.png",     imgClassName: "h-28 w-[200px]", opacityClass: "opacity-50 group-hover:opacity-100" },
+  { name: "Boutiqaat",          src: "/logos/boutiqaat.png",     imgClassName: "h-28 w-[200px]", opacityClass: "opacity-50 group-hover:opacity-100" },
   { name: "ktech",              src: "/logos/ktech.png",         imgClassName: "h-20 w-[164px]" },
-  { name: "Flare Fitness",      src: "/logos/flare fitness.png", imgClassName: "h-20 w-[164px]" },
+  { name: "Flare Fitness",      src: "/logos/flare-fitness.png", imgClassName: "h-20 w-[164px]" },
   // Middle
   { name: "CCK",                src: "/logos/cck.png",           imgClassName: "h-20 w-[164px]" },
-  { name: "Future Kid",         src: "/logos/future kid.png",    imgClassName: "h-16 w-[132px]" },
+  { name: "Future Kid",         src: "/logos/future-kid.png",    imgClassName: "h-16 w-[132px]" },
   { name: "Cinescape",          src: "/logos/cinescape.png",     imgClassName: "h-5 w-[174px]" },
   { name: "Macro",              src: "/logos/macro.png",         imgClassName: "h-24 w-[182px] brightness-75 group-hover:brightness-100", opacityClass: "opacity-100" },
   { name: "Taiba Hospital",     src: "/logos/taiba.png",         imgClassName: "h-28 w-[200px]" },
   // Bottom rows
-  { name: "The Burrow",         src: "/logos/The Burrow.png",    imgClassName: "h-24 w-[120px]", opacityClass: "opacity-40 group-hover:opacity-100" },
+  { name: "The Burrow",         src: "/logos/the-burrow.png",    imgClassName: "h-24 w-[120px]", opacityClass: "opacity-40 group-hover:opacity-100" },
   { name: "Provin",             src: "/logos/provin.png",        imgClassName: "h-20 w-[164px]" },
   { name: "Portarage",          src: "/logos/portarage.png",     imgClassName: "h-24 w-[200px]" },
   { name: "Yiswa",              src: "/logos/yiswa.png",         imgClassName: "h-20 w-[164px]" },
@@ -57,7 +57,7 @@ export const FEATURE_CARDS = [
 export const TESTIMONIALS = [
   {
     company: "Boutiqaat",
-    logoSrc: "/logos/Boutiqaat.png",
+    logoSrc: "/logos/boutiqaat.png",
     quote: [
       "It sounds like us.",
       "That is the part we did not expect.",
@@ -79,7 +79,7 @@ export const TESTIMONIALS = [
   },
   {
     company: "Flare Fitness",
-    logoSrc: "/logos/flare fitness.png",
+    logoSrc: "/logos/flare-fitness.png",
     quote: [
       "Our members stopped asking if they were talking to a bot.",
       "That is when we knew it was working.",
