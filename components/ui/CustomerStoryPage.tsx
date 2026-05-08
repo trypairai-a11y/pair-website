@@ -96,7 +96,7 @@ export default function CustomerStoryPage({
             {results.map((r) => (
               <div
                 key={r.metric}
-                className="rounded-2xl border border-sierra-divider p-6 text-center"
+                className="rounded-xl border border-sierra-divider p-6 text-center"
               >
                 <p className="text-3xl font-medium text-sierra-green mb-2">
                   {r.metric}

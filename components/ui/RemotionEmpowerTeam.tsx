@@ -1,34 +1,89 @@
 "use client";
 
-import { Player } from "@remotion/player";
+import { useEffect, useRef, useState } from "react";
+import { Player, type PlayerRef } from "@remotion/player";
 import { EmpowerEveryTeam } from "@/remotion/EmpowerEveryTeam";
 
-export default function RemotionEmpowerTeam() {
+const COMP_W = 590;
+const COMP_H = 744;
+const COMP_ASPECT = COMP_W / COMP_H;
+
+export default function RemotionEmpowerTeam({ paused = false }: { paused?: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<PlayerRef>(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setSize({ w: el.clientWidth, h: el.clientHeight });
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const player = playerRef.current;
+    if (!player) return;
+    if (paused) {
+      player.pause();
+    } else {
+      player.play();
+    }
+  }, [paused, size.w, size.h]);
+
+  let playerW = 0;
+  let playerH = 0;
+  if (size.w > 0 && size.h > 0) {
+    const containerAspect = size.w / size.h;
+    if (containerAspect > COMP_ASPECT) {
+      playerW = size.w;
+      playerH = size.w / COMP_ASPECT;
+    } else {
+      playerH = size.h;
+      playerW = size.h * COMP_ASPECT;
+    }
+  }
+
   return (
     <div
+      ref={containerRef}
       style={{
-        display: "flex",
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        position: "relative",
         width: "100%",
         height: "100%",
+        overflow: "hidden",
       }}
     >
-      <Player
-        component={EmpowerEveryTeam}
-        durationInFrames={400}
-        compositionWidth={590}
-        compositionHeight={744}
-        fps={30}
-        autoPlay
-        loop
-        acknowledgeRemotionLicense
-        style={{
-          width: 590,
-          height: 744,
-        }}
-      />
+      {playerW > 0 && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            width: playerW,
+            height: playerH,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <Player
+            ref={playerRef}
+            component={EmpowerEveryTeam}
+            durationInFrames={800}
+            compositionWidth={COMP_W}
+            compositionHeight={COMP_H}
+            fps={60}
+            autoPlay={!paused}
+            loop
+            acknowledgeRemotionLicense
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }

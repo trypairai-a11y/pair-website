@@ -4,14 +4,16 @@ export default function PageHero({
   title,
   description,
   tag,
+  narrow = false,
 }: {
   title: string;
   description: string;
   tag?: string;
+  narrow?: boolean;
 }) {
   return (
     <section className="pt-32 pb-16 bg-white">
-      <Container>
+      <Container narrow={narrow}>
         {tag && (
           <span className="inline-block text-xs font-medium text-sierra-green tracking-wider uppercase mb-4">
             {tag}

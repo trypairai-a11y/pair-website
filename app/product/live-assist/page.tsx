@@ -1,6 +1,12 @@
+import { pageMetadata } from "@/lib/constants";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
+
+export const metadata = pageMetadata(
+  "Live Assist",
+  "Seamless handoff between AI agents and human experts, with full conversation context preserved."
+);
 
 const features = [
   {
@@ -31,7 +37,7 @@ export default function LiveAssistPage() {
       <section className="py-16 bg-white">
         <Container>
           {/* Handoff mockup */}
-          <div className="rounded-2xl bg-sierra-bg p-8 mb-16">
+          <div className="rounded-xl bg-sierra-bg p-8 mb-16">
             <div className="max-w-lg mx-auto space-y-4">
               <div className="bg-white rounded-xl p-5 shadow-sm">
                 <div className="flex items-center gap-2 mb-2">
@@ -69,7 +75,7 @@ export default function LiveAssistPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((f) => (
-              <div key={f.title} className="rounded-2xl border border-sierra-divider p-6">
+              <div key={f.title} className="rounded-xl border border-sierra-divider p-6">
                 <h3 className="text-base font-medium text-sierra-text-dark mb-2">
                   {f.title}
                 </h3>

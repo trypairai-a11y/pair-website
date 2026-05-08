@@ -3,13 +3,15 @@ import Container from "@/components/layout/Container";
 export default function PageCTA({
   title = "Discover what Pair can do for you",
   description = "Find out how Pair can help your business build better, more human customer experiences with AI.",
+  narrow = false,
 }: {
   title?: string;
   description?: string;
+  narrow?: boolean;
 }) {
   return (
     <section className="py-20 bg-white">
-      <Container>
+      <Container narrow={narrow}>
         <div className="text-center">
           <h2 className="text-[32px] leading-9 font-normal text-sierra-text-dark mb-4">
             {title}
@@ -19,7 +21,7 @@ export default function PageCTA({
           </p>
           <a
             href="/learn-more"
-            className="inline-flex items-center rounded-full bg-sierra-green px-5 py-3.5 text-xs font-normal text-white hover:bg-sierra-green-light transition-colors md:px-6 md:py-4 md:text-sm"
+            className="inline-flex items-center rounded-full bg-sierra-green px-5 py-4.5 text-xs font-normal text-white hover:bg-sierra-green-light transition-colors md:px-6 md:py-5 md:text-sm"
           >
             Learn more
           </a>

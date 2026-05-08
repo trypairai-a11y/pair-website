@@ -1,33 +1,49 @@
+import type { Metadata } from "next";
+
+export const SITE_URL = "https://pair.com";
+export const SITE_NAME = "Pair";
+export const SITE_TAGLINE = "Better customer experiences";
+export const SITE_DESCRIPTION =
+  "Better customer experiences. Built on Pair. Deploy AI agents that deliver personalized, empathetic customer experiences across every channel.";
+
+export function pageMetadata(title: string, description: string): Metadata {
+  return {
+    title,
+    description,
+    openGraph: { title, description },
+    twitter: { title, description },
+  };
+}
+
 export const NAV_LINKS = [
-  { label: "Product", href: "#product", hasDropdown: true },
-  { label: "Industries", href: "#industries", hasDropdown: true },
-  { label: "Customers", href: "#customers", hasDropdown: false },
-  { label: "Company", href: "#company", hasDropdown: true },
+  { label: "Product", href: "/product", hasDropdown: false },
+  { label: "Customers", href: "/customers", hasDropdown: false },
+  { label: "Company", href: "/about", hasDropdown: false },
 ];
 
 export const COMPANY_LOGOS = [
   // Top row
-  { name: "Boutiqaat",          src: "/logos/boutiqaat.png",     imgClassName: "h-28 w-[200px]", opacityClass: "opacity-50 group-hover:opacity-100" },
+  { name: "Boutiqaat",          src: "/logos/boutiqaat.png",     imgClassName: "h-28 w-[200px]", opacityClass: "lg:opacity-50 lg:group-hover:opacity-100" },
   { name: "ktech",              src: "/logos/ktech.png",         imgClassName: "h-20 w-[164px]" },
-  { name: "Flare Fitness",      src: "/logos/flare-fitness.png", imgClassName: "h-20 w-[164px]" },
+  { name: "Provin",             src: "/logos/provin.png",        imgClassName: "h-20 w-[164px]" },
   // Middle
   { name: "CCK",                src: "/logos/cck.png",           imgClassName: "h-20 w-[164px]" },
-  { name: "Future Kid",         src: "/logos/future-kid.png",    imgClassName: "h-16 w-[132px]" },
   { name: "Cinescape",          src: "/logos/cinescape.png",     imgClassName: "h-5 w-[174px]" },
-  { name: "Macro",              src: "/logos/macro.png",         imgClassName: "h-24 w-[182px] brightness-75 group-hover:brightness-100", opacityClass: "opacity-100" },
-  { name: "Taiba Hospital",     src: "/logos/taiba.png",         imgClassName: "h-28 w-[200px]" },
+  { name: "Macro",              src: "/logos/macro.png",         imgClassName: "h-24 w-[182px] lg:brightness-75 lg:group-hover:brightness-100", opacityClass: "opacity-100" },
+  { name: "Flash",              src: "/logos/flash.png",         imgClassName: "h-20 w-[164px]" },
   // Bottom rows
-  { name: "The Burrow",         src: "/logos/the-burrow.png",    imgClassName: "h-24 w-[120px]", opacityClass: "opacity-40 group-hover:opacity-100" },
-  { name: "Provin",             src: "/logos/provin.png",        imgClassName: "h-20 w-[164px]" },
+  { name: "The Burrow",         src: "/logos/the-burrow.png",    imgClassName: "h-24 w-[120px]", opacityClass: "lg:opacity-40 lg:group-hover:opacity-100" },
   { name: "Portarage",          src: "/logos/portarage.png",     imgClassName: "h-24 w-[200px]" },
   { name: "Yiswa",              src: "/logos/yiswa.png",         imgClassName: "h-20 w-[164px]" },
+  { name: "Flare Fitness",      src: "/logos/flare-fitness.png", imgClassName: "h-16 w-[180px]" },
+  { name: "Future Kid",         src: "/logos/future-kid.png",    imgClassName: "h-20 w-20" },
 ];
 
 export const FEATURE_CARDS = [
   {
     title: "Known, not numbered.",
     description:
-      "The best customer service is the one the customer never has to explain.",
+      "The best service never makes a customer explain twice, because you already know who they are.",
     gradient:
       "linear-gradient(130deg, rgb(42, 95, 74) 0%, rgb(26, 62, 48) 100%)",
   },
@@ -36,19 +52,19 @@ export const FEATURE_CARDS = [
     description:
       "Your team stops answering the same question for the 100th time. Pair does that. They do the hard stuff.",
     gradient:
-      "linear-gradient(131deg, rgb(61, 120, 182) 29.8%, rgb(3, 189, 245) 175.51%)",
+      "linear-gradient(180deg, #6ab8e8 0%, #4a96d4 45%, #2a6bbf 100%)",
   },
   {
     title: "One agent. Every channel.",
     description:
-      "Voice. Chat. Email. WhatsApp. SMS. Same brain.",
+      "Voice, app, email, WhatsApp, ChatGPT, all one brain, so customers never explain twice.",
     gradient:
       "linear-gradient(130deg, rgb(156, 125, 145) 0%, rgb(181, 69, 101) 100%)",
   },
   {
     title: "Results, not promises.",
     description:
-      "You only pay when Pair actually resolves a customer issue, which means every invoice is proof of work delivered and never a promise of it.",
+      "You only pay when Pair resolves an issue, so every invoice is proof of work delivered.",
     gradient:
       "linear-gradient(130deg, rgb(194, 103, 77) 0%, rgb(162, 70, 45) 100%)",
   },
@@ -59,8 +75,8 @@ export const TESTIMONIALS = [
     company: "Boutiqaat",
     logoSrc: "/logos/boutiqaat.png",
     quote: [
-      "It sounds like us.",
-      "That is the part we did not expect.",
+      "Our AI agent became a personal shopping assistant.",
+      "It learns each customer's taste and points to what they'd love.",
     ],
     name: "Abdullah Aljulaibi",
     title: "Co-Founder & Chief Executive Officer",
@@ -71,8 +87,8 @@ export const TESTIMONIALS = [
     logoClassName: "h-5 w-auto object-contain",
     logoContainerClassName: "mb-3 mt-4 flex items-center justify-center min-h-[48px]",
     quote: [
-      "3 AM on Eid weekend. Sold out shows.",
-      "Pair handled every call.",
+      "Our AI agent makes every caller feel like our most important guest.",
+      "A true partner in the Cinescape experience.",
     ],
     name: "Nasser Bader Al Rowdan",
     title: "Chief Executive Officer",
@@ -80,45 +96,23 @@ export const TESTIMONIALS = [
   {
     company: "Flare Fitness",
     logoSrc: "/logos/flare-fitness.png",
+    logoClassName: "h-12 lg:h-14 xl:h-16 w-auto object-contain",
     quote: [
-      "Our members stopped asking if they were talking to a bot.",
-      "That is when we knew it was working.",
+      "Our members stopped asking if Fai was a bot.",
+      "That is the moment we knew it was actually working.",
     ],
     name: "Yousef Alshaea",
-    title: "Chief Executive Officer",
+    title: "",
   },
   {
     company: "ktech",
     logoSrc: "/logos/ktech.png",
     quote: [
-      "We cut response time to seconds.",
-      "Satisfaction went up, not down.",
+      "Kadi reaches students faster, making student life easier,",
+      "while streamlining the admission and enrollment process.",
     ],
-    name: "Rogerio Barreto Rodrigues",
-    title: "Chief Executive Officer",
-  },
-];
-
-export const INSIGHT_CARDS = [
-  {
-    title: "Explorer",
-    description:
-      "Analyze agent performance with ChatGPT-style Deep Research for conversations.",
-  },
-  {
-    title: "Monitors",
-    description:
-      "Identify conversations needing extra attention proactively.",
-  },
-  {
-    title: "Experiments",
-    description:
-      "Run multivariate tests to optimize conversation design and agent performance.",
-  },
-  {
-    title: "Observability",
-    description:
-      "Understand every agent action, from tool calls, knowledge lookups, latency and more.",
+    name: "Abdelwahab Boodai",
+    title: "",
   },
 ];
 
@@ -179,52 +173,12 @@ export const TRUST_BADGES = [
 ];
 
 export const FOOTER_COLUMNS = [
-  {
-    heading: "Product",
-    links: [
-      { label: "Product overview", href: "/product" },
-      { label: "Meet your agent", href: "/product/meet-your-agent" },
-      { label: "Agent Studio", href: "/product/agent-studio" },
-      { label: "Agent SDK", href: "/product/agent-sdk" },
-      { label: "Insights", href: "/product/insights" },
-      { label: "Live Assist", href: "/product/live-assist" },
-      { label: "Voice", href: "/product/voice" },
-      { label: "Trust and reliability", href: "/product/trust-and-reliability" },
-    ],
-  },
-  {
-    heading: "Industries",
-    links: [
-      { label: "Industries overview", href: "/industries" },
-      { label: "Financial services", href: "/industries/financial-services" },
-      { label: "Healthcare", href: "/industries/healthcare" },
-      { label: "Telecommunications", href: "/industries/telecommunications" },
-      { label: "Media", href: "/industries/media" },
-      { label: "Travel and hospitality", href: "/industries/travel-transportation-hospitality" },
-      { label: "Retail and consumer goods", href: "/industries/retail" },
-      { label: "Technology", href: "/industries/technology" },
-    ],
-  },
-  {
-    heading: "Customers",
-    links: [{ label: "Customer stories", href: "/customers" }],
-  },
-  {
-    heading: "Company",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "Blog", href: "/blog" },
-      { label: "Resources", href: "/resources" },
-      { label: "Careers", href: "/careers" },
-      { label: "Trust Center", href: "https://trust.pair.ai/" },
-      { label: "Events", href: "/events" },
-    ],
-  },
+  { heading: "Product", href: "/product" },
+  { heading: "Customers", href: "/customers" },
+  { heading: "Company", href: "/about" },
 ];
 
 export const LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms & Conditions", href: "/terms-and-conditions" },
-  { label: "Modern Slavery Statement", href: "/modern-slavery-statement" },
-  { label: "Cookie Preferences", href: "#manage-cookies" },
 ];

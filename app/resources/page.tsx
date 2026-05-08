@@ -57,7 +57,7 @@ export default function ResourcesPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((r) => (
-              <div key={r.title} className="rounded-2xl border border-sierra-divider p-6 hover:shadow-md transition-shadow cursor-pointer">
+              <div key={r.title} className="rounded-xl p-6 cursor-pointer">
                 <span className="text-xs text-sierra-green font-medium bg-sierra-green/10 px-2 py-0.5 rounded">{r.type}</span>
                 <h3 className="text-base font-medium text-sierra-text-dark mt-3 mb-2">{r.title}</h3>
                 <p className="text-sm text-sierra-gray leading-relaxed">{r.description}</p>

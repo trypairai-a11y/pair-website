@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import { GlassCalendar } from "@/components/ui/GlassCalendar";
 
 function UserBubble({ name, avatar, text }: { name: string; avatar: string; text: string }) {
@@ -9,7 +10,7 @@ function UserBubble({ name, avatar, text }: { name: string; avatar: string; text
       <div className="rounded-3xl p-4 bg-black/40 backdrop-blur-2xl border border-white/15 shadow-2xl flex flex-col gap-2 w-full max-w-[334px]">
         <div className="flex items-center gap-2 text-[12px] font-medium text-white/80">
           <figure className="relative aspect-square size-4 overflow-hidden rounded-full">
-            <img src={avatar} alt={name} className="absolute inset-0 h-full w-full object-cover" />
+            <Image src={avatar} alt={name} fill sizes="16px" className="object-cover" />
           </figure>
           <span>{name}</span>
         </div>
@@ -25,7 +26,7 @@ function AgentBubble({ text }: { text: string }) {
       <div className="rounded-3xl p-4 bg-black/40 backdrop-blur-2xl border border-white/15 shadow-2xl flex flex-col gap-2 w-full max-w-[334px]">
         <div className="flex items-center gap-2 text-[12px] font-medium text-white/80">
           <figure className="relative aspect-square size-4 overflow-hidden">
-            <img src="/branding/pair-icon-white.png" alt="Pair" className="block h-auto w-full object-cover" />
+            <Image src="/branding/pair-icon-white.png" alt="Pair" width={16} height={16} className="block h-auto w-full object-cover" />
           </figure>
           <span>Pair Agent</span>
         </div>

@@ -1,6 +1,12 @@
+import { pageMetadata } from "@/lib/constants";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
+
+export const metadata = pageMetadata(
+  "Meet your agent",
+  "Personalized, context-aware AI agents that understand customers across every touchpoint."
+);
 
 const features = [
   {
@@ -46,7 +52,7 @@ export default function MeetYourAgentPage() {
       <section className="py-16 bg-white">
         <Container>
           {/* Agent demo mockup */}
-          <div className="rounded-2xl bg-sierra-bg p-8 mb-16">
+          <div className="rounded-xl bg-sierra-bg p-8 mb-16">
             <div className="max-w-lg mx-auto">
               <div className="bg-white rounded-xl p-5 shadow-sm mb-4">
                 <div className="flex items-center gap-3 mb-3">

@@ -4,26 +4,26 @@ import Container from "@/components/layout/Container";
 export default function AgentOSSection() {
   return (
     <>
-      {/* Scroll spacer with sticky title pinned at 65% down the viewport */}
-      <div className="relative z-0 h-[30vh] -mt-20">
-        <div className="sticky top-[65%] flex items-center justify-center">
+      {/* Scroll spacer – starts behind the testimonials card (z-10) and reveals on scroll */}
+      <div className="relative z-0 h-[45vh] -mt-[22vh] md:h-[80vh] md:-mt-[40vh]">
+        <div className="sticky top-[40%] md:top-[45%] flex items-center justify-center">
           <div className="w-full text-center px-4">
-            <h2 className="text-[24px] leading-tight font-medium text-sierra-text-dark mb-3">
+            <h2 className="text-[26px] md:text-[36px] leading-tight font-normal text-sierra-text-dark mb-3">
               Pair Platform
             </h2>
-            <p className="text-xs font-medium text-sierra-gray">
-              Build, test, and optimize the best AI agents.
+            <p className="text-[13px] md:text-sm font-normal text-sierra-gray">
+              Everything, in one place.
             </p>
           </div>
         </div>
       </div>
 
       {/* Dashboard image section */}
-      <div className="relative z-10 mt-4 overflow-clip pt-10 [mask-image:linear-gradient(to_bottom,black_90%,transparent)]">
+      <div className="relative z-10 mt-2 md:mt-4 overflow-clip pt-4 md:pt-10 [mask-image:linear-gradient(to_bottom,black_90%,transparent)]">
         <Container>
-          <div className="max-w-4xl mx-auto relative">
+          <div className="max-w-6xl mx-auto relative">
             <Image
-              src="/product/pair-platform-dashboard .svg"
+              src="/product/pair-platform-dashboard.svg"
               alt=""
               width={896}
               height={560}
@@ -39,7 +39,7 @@ export default function AgentOSSection() {
               priority
             />
             <Image
-              src="/product/search bar.png"
+              src="/product/search-bar.png"
               alt=""
               width={896}
               height={560}
@@ -48,7 +48,7 @@ export default function AgentOSSection() {
             />
           </div>
         </Container>
-        <div className="h-24 w-full lg:h-36 2xl:h-48" />
+        <div className="h-8 w-full md:h-24 lg:h-36 2xl:h-48" />
       </div>
     </>
   );

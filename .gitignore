@@ -23,6 +23,11 @@
 # misc
 .DS_Store
 *.pem
+.tmp-*.png
+
+# scratch / dev artifacts
+/screenshots/
+/.playwright-mcp/
 
 # debug
 npm-debug.log*

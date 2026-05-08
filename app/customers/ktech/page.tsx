@@ -1,4 +1,10 @@
+import { pageMetadata } from "@/lib/constants";
 import CustomerStoryPage from "@/components/ui/CustomerStoryPage";
+
+export const metadata = pageMetadata(
+  "ktech",
+  "How ktech streamlines admissions and student life with Pair's AI agent Kadi."
+);
 
 export default function KtechStory() {
   return (

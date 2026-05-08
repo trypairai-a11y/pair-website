@@ -1,4 +1,10 @@
+import { pageMetadata } from "@/lib/constants";
 import CustomerStoryPage from "@/components/ui/CustomerStoryPage";
+
+export const metadata = pageMetadata(
+  "Flash",
+  "How Flash uses Pair to deliver fast, personal customer service."
+);
 
 export default function FlashStory() {
   return (

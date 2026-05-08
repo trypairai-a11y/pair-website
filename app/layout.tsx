@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Montserrat, Almarai, Geist } from "next/font/google";
+import { Almarai, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
+import Main from "@/components/layout/Main";
 import Footer from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const sfProDisplay = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 const almarai = Almarai({
@@ -20,9 +21,34 @@ const almarai = Almarai({
 });
 
 export const metadata: Metadata = {
-  title: "Pair | AI Agents for Customer Experience",
-  description:
-    "Better customer experiences. Built on Pair. Deploy AI agents that deliver personalized, empathetic customer experiences across every channel.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_TAGLINE} | ${SITE_NAME}`,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [
+    "AI agents",
+    "customer experience",
+    "voice AI",
+    "agent OS",
+    "customer support automation",
+    "Pair",
+  ],
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: { default: `${SITE_TAGLINE} | ${SITE_NAME}`, template: `%s | ${SITE_NAME}` },
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: { default: `${SITE_TAGLINE} | ${SITE_NAME}`, template: `%s | ${SITE_NAME}` },
+    description: SITE_DESCRIPTION,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -31,10 +57,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("antialiased", montserrat.variable, almarai.variable, "font-sans", geist.variable)}>
+    <html lang="en" className={cn("antialiased", almarai.variable, sfProDisplay.variable, "font-sans")}>
       <body className="min-h-screen flex flex-col font-sans">
         <Navbar />
-        <main className="flex-1 bg-white">{children}</main>
+        <Main>{children}</Main>
         <Footer />
       </body>
     </html>

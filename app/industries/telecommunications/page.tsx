@@ -1,4 +1,11 @@
+import { pageMetadata } from "@/lib/constants";
 import IndustryPage from "@/components/ui/IndustryPage";
+
+export const metadata = pageMetadata(
+  "Telecommunications",
+  "AI agents for billing support, technical troubleshooting, and plan management - at scale."
+);
+
 export default function Page() {
   return <IndustryPage industry="Telecommunications" description="Reduce call center volume and improve CSAT with AI agents that handle billing, troubleshooting, and plan changes." useCases={[
     { title: "Billing support", description: "Help customers understand charges, make payments, set up autopay, and resolve billing disputes instantly." },

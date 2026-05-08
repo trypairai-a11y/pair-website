@@ -1,4 +1,10 @@
+import { pageMetadata } from "@/lib/constants";
 import LegalPage from "@/components/ui/LegalPage";
+
+export const metadata = pageMetadata(
+  "Modern Slavery Statement",
+  "Pair's commitment to preventing modern slavery and human trafficking in our business and supply chain."
+);
 
 const sections = [
   {

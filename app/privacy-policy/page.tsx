@@ -1,4 +1,10 @@
+import { pageMetadata } from "@/lib/constants";
 import LegalPage from "@/components/ui/LegalPage";
+
+export const metadata = pageMetadata(
+  "Privacy Policy",
+  "How Pair collects, uses, and protects your information."
+);
 
 const sections = [
   {

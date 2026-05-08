@@ -3,30 +3,25 @@ import {
   Easing,
   Img,
   interpolate,
-  spring,
   staticFile,
   useCurrentFrame,
-  useVideoConfig,
 } from "remotion";
 
 const AVATARS = [
-  staticFile("photos/headshots/hf_20260410_181355_553370dd-f7c2-45cf-a5bf-41e0ad1ca131.png"),
-  staticFile("photos/headshots/hf_20260410_174702_3fb869ce-1e28-46c7-b468-86aa04522920.png"),
+  staticFile("photos/headshots/spiral-1.png"),
+  staticFile("photos/headshots/spiral-2.png"),
+  staticFile("photos/headshots/spiral-3.png"),
+  staticFile("photos/headshots/spiral-4.png"),
+  staticFile("photos/headshots/spiral-5.png"),
   staticFile("photos/headshots/hf_20260410_172518_83b9acad-9ba2-4b0c-b63c-9484cc90980b.png"),
-  staticFile("photos/headshots/hf_20260410_170726_823d5230-c5d5-46c1-aae9-a15b92e2d078.png"),
-  staticFile("photos/headshots/hf_20260410_181821_d712243b-b0ed-46aa-b73b-4b8ab7fcad70.png"),
-  staticFile("photos/headshots/hf_20260410_174203_18cb8da3-fd6a-40a1-b5ab-1cc0205355d1.png"),
-  staticFile("photos/headshots/hf_20260410_172548_85b65cae-485b-4406-83dc-1f100b8c17fd.png"),
-  staticFile("photos/headshots/hf_20260410_170644_e195688d-1dd9-4338-ba16-a6566c27cc36.png"),
 ];
 
 const COUNT       = AVATARS.length;
 const RING_SMALL  = 95;   // closer to logo
-const RING_FULL   = 135;  // expands when images appear
-const AVATAR_SIZE = 80;   // bigger circles
+const RING_FULL   = 138;  // expands when images appear
+const AVATAR_SIZE = 70;   // circle size at full bloom
 const CENTER_SIZE = 108;
 
-const easeIn    = Easing.bezier(0.12, 0, 0.39, 0);  // easeInSine
 const easeInOut = Easing.bezier(0.37, 0, 0.63, 1);  // easeInOutSine
 
 // ─── Phase timing ────────────────────────────────────────────────────────────
@@ -38,31 +33,47 @@ const easeInOut = Easing.bezier(0.37, 0, 0.63, 1);  // easeInOutSine
 // Frames 360-400: pause/rest
 
 const PRE_SPIN_START = 0;
-const PRE_SPIN_DUR   = 75;  // empty circles spinning before images appear
+const PRE_SPIN_DUR   = 150;  // empty circles spinning before images appear
 
-const BLOOM_START    = PRE_SPIN_START + PRE_SPIN_DUR; // 75 - images start appearing
-const BLOOM_STAGGER  = 5;   // stagger images by 5 frames each (smooth domino)
-const BLOOM_DUR      = 45;  // appearance transition over 45 frames
-const LAST_BLOOM_END = BLOOM_START + (COUNT - 1) * BLOOM_STAGGER + BLOOM_DUR; // 75 + 35 + 45 = 155
+const BLOOM_START    = PRE_SPIN_START + PRE_SPIN_DUR; // 150
+const BLOOM_STAGGER  = 10;  // stagger images by 10 frames each (smooth domino)
+const BLOOM_DUR      = 90;  // appearance transition
+const LAST_BLOOM_END = BLOOM_START + (COUNT - 1) * BLOOM_STAGGER + BLOOM_DUR; // 310
 
-const SPIN_DUR       = 145;  // spin at full expansion (300 - 155)
-const CONTRACT_START = LAST_BLOOM_END + SPIN_DUR; // 300 - start contracting
-const CONTRACT_DUR   = 60;  // contract and fade over 60 frames
-const LAST_CONTRACT_END = CONTRACT_START + CONTRACT_DUR; // 360
+const SPIN_DUR       = 290; // spin at full expansion
+const CONTRACT_START = LAST_BLOOM_END + SPIN_DUR; // 600
+const CONTRACT_DUR   = 120; // contract and fade
+const LAST_CONTRACT_END = CONTRACT_START + CONTRACT_DUR; // 720
 
-const PAUSE_DUR = 40;  // pause before next cycle
-const CYCLE     = LAST_CONTRACT_END + PAUSE_DUR; // 400
+const PAUSE_DUR = 80;
+const CYCLE     = LAST_CONTRACT_END + PAUSE_DUR; // 800
 
 // ─── Ring rotation ────────────────────────────────────────────────────────────
-// easeInOutSine over the full active phase (pre-spin + bloom + contract) = 360°
-// Velocity is 0 at both ends → blends seamlessly into the pause on both sides.
+// Trapezoidal velocity: smooth ramp-up, constant speed through the main phase,
+// smooth ramp-down. Velocity = 0 at both ends → blends into the pause.
+// The constant middle section avoids the accel/decel wobble of a single ease.
 function getRingRotation(f: number, cycleOffset: number): number {
   const fc = f % CYCLE;
   if (fc >= LAST_CONTRACT_END) return cycleOffset + 360;
   if (fc < PRE_SPIN_START) return cycleOffset;
-  return cycleOffset + interpolate(fc, [PRE_SPIN_START, LAST_CONTRACT_END], [0, 360], {
-    easing: easeInOut, extrapolateLeft: "clamp", extrapolateRight: "clamp",
-  });
+
+  const total = LAST_CONTRACT_END - PRE_SPIN_START;
+  const t = (fc - PRE_SPIN_START) / total;
+  const rampFrac = 0.18;
+  const vMax = 1 / (1 - rampFrac);
+
+  let progress: number;
+  if (t < rampFrac) {
+    const u = t / rampFrac;
+    progress = vMax * rampFrac * u * u * u * (1 - 0.5 * u);
+  } else if (t < 1 - rampFrac) {
+    progress = vMax * rampFrac * 0.5 + vMax * (t - rampFrac);
+  } else {
+    const u = (1 - t) / rampFrac;
+    progress = 1 - vMax * rampFrac * u * u * u * (1 - 0.5 * u);
+  }
+
+  return cycleOffset + progress * 360;
 }
 
 // ─── Image opacity ─────────────────────────────────────────────────────────────
@@ -88,7 +99,6 @@ function getOpacity(fc: number, i: number): number {
 // ─── Component ────────────────────────────────────────────────────────────────
 export const EmpowerEveryTeam: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
 
   const cycleIndex         = Math.floor(frame / CYCLE);
   const prevCyclesRotation = cycleIndex * 360;
@@ -114,6 +124,8 @@ export const EmpowerEveryTeam: React.FC = () => {
           borderRadius: "50%",
           background: "rgba(255,255,255,0.22)",
           border: "2px solid rgba(255,255,255,0.45)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
           <Img src={staticFile("branding/pair-icon-white.png")}
@@ -121,32 +133,27 @@ export const EmpowerEveryTeam: React.FC = () => {
         </div>
 
         {AVATARS.map((src, i) => {
-          const bloomStart    = BLOOM_START;  // all expand at same time
-          const contractStart = CONTRACT_START + i * 3;  // stagger contraction (3 frames apart)
+          const bloomStart    = BLOOM_START;
+          const contractStart = CONTRACT_START;
           const contractEnd   = contractStart + CONTRACT_DUR;
 
-          // Spring pop-out with overshoot punch effect, ripple on contract
+          // Symmetric ease-in-out glide, no overshoot, no ripple
           let radius: number;
           if (fc < bloomStart) {
             radius = RING_SMALL;
           } else if (fc < contractStart) {
-            const progress = spring({
-              frame: fc - bloomStart,
-              fps,
-              config: { damping: 12, stiffness: 280, mass: 0.6 },
-            });
-            radius = RING_SMALL + (RING_FULL - RING_SMALL) * progress;
-          } else {
-            const contractProgress = interpolate(fc, [contractStart, contractEnd], [0, 1], {
-              easing: Easing.bezier(0.25, 0.46, 0.45, 0.94), // ease-out for smooth contraction
+            radius = interpolate(fc, [bloomStart, bloomStart + BLOOM_DUR], [RING_SMALL, RING_FULL], {
+              easing: easeInOut,
               extrapolateLeft: "clamp", extrapolateRight: "clamp",
             });
-            // Smooth ripple punch effect - outward kick then smooth return
-            const ripple = Math.sin(contractProgress * Math.PI) * 0.18;
-            radius = RING_FULL - (RING_FULL - RING_SMALL) * contractProgress + ripple * (RING_FULL - RING_SMALL);
+          } else {
+            radius = interpolate(fc, [contractStart, contractEnd], [RING_FULL, RING_SMALL], {
+              easing: easeInOut,
+              extrapolateLeft: "clamp", extrapolateRight: "clamp",
+            });
           }
 
-          const scale = interpolate(radius, [RING_SMALL, RING_FULL], [0.42, 1.0], {
+          const scale = interpolate(radius, [RING_SMALL, RING_FULL], [0.62, 1.0], {
             extrapolateLeft: "clamp", extrapolateRight: "clamp",
           });
           const opacity = getOpacity(fc, i);
@@ -161,11 +168,13 @@ export const EmpowerEveryTeam: React.FC = () => {
               width: size, height: size,
               top: y - size / 2, left: x - size / 2,
               borderRadius: "50%", overflow: "hidden",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
             }}>
               <div style={{
                 position: "absolute", inset: 0, borderRadius: "50%",
                 background: "rgba(255,255,255,0.22)",
-                border: `${Math.max(1, 2 * scale)}px solid rgba(255,255,255,0.45)`,
+                border: `${1 + scale}px solid rgba(255,255,255,0.45)`,
               }} />
               <Img src={src} style={{
                 position: "absolute", inset: 0,

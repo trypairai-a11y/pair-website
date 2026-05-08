@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRive } from "@rive-app/react-canvas";
 
 export default function RiveEmpowerTeam({ paused = false }: { paused?: boolean }) {
@@ -23,9 +24,11 @@ export default function RiveEmpowerTeam({ paused = false }: { paused?: boolean }
       {/* Overlay Pair icon on top of the Rive center logo */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-[60px] h-[60px] rounded-full bg-[rgb(61,120,182)]/60 backdrop-blur-sm flex items-center justify-center">
-          <img
+          <Image
             src="/branding/pair-icon-white.png"
             alt="Pair"
+            width={28}
+            height={28}
             className="w-7 h-7 object-contain"
           />
         </div>

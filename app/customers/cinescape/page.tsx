@@ -1,4 +1,10 @@
+import { pageMetadata } from "@/lib/constants";
 import CustomerStoryPage from "@/components/ui/CustomerStoryPage";
+
+export const metadata = pageMetadata(
+  "Cinescape",
+  "How Cinescape makes every caller feel like a guest with Pair."
+);
 
 export default function CinescapeStory() {
   return (

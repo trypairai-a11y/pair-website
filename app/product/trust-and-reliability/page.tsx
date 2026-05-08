@@ -1,7 +1,12 @@
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
-import { TRUST_BADGES } from "@/lib/constants";
+import { TRUST_BADGES, pageMetadata } from "@/lib/constants";
+
+export const metadata = pageMetadata(
+  "Trust and reliability",
+  "Enterprise-grade security, compliance certifications, and data protection across every Pair surface."
+);
 
 const features = [
   {
@@ -44,7 +49,7 @@ export default function TrustPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((f) => (
-              <div key={f.title} className="rounded-2xl border border-sierra-divider p-6">
+              <div key={f.title} className="rounded-xl border border-sierra-divider p-6">
                 <h3 className="text-base font-medium text-sierra-text-dark mb-2">{f.title}</h3>
                 <p className="text-sm text-sierra-gray leading-relaxed">{f.description}</p>
               </div>

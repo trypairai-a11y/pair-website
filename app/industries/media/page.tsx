@@ -1,4 +1,11 @@
+import { pageMetadata } from "@/lib/constants";
 import IndustryPage from "@/components/ui/IndustryPage";
+
+export const metadata = pageMetadata(
+  "Media",
+  "AI agents that reduce churn, personalize content, and support subscribers across the media journey."
+);
+
 export default function Page() {
   return <IndustryPage industry="Media" description="Reduce churn, increase engagement, and personalize the subscriber experience with intelligent AI agents." useCases={[
     { title: "Subscription management", description: "Handle plan changes, cancellations, pauses, and renewals while proactively offering retention incentives." },

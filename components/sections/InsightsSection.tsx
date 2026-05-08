@@ -8,12 +8,12 @@ import { TrendingUp } from "lucide-react";
 
 const IMAGES = [
   {
-    src: "https://cdn.sanity.io/images/ca4jck6w/production/7d50346a9e60b57f32a589a1147a40d54b5c3fff-1064x1064.png",
-    alt: "Report asking 'Why are conversations being transferred to human agents?' and listing 'Package stuck in transit' as a reason from 120k conversations.",
+    src: "/insights/ask.png",
+    alt: "Report asking 'What made 12,000 customers ask for a real person?' and listing 'Order stuck in customs' as the top reason from 400,000 conversations last month.",
   },
   {
-    src: "https://cdn.sanity.io/images/ca4jck6w/production/0ca7f57db09964d1e39c0118e0a8c63429717eae-1064x1064.png",
-    alt: "Data cards displaying an upward trending line graph for 'Great sNPS 32%' and a partial bar chart.",
+    src: "/insights/stats.png",
+    alt: "Data cards displaying a 92% CSAT score with an upward trending line graph and a partial bar chart for total conversations.",
   },
   {
     src: "https://cdn.sanity.io/images/ca4jck6w/production/c4bba54619014da58a35f8420cb88858d84cd710-1064x1064.png",
@@ -37,6 +37,9 @@ export default function InsightsSection() {
   const [dragDelta, setDragDelta] = useState(0);
   // Container width for center-snapping
   const [containerWidth, setContainerWidth] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const [animOffsetState, setAnimOffsetState] = useState(0);
+  const [cardWidth, setCardWidth] = useState(300);
 
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -77,13 +80,16 @@ export default function InsightsSection() {
   const goTo = useCallback((i: number) => {
     const clamped = Math.max(0, Math.min(i, maxIndex()));
     setIndex(clamped);
-    animOffset.current = offsetForIndex(clamped);
+    const next = offsetForIndex(clamped);
+    animOffset.current = next;
+    setAnimOffsetState(next);
     setDragDelta(0);
   }, [maxIndex, offsetForIndex]);
 
   // Mouse handlers
   const onMouseDown = (e: React.MouseEvent) => {
     isDragging.current = true;
+    setDragging(true);
     didDrag.current = false;
     startX.current = e.pageX;
     lastX.current = e.pageX;
@@ -103,6 +109,7 @@ export default function InsightsSection() {
   const onMouseUp = useCallback((e: MouseEvent) => {
     if (!isDragging.current) return;
     isDragging.current = false;
+    setDragging(false);
     const dx = e.pageX - startX.current;
     const timeDelta = Math.max(Date.now() - lastTime.current, 16);
     const velocity = (lastX.current - e.pageX) / timeDelta;
@@ -121,6 +128,7 @@ export default function InsightsSection() {
   // Touch handlers
   const onTouchStart = (e: React.TouchEvent) => {
     isDragging.current = true;
+    setDragging(true);
     didDrag.current = false;
     startX.current = e.touches[0].pageX;
     lastX.current = e.touches[0].pageX;
@@ -140,6 +148,7 @@ export default function InsightsSection() {
   const onTouchEnd = useCallback((e: TouchEvent) => {
     if (!isDragging.current) return;
     isDragging.current = false;
+    setDragging(false);
     const dx = e.changedTouches[0].pageX - startX.current;
     const timeDelta = Math.max(Date.now() - lastTime.current, 16);
     const velocity = (lastX.current - e.changedTouches[0].pageX) / timeDelta;
@@ -172,9 +181,12 @@ export default function InsightsSection() {
   useEffect(() => {
     const handler = () => {
       const clamped = Math.max(0, Math.min(index, maxIndex()));
-      animOffset.current = offsetForIndex(clamped);
+      const next = offsetForIndex(clamped);
+      animOffset.current = next;
+      setAnimOffsetState(next);
       setIndex(clamped);
       setDragDelta(0);
+      setCardWidth(getCardWidth());
       if (containerRef.current) {
         setContainerWidth(containerRef.current.getBoundingClientRect().width);
       }
@@ -182,7 +194,7 @@ export default function InsightsSection() {
     handler();
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
-  }, [index, maxIndex, offsetForIndex]);
+  }, [index, maxIndex, offsetForIndex, getCardWidth]);
 
   // Measure container width on mount to ensure proper centering
   useEffect(() => {
@@ -206,25 +218,25 @@ export default function InsightsSection() {
     }
   }, []);
 
-  const centerOffset = containerWidth > 0 ? (containerWidth - getCardWidth()) / 2 : 0;
-  const translateX = -(animOffset.current + (isDragging.current ? dragDelta : 0)) + centerOffset;
-  const isTransitioning = !isDragging.current;
-
-  const atStart = index === 0;
-  const atEnd = index >= maxIndex();
+  const isMobileView = containerWidth > 0 && containerWidth < 768;
+  const centerOffset = containerWidth > 0 && isMobileView
+    ? Math.max(12, (containerWidth - cardWidth) / 2 - 20)
+    : 0;
+  const translateX = -(animOffsetState + (dragging ? dragDelta : 0)) + centerOffset;
+  const isTransitioning = !dragging;
 
   return (
-    <section className="bg-white py-section overflow-hidden">
+    <section className="bg-white pt-10 pb-16 md:pt-12 md:pb-20 xl:pt-16 xl:pb-24 overflow-hidden">
       <Container>
-        <div className="text-center mb-14">
-          <h3 className="text-headline-md font-normal text-sierra-text-dark mb-5 text-balance">
-            Use AI to improve your AI
+        <div className="text-center mb-20">
+          <h3 className="text-headline-xl font-normal text-sierra-text-dark mb-3 text-balance">
+            Better, every day.
           </h3>
           <a
             href="/product/insights"
-            className="inline-flex items-center gap-1.5 rounded-full border border-blue-400/20 bg-transparent px-4 h-10 text-[12px] font-medium text-sierra-text-dark cursor-pointer transition-colors hover:bg-blue-50/40"
+            className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-transparent px-4 py-2.5 mt-1 mb-16 text-[12px] font-normal text-sierra-text-dark cursor-pointer transition-colors hover:border-blue-400/40 hover:bg-blue-50/40"
           >
-            <TrendingUp size={12} />
+            <TrendingUp size={11} />
             Insights
           </a>
         </div>
@@ -235,7 +247,7 @@ export default function InsightsSection() {
         {/* Left padding aligns with Container */}
         <div
           ref={trackRef}
-          className={`flex gap-0 select-none ${isDragging.current ? "cursor-grabbing" : "cursor-grab"}`}
+          className={`flex gap-0 select-none ${dragging ? "cursor-grabbing" : "cursor-grab"}`}
           style={{
             transform: `translate3d(${translateX}px, 0, 0)`,
             transition: isTransitioning ? "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)" : "none",
@@ -254,19 +266,19 @@ export default function InsightsSection() {
               className="relative min-w-0 mx-2 flex flex-[0_0_86%] items-stretch justify-stretch first:ml-0 last:mr-0 md:flex-[0_0_calc(50%-8px)] xl:flex-[0_0_calc(25%-12px)]"
             >
               <article className="group flex w-full flex-col gap-4">
-                <figure className="relative aspect-[10/9] w-full shrink-0 grow overflow-hidden rounded-2xl">
+                <figure className="relative aspect-[10/9] w-full shrink-0 grow overflow-hidden rounded-3xl bg-[#eff3fb]">
                   <Image
                     src={IMAGES[i].src}
                     alt={IMAGES[i].alt}
                     fill
                     sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 86vw"
-                    className="object-cover pointer-events-none"
+                    className="object-cover pointer-events-none scale-[1.08]"
                     draggable={false}
                   />
                 </figure>
                 <div className="flex h-full flex-col gap-2 md:pr-2">
-                  <h3 className="text-sm font-medium text-sierra-text-dark">{card.title}</h3>
-                  <p className="max-w-[50ch] text-xs font-normal text-sierra-gray leading-5">{card.description}</p>
+                  <h3 className="text-sm font-normal text-sierra-text-dark">{card.title}</h3>
+                  <p className="max-w-[50ch] text-lg font-normal text-gray-500 leading-7">{card.description}</p>
                 </div>
               </article>
             </div>
@@ -274,31 +286,6 @@ export default function InsightsSection() {
         </div>
       </div>
 
-      {/* Prev / Next buttons -- visible on xl */}
-      <Container>
-        <div className="hidden xl:flex justify-end gap-1 mt-6">
-          <button
-            onClick={() => goTo(index - 1)}
-            disabled={atStart}
-            aria-label="Previous slide"
-            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full backdrop-blur-[100px] transition-colors bg-gray-400/6 text-gray-400 hover:bg-gray-400/10 disabled:bg-gray-400/10 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <svg viewBox="0 0 24 24" fill="none" className="rotate-90 h-4 w-4" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 9L12 17L4 9" />
-            </svg>
-          </button>
-          <button
-            onClick={() => goTo(index + 1)}
-            disabled={atEnd}
-            aria-label="Next slide"
-            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full backdrop-blur-[100px] transition-colors bg-gray-400/6 text-gray-400 hover:bg-gray-400/10 disabled:bg-gray-400/10 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <svg viewBox="0 0 24 24" fill="none" className="-rotate-90 h-4 w-4" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 9L12 17L4 9" />
-            </svg>
-          </button>
-        </div>
-      </Container>
     </section>
   );
 }

@@ -4,8 +4,8 @@ import { COMPANY_LOGOS } from "@/lib/constants";
 
 export default function LogosSection() {
   return (
-    <section className="bg-white pt-section-lg pb-section">
-      <Container className="pl-12">
+    <section className="bg-white pt-20 md:pt-24 lg:pt-16 pb-section">
+      <Container className="md:pl-12">
         <div className="text-center mb-8">
           <h2 className="text-headline-sm font-normal text-sierra-text-dark mb-6 text-balance">
             Leading brands succeed with Pair
@@ -18,15 +18,19 @@ export default function LogosSection() {
           </a>
         </div>
 
-        <div className="mt-4 grid grid-cols-3 gap-x-8 gap-y-6 items-center justify-items-center max-w-3xl mx-auto">
+        <div className="mt-12 grid grid-cols-3 gap-0 items-stretch max-w-3xl mx-auto">
           {COMPANY_LOGOS.map((logo) => (
-            <div key={logo.name} className="flex items-center justify-center">
+            <div
+              key={logo.name}
+              className="group flex w-full h-full min-h-[95px] items-center justify-center"
+            >
               <Image
                 src={logo.src}
                 alt={logo.name}
-                width={160}
-                height={48}
-                className={logo.imgClassName ?? "h-16 w-auto max-w-[140px] object-contain"}
+                width={200}
+                height={120}
+                unoptimized
+                className={`${logo.imgClassName ?? "h-16 w-auto max-w-[140px]"} object-contain scale-[0.75] md:scale-100 lg:grayscale ${logo.opacityClass ?? "lg:opacity-60 lg:group-hover:opacity-100"} transition-[filter,opacity] duration-300 ease-out lg:group-hover:grayscale-0`}
               />
             </div>
           ))}

@@ -1,6 +1,12 @@
+import { pageMetadata } from "@/lib/constants";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
+
+export const metadata = pageMetadata(
+  "Agent SDK",
+  "Build, test, and ship AI agents with the Pair Agent SDK. Declarative development with full CI/CD support."
+);
 
 const features = [
   {
@@ -31,7 +37,7 @@ export default function AgentSDKPage() {
       <section className="py-16 bg-white">
         <Container>
           {/* Code example */}
-          <div className="rounded-2xl bg-gray-900 p-6 mb-16 overflow-x-auto">
+          <div className="rounded-xl bg-gray-900 p-6 mb-16 overflow-x-auto">
             <pre className="text-sm text-green-400 font-mono leading-6">
 {`from sierra import Agent, Policy, Tool
 
@@ -61,7 +67,7 @@ agent.deploy(channel=["chat", "voice", "email"])`}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((f) => (
-              <div key={f.title} className="rounded-2xl border border-sierra-divider p-6">
+              <div key={f.title} className="rounded-xl border border-sierra-divider p-6">
                 <h3 className="text-base font-medium text-sierra-text-dark mb-2">
                   {f.title}
                 </h3>

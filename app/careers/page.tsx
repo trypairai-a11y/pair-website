@@ -1,5 +1,11 @@
+import { pageMetadata } from "@/lib/constants";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/ui/PageHero";
+
+export const metadata = pageMetadata(
+  "Careers",
+  "Join Pair and help build the future of customer experience. Open roles across engineering, product, design, sales, and customer success."
+);
 
 const openings = [
   { title: "Senior Software Engineer, Agent Runtime", team: "Engineering", location: "San Francisco" },
@@ -26,7 +32,7 @@ export default function CareersPage() {
       <section className="py-16 bg-white">
         <Container>
           <h2 className="text-[28px] leading-8 font-normal text-sierra-text-dark mb-8">Open roles</h2>
-          <div className="divide-y divide-sierra-divider border border-sierra-divider rounded-2xl overflow-hidden">
+          <div className="divide-y divide-sierra-divider border border-sierra-divider rounded-xl overflow-hidden">
             {openings.map((job) => (
               <div key={job.title} className="flex items-center justify-between px-6 py-4 hover:bg-sierra-bg transition-colors cursor-pointer">
                 <div>
@@ -44,7 +50,7 @@ export default function CareersPage() {
           <h2 className="text-[28px] leading-8 font-normal text-sierra-text-dark mb-8">Benefits</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((b) => (
-              <div key={b.title} className="bg-white rounded-2xl p-6">
+              <div key={b.title} className="bg-white rounded-xl p-6">
                 <h3 className="text-sm font-medium text-sierra-text-dark mb-2">{b.title}</h3>
                 <p className="text-xs text-sierra-gray leading-relaxed">{b.description}</p>
               </div>

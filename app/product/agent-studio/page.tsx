@@ -1,7 +1,13 @@
+import { pageMetadata } from "@/lib/constants";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
 import { Route, BookOpen, ShieldAlert, FlaskConical } from "lucide-react";
+
+export const metadata = pageMetadata(
+  "Agent Studio",
+  "Visually design AI agent journeys, knowledge, and policies - no code required."
+);
 
 const features = [
   {
@@ -41,7 +47,7 @@ export default function AgentStudioPage() {
       <section className="py-16 bg-white">
         <Container>
           {/* Studio mockup */}
-          <div className="rounded-2xl border border-sierra-divider bg-white shadow-sm overflow-hidden mb-16">
+          <div className="rounded-xl border border-sierra-divider bg-white shadow-sm overflow-hidden mb-16">
             <div className="bg-gray-50 px-6 py-3 border-b border-sierra-divider flex items-center gap-2">
               <div className="flex gap-1.5">
                 <div className="w-3 h-3 rounded-full bg-red-300" />

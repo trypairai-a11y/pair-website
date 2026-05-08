@@ -1,11 +1,17 @@
+import { pageMetadata } from "@/lib/constants";
 import CustomerStoryPage from "@/components/ui/CustomerStoryPage";
+
+export const metadata = pageMetadata(
+  "Flare Fitness",
+  "How Flare Fitness uses Pair to build memberships that feel personal."
+);
 
 export default function FlareFitnessStory() {
   return (
     <CustomerStoryPage
       company="Flare Fitness"
       industry="Health & Wellness"
-      logoSrc="/logos/flare fitness.png"
+      logoSrc="/logos/flare-fitness-white.png"
       heroQuote={{
         text: "Our members get instant support for class bookings, membership questions, and wellness guidance whenever they need it.",
         author: "Operations Team",

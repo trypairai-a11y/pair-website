@@ -1,4 +1,10 @@
+import { pageMetadata } from "@/lib/constants";
 import CustomerStoryPage from "@/components/ui/CustomerStoryPage";
+
+export const metadata = pageMetadata(
+  "CCK",
+  "How CCK uses Pair to deliver personalized customer support at scale."
+);
 
 export default function CCKStory() {
   return (

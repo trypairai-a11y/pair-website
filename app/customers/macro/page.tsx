@@ -1,4 +1,10 @@
+import { pageMetadata } from "@/lib/constants";
 import CustomerStoryPage from "@/components/ui/CustomerStoryPage";
+
+export const metadata = pageMetadata(
+  "Macro",
+  "How Macro delivers personalized service at scale with Pair."
+);
 
 export default function MacroStory() {
   return (

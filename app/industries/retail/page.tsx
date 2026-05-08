@@ -1,4 +1,11 @@
+import { pageMetadata } from "@/lib/constants";
 import IndustryPage from "@/components/ui/IndustryPage";
+
+export const metadata = pageMetadata(
+  "Retail and consumer goods",
+  "AI agents for order tracking, returns, and personal product recommendations."
+);
+
 export default function Page() {
   return <IndustryPage industry="Retail and consumer goods" description="Transform shopping experiences with AI agents that drive loyalty, reduce returns, and increase lifetime value." useCases={[
     { title: "Order tracking", description: "Provide real-time order status, shipping updates, and delivery estimates proactively across every channel." },

@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import Container from "@/components/layout/Container";
 import { ArrowLeft } from "lucide-react";
 
@@ -49,6 +51,25 @@ function generateStaticParams() {
   return Object.keys(posts).map((slug) => ({ slug }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = posts[slug];
+  if (!post) return { title: "Post not found" };
+  return {
+    title: post.title,
+    description: post.content[0]?.slice(0, 160) ?? undefined,
+    openGraph: {
+      title: post.title,
+      description: post.content[0]?.slice(0, 160) ?? undefined,
+      type: "article",
+    },
+  };
+}
+
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = posts[slug];
@@ -60,9 +81,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <h1 className="text-[44px] leading-[48px] font-normal text-sierra-text-dark mb-4">
             Post not found
           </h1>
-          <a href="/blog" className="text-sm text-sierra-green hover:underline">
+          <Link href="/blog" className="text-sm text-sierra-green hover:underline">
             Back to blog
-          </a>
+          </Link>
         </Container>
       </section>
     );
@@ -72,13 +93,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
       <section className="pt-32 pb-8 bg-white">
         <Container>
-          <a
+          <Link
             href="/blog"
             className="inline-flex items-center gap-1 text-sm text-sierra-gray hover:text-sierra-text-dark transition-colors mb-8"
           >
             <ArrowLeft size={14} />
             Back to blog
-          </a>
+          </Link>
           <div className="flex items-center gap-3 mb-4">
             <span className="text-xs text-sierra-green font-medium bg-sierra-green/10 px-2 py-0.5 rounded">
               {post.category}
@@ -104,13 +125,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             ))}
           </div>
           <div className="max-w-3xl mt-12 pt-8 border-t border-sierra-divider">
-            <a
+            <Link
               href="/blog"
               className="inline-flex items-center gap-1 text-sm text-sierra-green hover:underline"
             >
               <ArrowLeft size={14} />
               Back to all posts
-            </a>
+            </Link>
           </div>
         </Container>
       </section>

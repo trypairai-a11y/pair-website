@@ -1,4 +1,10 @@
+import { pageMetadata } from "@/lib/constants";
 import CustomerStoryPage from "@/components/ui/CustomerStoryPage";
+
+export const metadata = pageMetadata(
+  "Yiswa",
+  "How Yiswa scales personal customer support with Pair."
+);
 
 export default function YiswaStory() {
   return (

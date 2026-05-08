@@ -1,4 +1,11 @@
+import { pageMetadata } from "@/lib/constants";
 import IndustryPage from "@/components/ui/IndustryPage";
+
+export const metadata = pageMetadata(
+  "Financial services",
+  "AI agents for account management, fraud detection, and loan processing - secure and compliant."
+);
+
 export default function Page() {
   return <IndustryPage industry="Financial services" description="Help customers manage accounts, detect fraud, and process applications with secure, compliant AI agents." useCases={[
     { title: "Account management", description: "Enable customers to check balances, transfer funds, update information, and manage cards through natural conversation." },

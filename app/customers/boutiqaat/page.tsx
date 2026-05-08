@@ -1,11 +1,17 @@
+import { pageMetadata } from "@/lib/constants";
 import CustomerStoryPage from "@/components/ui/CustomerStoryPage";
+
+export const metadata = pageMetadata(
+  "Boutiqaat",
+  "How Boutiqaat scaled personal beauty service across the GCC with Pair."
+);
 
 export default function BoutiqaatStory() {
   return (
     <CustomerStoryPage
       company="Boutiqaat"
       industry="Retail"
-      logoSrc="/logos/Boutiqaat.png"
+      logoSrc="/logos/boutiqaat.png"
       logoClassName="h-16 w-auto object-contain"
       heroQuote={{
         text: "Pair has transformed how we connect with our customers. Every interaction feels personal and on-brand.",

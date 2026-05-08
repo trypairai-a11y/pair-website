@@ -1,11 +1,17 @@
+import { pageMetadata } from "@/lib/constants";
 import CustomerStoryPage from "@/components/ui/CustomerStoryPage";
+
+export const metadata = pageMetadata(
+  "Yaqoub Al-Sanea",
+  "How Yaqoub Al-Sanea delivers premium service experiences with Pair."
+);
 
 export default function YaqoubAlSaneaStory() {
   return (
     <CustomerStoryPage
       company="Yaqoub Al-Sanea"
       industry="Retail"
-      logoSrc="/logos/yaqoub alsanea.png"
+      logoSrc="/logos/yaqoub-alsanea.png"
       heroQuote={{
         text: "Pair allows us to provide the same level of personalized service online that our customers experience in-store.",
         author: "Digital Team",

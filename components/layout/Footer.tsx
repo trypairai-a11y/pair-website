@@ -1,138 +1,81 @@
-"use client";
-
-import { useState } from "react";
+import Link from "next/link";
 import PairLogo from "@/components/icons/PairLogo";
-import { LinkedInIcon, InstagramIcon, XIcon } from "@/components/icons/SocialIcons";
+import { LinkedInIcon, InstagramIcon } from "@/components/icons/SocialIcons";
 import { FOOTER_COLUMNS, LEGAL_LINKS } from "@/lib/constants";
-import { ChevronDown, ChevronUp, CircleCheck } from "lucide-react";
-
-const LOCALE_OPTIONS = [
-  { label: "United Kingdom", language: "English", isArabic: false },
-  { label: "\u0627\u0644\u0643\u0648\u064A\u062A", language: "\u0627\u0644\u0639\u0631\u0628\u064A\u0629", isArabic: true },
-  { label: "United States", language: "English", isArabic: false },
-];
 
 export default function Footer() {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(2); // United States (English)
-
   return (
     <footer className="bg-[#f6f5f3]">
-      <div className="mx-auto max-w-7xl px-6 pt-0 pb-8 lg:px-8">
-        {/* Logo */}
-        <div className="mb-6">
-          <PairLogo color="#4d98e2" />
-        </div>
+      <div className="mx-auto w-full max-w-[1160px] px-6 lg:px-8 flex flex-col gap-12 md:gap-14">
+        {/* Top section: Logo + Link columns */}
+        <div className="grid grid-cols-12 gap-x-8 gap-y-10 pt-8 md:pt-12 xl:pt-14">
+          {/* Logo */}
+          <div className="col-span-12 md:col-span-4">
+            <Link aria-label="Homepage" href="/" className="block place-self-start">
+              <PairLogo color="#4d98e2" className="h-5" />
+            </Link>
+          </div>
 
-        {/* Link columns: 2-column grid */}
-        <div className="grid grid-cols-2 gap-y-10 gap-x-8">
-          {FOOTER_COLUMNS.map((col) => (
-            <div key={col.heading}>
-              <h3 className="text-[11px] font-medium text-sierra-text-dark mb-4">
+          {/* Link columns - 3 side-by-side columns */}
+          <div className="col-span-12 grid grid-cols-3 gap-x-8 gap-y-10 md:col-span-8">
+            {FOOTER_COLUMNS.map((col) => (
+              <Link
+                key={col.heading}
+                href={col.href}
+                className="text-[12px] font-medium text-gray-600 transition-colors hover:text-[#4d98e2]"
+              >
                 {col.heading}
-              </h3>
-              <ul className="flex flex-col gap-3">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-[11px] font-medium text-gray-500 hover:text-sierra-green transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom section */}
+        <div className="mb-8 flex flex-col justify-between gap-8 text-[11px] font-light text-gray-500 md:flex-row md:items-end md:pb-8">
+          <div className="flex w-full flex-col gap-6">
+            {/* Legal links row */}
+            <div className="flex w-full items-center gap-4">
+              <div className="hidden md:block font-normal">&copy; 2026 Pair</div>
+              <nav>
+                <ul className="flex items-center gap-8">
+                  {LEGAL_LINKS.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="font-normal transition-colors hover:text-[#4d98e2]"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* Language selector */}
-        <div className="relative mt-12">
-          {/* Dropdown menu (opens above the button) */}
-          {open && (
-            <div className="absolute bottom-full left-0 right-0 mb-2 rounded-xl bg-white shadow-[0_0_12px_rgba(0,0,0,0.08)] overflow-hidden">
-              {LOCALE_OPTIONS.map((option, i) => (
-                <button
-                  key={i}
-                  onClick={() => {
-                    setSelected(i);
-                    setOpen(false);
-                  }}
-                  dir="ltr"
-                  className={`flex w-full items-center justify-between px-4 py-3 text-sm transition-colors ${
-                    option.isArabic ? "font-[family-name:var(--font-almarai)]" : ""
-                  } ${
-                    i === selected
-                      ? "bg-green-50 text-green-800"
-                      : "text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  <span>
-                    {option.label} &nbsp;{option.isArabic && "\u00A0"}<span className="font-semibold">({option.language})</span>
-                  </span>
-                  {i === selected && (
-                    <CircleCheck size={20} className="text-green-700" />
-                  )}
-                </button>
-              ))}
+          {/* Copyright (mobile) + Social icons */}
+          <div className="flex items-center justify-between">
+            <div className="md:hidden font-normal">&copy; 2026 Pair</div>
+            <div className="flex items-center justify-end gap-3">
+              <a
+                href="https://www.linkedin.com/company/105122522"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="flex w-4 items-center justify-center text-gray-500 transition-colors hover:text-[#4d98e2] h-4"
+              >
+                <LinkedInIcon className="h-full w-full" />
+              </a>
+              <a
+                href="https://www.instagram.com/trypair/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="flex w-4 items-center justify-center text-gray-500 transition-colors hover:text-[#4d98e2] h-4"
+              >
+                <InstagramIcon className="h-full w-full" />
+              </a>
             </div>
-          )}
-
-          <button
-            onClick={() => setOpen(!open)}
-            className={`flex w-full items-center justify-between rounded-lg bg-white px-4 py-3 text-sm text-gray-500 ${open ? "ring-[1.5px] ring-inset ring-gray-400" : ""}`}
-          >
-            <span>
-              {LOCALE_OPTIONS[selected].label} &nbsp;
-              <span className="font-semibold">({LOCALE_OPTIONS[selected].language})</span>
-            </span>
-            {open ? (
-              <ChevronUp size={16} strokeWidth={2.5} className="-ml-8" />
-            ) : (
-              <ChevronDown size={16} strokeWidth={2.5} className="-ml-8" />
-            )}
-          </button>
-        </div>
-
-        {/* Legal links */}
-        <div className="mt-8 flex flex-wrap items-center gap-4 text-[10px] text-gray-500 font-medium">
-          {LEGAL_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="hover:text-sierra-green transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-
-        {/* Copyright + Social icons */}
-        <div className="mt-10 flex items-center justify-between">
-          <span className="text-[10px] font-medium text-gray-500">&copy; 2026 Pair</span>
-          <div className="flex items-center gap-4 text-gray-500">
-            <a
-              href="https://www.linkedin.com/company/sierra"
-              aria-label="LinkedIn"
-              className="hover:text-sierra-green transition-colors"
-            >
-              <LinkedInIcon className="w-4 h-4" />
-            </a>
-            <a
-              href="https://instagram.com/pairplatform"
-              aria-label="Instagram"
-              className="hover:text-sierra-green transition-colors"
-            >
-              <InstagramIcon className="w-4 h-4" />
-            </a>
-            <a
-              href="https://x.com/pairplatform"
-              aria-label="X"
-              className="hover:text-sierra-green transition-colors"
-            >
-              <XIcon className="w-4 h-4" />
-            </a>
           </div>
         </div>
       </div>

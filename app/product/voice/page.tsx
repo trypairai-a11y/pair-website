@@ -1,6 +1,12 @@
+import { pageMetadata } from "@/lib/constants";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
+
+export const metadata = pageMetadata(
+  "Voice",
+  "Natural, multi-lingual voice AI agents that handle phone calls with the quality of your best human agents."
+);
 
 const features = [
   {
@@ -28,7 +34,7 @@ export default function VoicePage() {
       <section className="py-16 bg-white">
         <Container>
           {/* Voice waveform mockup */}
-          <div className="rounded-2xl bg-sierra-bg p-8 mb-16">
+          <div className="rounded-xl bg-sierra-bg p-8 mb-16">
             <div className="max-w-lg mx-auto">
               <div className="bg-white rounded-xl p-6 shadow-sm text-center">
                 <div className="flex items-center justify-center gap-1 mb-4">
@@ -36,7 +42,7 @@ export default function VoicePage() {
                     <div
                       key={i}
                       className="w-1 rounded-full bg-sierra-green"
-                      style={{ height: `${12 + Math.sin(i * 0.5) * 20 + Math.random() * 15}px` }}
+                      style={{ height: `${12 + Math.sin(i * 0.5) * 20 + (Math.sin(i * 7.31) + 1) * 7.5}px` }}
                     />
                   ))}
                 </div>
@@ -50,7 +56,7 @@ export default function VoicePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((f) => (
-              <div key={f.title} className="rounded-2xl border border-sierra-divider p-6">
+              <div key={f.title} className="rounded-xl border border-sierra-divider p-6">
                 <h3 className="text-base font-medium text-sierra-text-dark mb-2">{f.title}</h3>
                 <p className="text-sm text-sierra-gray leading-relaxed">{f.description}</p>
               </div>

@@ -18,7 +18,6 @@ const posts = [
   { slug: "ktech-customer-story", title: "How ktech gained a competitive edge with AI", date: "Jan 24, 2026", category: "Customer story", excerpt: "ktech's strategy for using AI agents to resolve customer issues faster and with greater satisfaction." },
   { slug: "conversational-ai-benchmarks", title: "2026 conversational AI benchmarks", date: "Jan 18, 2026", category: "Research", excerpt: "Our annual analysis of conversational AI performance across industries, channels, and use cases." },
   { slug: "live-assist-launch", title: "Introducing Live Assist: The best of AI and human support", date: "Jan 12, 2026", category: "Product", excerpt: "Seamless handoff between AI agents and human experts with full conversation context." },
-  { slug: "taiba-hospital-customer-story", title: "How Taiba Hospital reduced scheduling calls by 70%", date: "Jan 6, 2026", category: "Customer story", excerpt: "Taiba Hospital's journey to AI-powered patient scheduling, triage, and follow-up." },
   { slug: "security-compliance-update", title: "2026 security and compliance update", date: "Dec 28, 2025", category: "Trust", excerpt: "Our latest certifications, audit results, and commitment to protecting your data." },
   { slug: "retail-ai-agents-guide", title: "The complete guide to AI agents in retail", date: "Dec 20, 2025", category: "Insights", excerpt: "How leading retailers are using AI agents to drive conversion, reduce returns, and build loyalty." },
   { slug: "agent-memory-deep-dive", title: "Agent memory: How Pair agents remember your customers", date: "Dec 14, 2025", category: "Engineering", excerpt: "A technical exploration of how our agents build and use customer context across conversations." },
@@ -53,7 +52,7 @@ export default function BlogPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((post) => (
-              <a key={post.slug} href={`/blog/${post.slug}`} className="rounded-2xl border border-sierra-divider overflow-hidden hover:shadow-md transition-shadow block">
+              <a key={post.slug} href={`/blog/${post.slug}`} className="rounded-xl overflow-hidden block">
                 <div className="h-40 bg-gradient-to-br from-sierra-bg to-white" />
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-3">

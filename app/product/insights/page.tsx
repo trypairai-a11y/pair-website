@@ -1,7 +1,13 @@
+import { pageMetadata } from "@/lib/constants";
 import Container from "@/components/layout/Container";
 import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
 import { Search, Monitor, FlaskConical, Eye } from "lucide-react";
+
+export const metadata = pageMetadata(
+  "Insights",
+  "Explorer, Monitors, Experiments, and Observability - understand and improve your agents continuously."
+);
 
 const features = [
   {
@@ -41,7 +47,7 @@ export default function InsightsPage() {
       <section className="py-16 bg-white">
         <Container>
           {/* Dashboard mockup */}
-          <div className="rounded-2xl bg-sierra-bg p-8 mb-16">
+          <div className="rounded-xl bg-sierra-bg p-8 mb-16">
             <div className="bg-white rounded-xl p-6 shadow-sm max-w-2xl mx-auto">
               <p className="text-xs text-sierra-gray mb-4">Explorer</p>
               <p className="text-sm text-sierra-text-dark mb-4">

@@ -1,4 +1,10 @@
+import { pageMetadata } from "@/lib/constants";
 import CustomerStoryPage from "@/components/ui/CustomerStoryPage";
+
+export const metadata = pageMetadata(
+  "Provin",
+  "How Provin uses Pair to power customer experiences across channels."
+);
 
 export default function ProvinStory() {
   return (

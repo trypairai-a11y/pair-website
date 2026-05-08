@@ -29,7 +29,7 @@ export default function IndustryPage({
             {useCases.map((uc) => (
               <div
                 key={uc.title}
-                className="rounded-2xl border border-sierra-divider p-6"
+                className="rounded-xl border border-sierra-divider p-6"
               >
                 <h3 className="text-base font-medium text-sierra-text-dark mb-2">
                   {uc.title}

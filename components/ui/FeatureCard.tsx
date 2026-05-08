@@ -10,7 +10,7 @@ export default function FeatureCard({
   href?: string;
 }) {
   const content = (
-    <div className="card-glass rounded-2xl p-6 h-full">
+    <div className="card-glass rounded-xl p-6 h-full">
       <div className="w-10 h-10 rounded-lg bg-sierra-green/10 flex items-center justify-center text-sierra-green mb-4">
         {icon}
       </div>
