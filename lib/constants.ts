@@ -87,7 +87,7 @@ export const TESTIMONIALS = [
     logoClassName: "h-5 w-auto object-contain",
     logoContainerClassName: "mb-3 mt-4 flex items-center justify-center min-h-[48px]",
     quote: [
-      "Our AI agent makes every caller feel like our most important guest.",
+      "Every caller feels like our most important guest.",
       "A true partner in the Cinescape experience.",
     ],
     name: "Nasser Bader Al Rowdan",

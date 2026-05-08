@@ -4,14 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, CircleCheck } from "lucide-react";
 
 export default function IndustrySelect({
+  id,
   name,
   options,
   placeholder = "Select your industry",
+  ariaLabelledBy,
   onValueChange,
 }: {
+  id?: string;
   name: string;
   options: string[];
   placeholder?: string;
+  ariaLabelledBy?: string;
   onValueChange?: (value: string) => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -34,7 +38,11 @@ export default function IndustrySelect({
       <input type="hidden" name={name} value={selected ?? ""} />
 
       <button
+        id={id ?? name}
         type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-labelledby={ariaLabelledBy}
         onClick={() => setOpen(!open)}
         className={`flex w-full items-center justify-between gap-6 rounded-lg md:rounded-md border bg-white px-4 py-3 md:py-4 text-[14px] md:text-[16px] transition-colors ${
           open

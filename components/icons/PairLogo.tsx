@@ -1,16 +1,18 @@
 export default function PairLogo({
   className = "",
   color = "currentColor",
+  sizeClass = "h-5",
 }: {
   className?: string;
   color?: string;
+  sizeClass?: string;
 }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 86.43 25.39"
       fill={color}
-      className={`h-5 w-auto ${className}`}
+      className={`${sizeClass} w-auto ${className}`}
       aria-label="Pair"
       role="img"
     >

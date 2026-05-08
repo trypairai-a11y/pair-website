@@ -1,6 +1,5 @@
 import { pageMetadata } from "@/lib/constants";
 import Container from "@/components/layout/Container";
-import PageHero from "@/components/ui/PageHero";
 import PageCTA from "@/components/ui/PageCTA";
 import CustomerCard from "@/components/ui/CustomerCard";
 
@@ -154,11 +153,16 @@ export default function CustomersPage() {
   return (
     <>
       <div className="pt-12 bg-white" />
-      <PageHero
-        title="Our customers"
-        description="Pair is trusted by industry leaders with millions of customers."
-        narrow
-      />
+      <section className="pt-32 pb-16 bg-white">
+        <Container narrow>
+          <h1 className="text-[32px] leading-[36px] md:text-[44px] md:leading-[48px] font-normal text-sierra-text-dark mb-4 max-w-3xl">
+            Our customers
+          </h1>
+          <p className="text-[13px] md:text-lg text-sierra-gray max-w-2xl">
+            Pair is trusted by industry leaders with millions of customers.
+          </p>
+        </Container>
+      </section>
       <section className="pb-20 bg-white">
         <Container narrow>
           <CustomerCard {...featured} featured />
@@ -167,10 +171,10 @@ export default function CustomersPage() {
       <section className="py-20 bg-white">
         <Container narrow>
           <div className="mb-14 max-w-2xl">
-            <h2 className="text-[40px] leading-[1.1] md:text-[44px] md:leading-[1.05] font-normal text-sierra-text-dark">
+            <h2 className="text-[28px] leading-[1.15] md:text-[44px] md:leading-[1.05] font-normal text-sierra-text-dark">
               Pair touches every moment that matters.
             </h2>
-            <p className="mt-4 text-base text-sierra-gray">
+            <p className="mt-4 text-[14px] md:text-base text-sierra-gray">
               Better customer experiences. Better business outcomes. Every time.
             </p>
           </div>

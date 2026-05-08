@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type CustomerCardProps = {
   company: string;
@@ -20,6 +21,7 @@ type CustomerCardProps = {
 
 export default function CustomerCard({
   company,
+  slug,
   logoSrc,
   imageSrc,
   metricLabel,
@@ -69,8 +71,8 @@ export default function CustomerCard({
         </div>
       )}
       <div className="absolute bottom-8 left-5 text-white">
-        <p className="text-xs leading-none opacity-85">{metricLabel}</p>
-        <p className="mt-1.5 text-lg font-medium leading-none">{metricValue}</p>
+        <p className="text-[10px] md:text-xs leading-none opacity-85">{metricLabel}</p>
+        <p className="mt-1.5 text-[15px] md:text-lg font-medium leading-none">{metricValue}</p>
       </div>
     </div>
   );
@@ -80,7 +82,7 @@ export default function CustomerCard({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
         {image}
         <div className="md:pt-8 lg:pt-12">
-          <h2 className="text-[32px] leading-[1.15] md:text-[40px] md:leading-[1.1] font-normal text-sierra-text-dark max-w-md">
+          <h2 className="text-[24px] leading-[1.2] md:text-[40px] md:leading-[1.1] font-normal text-sierra-text-dark max-w-md">
             {tagline}
           </h2>
         </div>
@@ -88,12 +90,26 @@ export default function CustomerCard({
     );
   }
 
-  return (
-    <div className="block">
+  const cardBody = (
+    <>
       {image}
-      <p className="mt-4 text-base text-sierra-text-dark leading-snug max-w-[28ch]">
+      <p className="mt-4 text-[14px] md:text-base text-sierra-text-dark leading-snug max-w-[28ch]">
         {tagline}
       </p>
-    </div>
+    </>
   );
+
+  if (slug) {
+    return (
+      <Link
+        href={`/customers/${slug}`}
+        aria-label={`${company} customer story`}
+        className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pair-blue rounded-2xl"
+      >
+        {cardBody}
+      </Link>
+    );
+  }
+
+  return <div className="block">{cardBody}</div>;
 }

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function FeatureCard({
   icon,
   title,
@@ -23,9 +25,9 @@ export default function FeatureCard({
 
   if (href) {
     return (
-      <a href={href} className="block">
+      <Link href={href} className="block">
         {content}
-      </a>
+      </Link>
     );
   }
   return content;

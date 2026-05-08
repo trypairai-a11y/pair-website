@@ -22,7 +22,7 @@ export default function PageHero({
         <h1 className="text-[44px] leading-[48px] font-normal text-sierra-text-dark mb-4 max-w-3xl">
           {title}
         </h1>
-        <p className="text-lg text-sierra-gray max-w-2xl">{description}</p>
+        <p className="text-sm md:text-lg text-sierra-gray max-w-2xl">{description}</p>
       </Container>
     </section>
   );

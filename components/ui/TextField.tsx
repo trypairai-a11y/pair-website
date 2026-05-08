@@ -4,12 +4,14 @@ import { useState } from "react";
 import { CircleCheck } from "lucide-react";
 
 export default function TextField({
+  id,
   name,
   type = "text",
   placeholder,
   required,
   onValueChange,
 }: {
+  id?: string;
   name: string;
   type?: string;
   placeholder?: string;
@@ -22,10 +24,12 @@ export default function TextField({
 
   const filled = value.trim().length > 0;
   const active = focused || filled;
+  const inputId = id ?? name;
 
   return (
     <div className="relative">
       <input
+        id={inputId}
         type={type}
         name={name}
         placeholder={placeholder}

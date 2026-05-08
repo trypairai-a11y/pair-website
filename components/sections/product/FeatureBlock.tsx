@@ -6,53 +6,41 @@ export default function FeatureBlock({
   title,
   body,
   imageSide,
-  bgTone,
   media,
-  eyebrow,
 }: ProductFeature) {
-  const sectionBg = bgTone === "tinted" ? "bg-sierra-bg" : "bg-white";
-  const figureBg = bgTone === "tinted" ? "bg-white" : "bg-sierra-bg";
-
   const figureColStart =
     imageSide === "left"
       ? "md:col-start-1 xl:col-start-2"
       : "md:col-start-8 xl:col-start-8";
   const copyColStart =
     imageSide === "left"
-      ? "md:col-start-7 xl:col-start-7"
+      ? "md:col-start-6 xl:col-start-8"
       : "md:col-start-1 xl:col-start-2";
-  const copyAlign = imageSide === "left" ? "md:pl-2" : "md:pr-2";
+  const copyAlign = imageSide === "left" ? "md:pl-6 xl:pl-0" : "md:pr-6 xl:pr-0";
+  const sectionBg = imageSide === "left" ? "bg-sierra-bg" : "bg-white";
+  const figureBg = imageSide === "left" ? "bg-white" : "bg-sierra-bg";
 
   return (
-    <section className={`py-16 md:py-24 xl:py-32 ${sectionBg}`}>
-      <Container>
-        <div className="grid grid-cols-12 gap-y-8 gap-x-6 md:gap-8 items-center">
+    <section className={`py-10 md:py-24 xl:py-32 ${sectionBg}`}>
+      <Container narrow>
+        <div className="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-6 isolate">
           <div
-            className={`col-span-12 md:col-span-5 xl:col-span-4 ${figureColStart} md:row-start-1`}
+            className={`col-span-12 md:row-start-1 md:col-span-5 xl:col-span-4 ${figureColStart}`}
           >
-            <div
-              className={`relative aspect-square w-full overflow-hidden rounded-2xl xl:rounded-3xl ${figureBg} flex items-center justify-center`}
-            >
+            <div className={`relative aspect-square w-full overflow-hidden rounded-2xl xl:rounded-3xl ${figureBg}`}>
               <FeatureMedia media={media} />
             </div>
           </div>
 
           <div
-            className={`col-span-12 md:col-span-7 xl:col-span-4 ${copyColStart} md:row-start-1 ${copyAlign}`}
+            className={`col-span-12 flex flex-col md:row-start-1 md:col-span-7 md:max-w-[475px] md:self-center xl:col-span-4 ${copyColStart} ${copyAlign}`}
           >
-            <div className="flex flex-col gap-4 md:gap-6 max-w-[475px]">
-              {eyebrow && (
-                <div className="self-start inline-flex items-center rounded-full border border-pair-blue/25 bg-white px-3 py-1.5 text-xs font-medium text-sierra-text-dark">
-                  {eyebrow}
-                </div>
-              )}
-              <h2 className="text-3xl md:text-4xl xl:text-[40px] xl:leading-[1.15] font-medium text-sierra-text-dark text-balance">
-                {title}
-              </h2>
-              <p className="text-sm md:text-base leading-relaxed text-sierra-gray">
-                {body}
-              </p>
-            </div>
+            <h2 className="text-2xl md:text-4xl xl:text-[40px] xl:leading-[1.15] font-normal md:font-medium text-sierra-text-dark text-balance">
+              {title}
+            </h2>
+            <p className="mt-5 md:mt-6 text-sm md:text-lg leading-relaxed text-sierra-gray">
+              {body}
+            </p>
           </div>
         </div>
       </Container>

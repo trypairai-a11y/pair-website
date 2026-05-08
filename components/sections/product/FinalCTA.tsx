@@ -10,11 +10,14 @@ export default function FinalCTA() {
             See what Pair can do for you
           </h2>
           <p className="max-w-prose xl:max-w-[560px] text-sm md:text-base leading-relaxed text-sierra-gray text-balance">
-            Discover how Pair builds better, more human customer experiences
-            with AI.
+            Talk to a Pair agent. Decide for yourself.
           </p>
           <div className="mt-2 flex justify-center gap-2">
-            <PillButton variant="primary" href="/learn-more">
+            <PillButton
+              variant="primary"
+              href="/learn-more"
+              className="!h-12 sm:!h-10 !px-7 sm:!px-4 !font-normal"
+            >
               Learn more
             </PillButton>
           </div>
