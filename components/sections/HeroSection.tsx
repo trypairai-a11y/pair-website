@@ -225,10 +225,29 @@ export default function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [blurBg, setBlurBg] = useState("");
   const [visibleCount, setVisibleCount] = useState(0);
+  // Initial paint only downloads the active clip; inactive clips warm up
+  // shortly after so they're ready by the time crossfade fires.
+  const [preloadAll, setPreloadAll] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const id = window.setTimeout(() => setPreloadAll(true), 1000);
+    return () => clearTimeout(id);
+  }, [mounted]);
+
+  useEffect(() => {
+    if (!preloadAll) return;
+    HERO_ITEMS.forEach((_, i) => {
+      const v = videoRefs.current[i];
+      if (v && v.preload === "auto" && v.readyState < 1) {
+        try { v.load(); } catch {}
+      }
+    });
+  }, [preloadAll]);
 
   // Active video plays from 0. Inactive videos pause and (after the crossfade
   // finishes) rewind to 0, so the just-ended clip stays on its last frame
@@ -348,7 +367,7 @@ export default function HeroSection() {
             }}
             muted
             playsInline
-            preload="auto"
+            preload={activeIndex === i || preloadAll ? "auto" : "none"}
             className="absolute h-full w-full object-cover object-center transition-opacity ease-out"
             style={{
               opacity: activeIndex === i ? 1 : 0,

@@ -28,6 +28,7 @@
 # scratch / dev artifacts
 /screenshots/
 /.playwright-mcp/
+/public-originals/
 
 # debug
 npm-debug.log*

@@ -13,6 +13,7 @@ export default function ImageMosaic() {
               alt={MOSAIC.small.alt}
               fill
               sizes="(min-width:768px) 25vw, 100vw"
+              quality={60}
               className="object-cover"
             />
           </div>
@@ -22,6 +23,7 @@ export default function ImageMosaic() {
               alt={MOSAIC.large.alt}
               fill
               sizes="(min-width:768px) 75vw, 100vw"
+              quality={60}
               className="object-cover"
             />
           </div>

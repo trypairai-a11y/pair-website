@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Settings, Plus, Edit2, ChevronLeft, ChevronRight } from "lucide-react";
 import { format, addMonths, subMonths, isSameDay, isToday, getDate, getDaysInMonth, startOfMonth } from "date-fns";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 // --- TYPE DEFINITIONS ---

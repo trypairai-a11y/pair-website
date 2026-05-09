@@ -36,7 +36,7 @@ export default function AgentOSSection() {
               width={896}
               height={560}
               className="agent-os-layer agent-os-layer-2 absolute inset-0 w-full h-auto"
-              priority
+              preload
             />
             <Image
               src="/product/search-bar.png"
