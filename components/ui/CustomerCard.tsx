@@ -47,6 +47,7 @@ export default function CustomerCard({
           alt={company}
           fill
           sizes={featured ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"}
+          quality={60}
           className={`object-cover ${objectTop ? "object-top" : ""} ${zoomOut ? "scale-100" : zoomIn ? "scale-[1.3]" : "scale-110"}`}
         />
       )}

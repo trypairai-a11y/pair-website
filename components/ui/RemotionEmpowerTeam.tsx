@@ -12,6 +12,7 @@ export default function RemotionEmpowerTeam({ paused = false }: { paused?: boole
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<PlayerRef>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
+  const ready = size.w > 0 && size.h > 0;
 
   useEffect(() => {
     const el = containerRef.current;
@@ -24,14 +25,17 @@ export default function RemotionEmpowerTeam({ paused = false }: { paused?: boole
   }, []);
 
   useEffect(() => {
+    if (!ready) return;
     const player = playerRef.current;
     if (!player) return;
     if (paused) {
       player.pause();
     } else {
-      player.play();
+      // Player.play() returns a Promise that can reject under autoplay
+      // restrictions; swallow it so the next user interaction can recover.
+      Promise.resolve(player.play()).catch(() => {});
     }
-  }, [paused, size.w, size.h]);
+  }, [paused, ready]);
 
   let playerW = 0;
   let playerH = 0;
@@ -75,6 +79,7 @@ export default function RemotionEmpowerTeam({ paused = false }: { paused?: boole
             compositionHeight={COMP_H}
             fps={60}
             autoPlay={!paused}
+            initiallyMuted
             loop
             acknowledgeRemotionLicense
             style={{

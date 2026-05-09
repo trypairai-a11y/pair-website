@@ -18,8 +18,9 @@ export default function AboutHero() {
             src={ABOUT_HERO.image.src}
             alt={ABOUT_HERO.image.alt}
             fill
-            priority
+            preload
             sizes="95vw"
+            quality={75}
             style={{ objectPosition: ABOUT_HERO.image.objectPosition }}
             className="object-cover"
           />

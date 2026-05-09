@@ -15,6 +15,7 @@ export default function CustomerCard({ data }: { data: CustomerCardData }) {
         alt={data.imageAlt}
         fill
         sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 90vw"
+        quality={60}
         className="absolute inset-0 object-cover opacity-0 motion-safe:transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
       />
 

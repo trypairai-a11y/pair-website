@@ -5,7 +5,7 @@ export const ABOUT_HERO = {
   title: "Building the future of\ncustomer experience.",
   subtitle: "About Pair.",
   image: {
-    src: "/photos/lifestyle/COVER.png",
+    src: "/photos/lifestyle/COVER.jpg",
     alt: "Pair",
     objectPosition: "50% 50%",
   },
@@ -83,7 +83,7 @@ export const CUSTOMERS: CustomerCardData[] = [
     logoSrc: "/logos/flare-fitness.png",
     logoHoverSrc: "/logos/flare-fitness-white.png",
     logoAlt: "Flare Fitness logo",
-    imageSrc: "/photos/customers/flare-fitness.png",
+    imageSrc: "/photos/customers/flare-fitness.jpg",
     imageAlt: "A Flare Fitness member training",
     quote: "Our members stopped asking if Fai was a bot. That is the moment we knew it was actually working.",
     authorName: "Yousef Alshaea",
@@ -95,7 +95,7 @@ export const CUSTOMERS: CustomerCardData[] = [
     logoSrc: "/logos/future-kid.png",
     logoAlt: "Future Kid logo",
     logoClass: "max-h-14 md:max-h-16",
-    imageSrc: "/photos/customers/future-kid.png",
+    imageSrc: "/photos/customers/future-kid.jpg",
     imageAlt: "A child playing at Future Kid",
     quote: "Parents book birthday parties before they reach the front desk. The whole night runs smoother.",
     authorName: "Sarah Alkhaled",
@@ -123,11 +123,11 @@ export const OFFICES: {
 
 export const MOSAIC = {
   small: {
-    src: "/photos/lifestyle/nexus.png",
+    src: "/photos/lifestyle/nexus.jpg",
     alt: "A Pair team member at work",
   },
   large: {
-    src: "/photos/lifestyle/headband-phone.png",
+    src: "/photos/lifestyle/headband-phone.jpg",
     alt: "Pair's headquarters in Kuwait City",
   },
 };
