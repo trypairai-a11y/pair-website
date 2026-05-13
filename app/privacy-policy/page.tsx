@@ -30,7 +30,7 @@ const sections = [
   {
     heading: "Data security",
     content:
-      "We implement industry-standard security measures to protect your personal information, including encryption in transit and at rest, access controls, regular security assessments, and compliance with SOC 2 Type II, ISO 27001, and HIPAA standards where applicable.",
+      "We implement industry-standard security measures to protect your personal information, including encryption in transit and at rest, access controls, regular security assessments, and compliance with ISO 27001 standards where applicable.",
   },
   {
     heading: "Data retention",
@@ -55,7 +55,7 @@ const sections = [
   {
     heading: "Contact us",
     content:
-      "If you have questions about this Privacy Policy or our data practices, please contact us at privacy@pair.ai or write to us at:\n\nPair Technologies, Inc.\nAttn: Privacy Team\nSan Francisco, CA",
+      "If you have questions about this Privacy Policy or our data practices, please contact us at privacy@pair.ai or write to us at:\n\nKuwait, Kuwait City",
   },
 ];
 

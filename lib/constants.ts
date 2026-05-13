@@ -36,7 +36,7 @@ export const COMPANY_LOGOS = [
   { name: "Portarage",          src: "/logos/portarage.png",     imgClassName: "h-24 w-[200px]" },
   { name: "Yiswa",              src: "/logos/yiswa.png",         imgClassName: "h-20 w-[164px]" },
   { name: "Flare Fitness",      src: "/logos/flare-fitness.png", imgClassName: "h-16 w-[180px]" },
-  { name: "Future Kid",         src: "/logos/future-kid.png",    imgClassName: "h-20 w-20" },
+  { name: "Future Kid",         src: "/logos/future-kid.png",    imgClassName: "h-16 w-16" },
 ];
 
 export const FEATURE_CARDS = [
@@ -74,6 +74,7 @@ export const TESTIMONIALS = [
   {
     company: "Boutiqaat",
     logoSrc: "/logos/boutiqaat.png",
+    logoClassName: "h-[72px] lg:h-[80px] xl:h-[88px] w-auto max-w-[260px] lg:max-w-[290px] xl:max-w-[320px] object-contain",
     quote: [
       "Our AI agent became a personal shopping assistant.",
       "It learns each customer's taste and points to what they'd love.",
@@ -96,7 +97,8 @@ export const TESTIMONIALS = [
   {
     company: "Flare Fitness",
     logoSrc: "/logos/flare-fitness.png",
-    logoClassName: "h-12 lg:h-14 xl:h-16 w-auto object-contain",
+    logoClassName: "h-14 lg:h-16 xl:h-[72px] w-auto object-contain",
+    logoContainerClassName: "mb-6",
     quote: [
       "Our members stopped asking if Fai was a bot.",
       "That is the moment we knew it was actually working.",
@@ -107,6 +109,7 @@ export const TESTIMONIALS = [
   {
     company: "ktech",
     logoSrc: "/logos/ktech.png",
+    logoContainerClassName: "mb-4",
     quote: [
       "Kadi reaches students faster, making student life easier,",
       "while streamlining the admission and enrollment process.",
