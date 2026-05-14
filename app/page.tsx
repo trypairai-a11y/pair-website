@@ -36,14 +36,16 @@ const PLATFORM_CARDS = [
 export default function Home() {
   return (
     <>
-      {/* Preload the first hero poster so it paints during HTML parse and
-          the user never sees an unstyled black hero on a cold visit. */}
+      {/* Preload all three hero posters so the first paint is colour-correct
+          and crossfades to subsequent scenarios never wait on the network. */}
       <link
         rel="preload"
         as="image"
         href="/hero/posters/Timeline%202.jpg"
         fetchPriority="high"
       />
+      <link rel="preload" as="image" href="/hero/posters/Timeline%203.jpg" />
+      <link rel="preload" as="image" href="/hero/posters/Timeline%201.jpg" />
       <HeroSection />
       <ScrollReveal>
         <LogosSection />
