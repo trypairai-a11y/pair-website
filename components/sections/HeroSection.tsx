@@ -11,6 +11,7 @@ import Link from "next/link";
 const HERO_ITEMS = [
   {
     video: "/hero/Timeline 2.mp4",
+    poster: "/hero/posters/Timeline 2.jpg",
     bubbles: [
       { type: "user", name: "Maryam", avatar: "/photos/headshots/spiral-1.png", text: "My WiFi keeps dropping." },
       { type: "agent", text: "Hi Maryam! That's frustrating. I've reset it remotely. Your WiFi should be steady again within minutes." },
@@ -19,6 +20,7 @@ const HERO_ITEMS = [
   },
   {
     video: "/hero/Timeline 3.mp4",
+    poster: "/hero/posters/Timeline 3.jpg",
     bubbles: [
       { type: "user", name: "Faisal", avatar: "/photos/headshots/spiral-3.png", text: "Same suite next week?" },
       { type: "agent", text: "Done. Oct 15-17 at Four Seasons. Sea view. Confirmation sent." },
@@ -27,6 +29,7 @@ const HERO_ITEMS = [
   },
   {
     video: "/hero/Timeline 1.mp4",
+    poster: "/hero/posters/Timeline 1.jpg",
     bubbles: [
       { type: "user", name: "Danah", avatar: "/photos/headshots/spiral-5.png", text: "Any appointments today?" },
       { type: "agent", text: "8:00, 8:30, 9:30, or 10:00. Which works?" },
@@ -51,11 +54,14 @@ function GlassBubble({ align, className, headerRef, blurBg, children }: {
 
   // Position the blurred video image to track the header so the bubble's
   // "blurred backdrop" stays aligned with the actual video underneath.
+  // Mobile uses CSS backdrop-blur (the bgRef div is hidden), so skip the
+  // per-frame layout reads entirely on small screens.
   useEffect(() => {
     const el = ref.current;
     const bg = bgRef.current;
     const header = headerRef.current;
     if (!el || !bg || !header) return;
+    if (typeof window !== "undefined" && !window.matchMedia("(min-width: 768px)").matches) return;
 
     let animId: number;
     const update = () => {
@@ -77,18 +83,22 @@ function GlassBubble({ align, className, headerRef, blurBg, children }: {
         ref={ref}
         className={`relative overflow-hidden w-full max-w-none rounded-2xl text-white md:w-[75vw] md:max-w-[334px] ${className ?? ""}`}
       >
-        {/* Blurred video frame, positioned to match the header crop */}
+        {/* Blurred video frame, positioned to match the header crop. Hidden on
+            mobile where we fall back to CSS backdrop-blur to avoid the
+            canvas/dataURL pipeline thrashing the phone GPU. */}
         <div
           ref={bgRef}
-          className="absolute pointer-events-none"
+          className="absolute pointer-events-none hidden md:block"
           style={{
             backgroundImage: blurBg ? `url(${blurBg})` : undefined,
             backgroundSize: "100% 100%",
           }}
         />
-        {/* Glass tint: white @ 10% on top of the blurred video */}
+        {/* Glass tint: white @ 10% on top of the blurred video. On mobile add a
+            CSS backdrop-blur so the tint sits over an in-GPU-blurred copy of
+            the underlying video instead of the captured frame. */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none backdrop-blur-xl md:backdrop-blur-none"
           style={{ background: "rgba(255, 255, 255, 0.10)" }}
         />
         {/* Gradient hairline border (2px) via mask-composite */}
@@ -293,6 +303,9 @@ export default function HeroSection() {
   // reliable cross-browser way to make the bubble follow the video.
   useEffect(() => {
     if (!mounted || !canvasRef.current || !headerRef.current) return;
+    // Mobile bubbles use CSS backdrop-blur instead of a captured frame —
+    // skip the entire canvas/dataURL pipeline so we don't thrash the phone.
+    if (!window.matchMedia("(min-width: 768px)").matches) return;
     const video = videoRefs.current[activeIndex];
     if (!video) return;
     const canvas = canvasRef.current;
@@ -368,6 +381,7 @@ export default function HeroSection() {
             muted
             playsInline
             preload={activeIndex === i || preloadAll ? "auto" : "none"}
+            poster={item.poster}
             className="absolute h-full w-full object-cover object-center transition-opacity ease-out"
             style={{
               opacity: activeIndex === i ? 1 : 0,
