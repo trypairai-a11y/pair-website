@@ -127,14 +127,6 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Chat bubble fade-in animation (per-video scenario) --- */
-
-@keyframes chatFadeIn {
-  0%   { opacity: 0; max-height: 0; transform: translateY(8px); }
-  99%  { opacity: 1; transform: translateY(0.01px); }
-  100% { opacity: 1; max-height: 100svh; transform: none; }
-}
-
 /* --- Agent OS dashboard scroll-in: each layer drops from above, scaling down --- */
 
 @keyframes agentOsDropScale {

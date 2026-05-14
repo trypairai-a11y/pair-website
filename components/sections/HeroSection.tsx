@@ -322,7 +322,7 @@ export default function HeroSection() {
             {scenario.bubbles.slice(0, visibleCount).map((bubble, i) => (
               <div
                 key={`${activeIndex}-${i}`}
-                className={`flex overflow-hidden animate-[chatFadeIn_0.45s_ease-out_forwards] ${
+                className={`flex ${
                   bubble.type === "user" ? "justify-end" : "justify-start"
                 }`}
               >
