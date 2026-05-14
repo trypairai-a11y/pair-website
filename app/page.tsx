@@ -36,6 +36,14 @@ const PLATFORM_CARDS = [
 export default function Home() {
   return (
     <>
+      {/* Preload the first hero poster so it paints during HTML parse and
+          the user never sees an unstyled black hero on a cold visit. */}
+      <link
+        rel="preload"
+        as="image"
+        href="/hero/posters/Timeline%202.jpg"
+        fetchPriority="high"
+      />
       <HeroSection />
       <ScrollReveal>
         <LogosSection />
