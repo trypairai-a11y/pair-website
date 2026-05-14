@@ -88,8 +88,8 @@ export const TESTIMONIALS = [
     logoClassName: "h-5 w-auto object-contain",
     logoContainerClassName: "mb-3 mt-4 flex items-center justify-center min-h-[48px]",
     quote: [
-      "Pair has been a valuable partner in our customer experience operations.",
-      "We appreciate their professionalism and continued collaboration.",
+      "Pair has been a valuable partner across our operations,",
+      "professional, consistent, and easy to collaborate with.",
     ],
     name: "Nasser Bader Al Rowdan",
     title: "Chief Executive Officer",
