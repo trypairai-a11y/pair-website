@@ -129,7 +129,7 @@ const arabicFont = (text: string) => (isArabic(text) ? { fontFamily: "var(--font
 
 function UserBubble({ name, avatar, text, headerRef, blurBg }: { name: string; avatar: string; text: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
   return (
-    <GlassBubble align="end" headerRef={headerRef} blurBg={blurBg} className="p-3.5 md:p-4">
+    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="p-3.5 md:p-4">
       <div className="flex flex-col gap-1.5 md:gap-2">
         <div className="flex items-center gap-1.5 text-[11px] text-white/80 md:gap-2 md:text-[12px]">
           <figure className="relative aspect-square size-3.5 overflow-hidden rounded-full md:size-4">
@@ -145,7 +145,7 @@ function UserBubble({ name, avatar, text, headerRef, blurBg }: { name: string; a
 
 function AgentBubble({ text, agentName, headerRef, blurBg }: { text: string; agentName?: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
   return (
-    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="p-3.5 md:p-4">
+    <GlassBubble align="end" headerRef={headerRef} blurBg={blurBg} className="p-3.5 md:p-4">
       <div className="flex flex-col gap-1.5 md:gap-2">
         <div className="flex items-center gap-1.5 text-[11px] text-white/80 md:gap-2 md:text-[12px]">
           <figure className="relative aspect-square size-3.5 overflow-hidden md:size-4">
@@ -162,7 +162,7 @@ function AgentBubble({ text, agentName, headerRef, blurBg }: { text: string; age
 function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: string; title?: string; variant?: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
   if (variant === "wifi") {
     return (
-      <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="px-3.5 py-3 md:px-4 md:py-3">
+      <GlassBubble align="end" headerRef={headerRef} blurBg={blurBg} className="px-3.5 py-3 md:px-4 md:py-3">
         <div className="flex items-center gap-2.5 md:gap-3">
           <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#34C759] md:size-9">
             <svg viewBox="0 0 24 24" fill="none" className="size-4 text-white md:size-5">
@@ -187,7 +187,7 @@ function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: stri
     );
   }
   return (
-    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="px-4 py-3 md:px-4 md:py-3">
+    <GlassBubble align="end" headerRef={headerRef} blurBg={blurBg} className="px-4 py-3 md:px-4 md:py-3">
       <div className="flex items-center justify-between gap-3">
         <span dir="auto" className="text-[13px] md:text-[13px] font-medium text-white" style={arabicFont(text)}>{text}</span>
         <svg viewBox="0 0 16 16" fill="none" className="size-4 md:size-4 text-pair-blue">
@@ -201,7 +201,7 @@ function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: stri
 
 function PickerBubble({ headerRef, blurBg }: { headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
   return (
-    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="p-4">
+    <GlassBubble align="end" headerRef={headerRef} blurBg={blurBg} className="p-4">
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between text-[12px] text-white">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-3.5"><path d="M15 18l-6-6 6-6"/></svg>
@@ -430,7 +430,7 @@ export default function HeroSection() {
           pointer-events-none keeps the Learn more button clickable. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-[10px] flex justify-center">
         <div className="relative w-full max-w-[1160px] px-5 md:px-7 lg:px-10 xl:pl-6">
-          <div className="ml-auto flex w-full flex-col gap-2 md:w-[min(88%,454px)] md:pr-2">
+          <div className="flex w-full flex-col gap-2 md:px-2">
             {scenario.bubbles.slice(0, visibleCount).map((bubble, i) => (
               <div
                 key={`${activeIndex}-${i}`}
