@@ -39,81 +39,40 @@ const HERO_ITEMS = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Glass bubble wrapper — glass frame + canvas-driven video blur      */
+/*  Glass bubble wrapper — CSS backdrop-blur over the hero video       */
 /* ------------------------------------------------------------------ */
 
-function GlassBubble({ className, headerRef, blurBg, children }: {
+function GlassBubble({ className, children }: {
   className?: string;
-  headerRef: React.RefObject<HTMLElement | null>;
-  blurBg: string;
   children: React.ReactNode;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-
-  // Position the blurred video image to track the header so the bubble's
-  // "blurred backdrop" stays aligned with the actual video underneath.
-  // Mobile uses CSS backdrop-blur (the bgRef div is hidden), so skip the
-  // per-frame layout reads entirely on small screens.
-  useEffect(() => {
-    const el = ref.current;
-    const bg = bgRef.current;
-    const header = headerRef.current;
-    if (!el || !bg || !header) return;
-    if (typeof window !== "undefined" && !window.matchMedia("(min-width: 768px)").matches) return;
-
-    let animId: number;
-    const update = () => {
-      const bubbleRect = el.getBoundingClientRect();
-      const headerRect = header.getBoundingClientRect();
-      bg.style.left = `${headerRect.left - bubbleRect.left}px`;
-      bg.style.top = `${headerRect.top - bubbleRect.top}px`;
-      bg.style.width = `${headerRect.width}px`;
-      bg.style.height = `${headerRect.height}px`;
-      animId = requestAnimationFrame(update);
-    };
-    animId = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(animId);
-  }, [headerRef, blurBg]);
-
   return (
+    <div
+      className={`relative overflow-hidden w-full max-w-[280px] rounded-2xl text-white md:w-[75vw] md:max-w-[334px] ${className ?? ""}`}
+    >
+      {/* Glass tint: 10% white over a CSS-blurred copy of whatever is behind
+          the bubble (the hero video). backdrop-blur is GPU-applied, so the
+          glass effect paints in the same frame as the bubble itself — no
+          half-second "loading" flash like the old canvas/dataURL pipeline. */}
       <div
-        ref={ref}
-        className={`relative overflow-hidden w-full max-w-[280px] rounded-2xl text-white md:w-[75vw] md:max-w-[334px] ${className ?? ""}`}
-      >
-        {/* Blurred video frame, positioned to match the header crop. Hidden on
-            mobile where we fall back to CSS backdrop-blur to avoid the
-            canvas/dataURL pipeline thrashing the phone GPU. */}
-        <div
-          ref={bgRef}
-          className="absolute pointer-events-none hidden md:block"
-          style={{
-            backgroundImage: blurBg ? `url(${blurBg})` : undefined,
-            backgroundSize: "100% 100%",
-          }}
-        />
-        {/* Glass tint: white @ 10% on top of the blurred video. On mobile add a
-            CSS backdrop-blur so the tint sits over an in-GPU-blurred copy of
-            the underlying video instead of the captured frame. */}
-        <div
-          className="absolute inset-0 pointer-events-none backdrop-blur-xl md:backdrop-blur-none"
-          style={{ background: "rgba(255, 255, 255, 0.10)" }}
-        />
-        {/* Gradient hairline border (2px) via mask-composite */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-2xl"
-          style={{
-            padding: "2px",
-            background: "linear-gradient(rgba(248, 248, 248, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
-            WebkitMask: "conic-gradient(#000 0 0) content-box, conic-gradient(#000 0 0)",
-            mask: "conic-gradient(#000 0 0) content-box, conic-gradient(#000 0 0)",
-            WebkitMaskComposite: "xor",
-            maskComposite: "exclude",
-          }}
-        />
-        <div className="relative">{children}</div>
-      </div>
+        className="absolute inset-0 pointer-events-none backdrop-blur-xl"
+        style={{ background: "rgba(255, 255, 255, 0.10)" }}
+      />
+      {/* Gradient hairline border (2px) via mask-composite */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-2xl"
+        style={{
+          padding: "2px",
+          background: "linear-gradient(rgba(248, 248, 248, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
+          WebkitMask: "conic-gradient(#000 0 0) content-box, conic-gradient(#000 0 0)",
+          mask: "conic-gradient(#000 0 0) content-box, conic-gradient(#000 0 0)",
+          WebkitMaskComposite: "xor",
+          maskComposite: "exclude",
+        }}
+      />
+      <div className="relative">{children}</div>
+    </div>
   );
 }
 
@@ -124,9 +83,9 @@ function GlassBubble({ className, headerRef, blurBg, children }: {
 const isArabic = (text: string) => /[\u0600-\u06FF]/.test(text);
 const arabicFont = (text: string) => (isArabic(text) ? { fontFamily: "var(--font-almarai)" } : undefined);
 
-function UserBubble({ name, avatar, text, headerRef, blurBg }: { name: string; avatar: string; text: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
+function UserBubble({ name, avatar, text }: { name: string; avatar: string; text: string }) {
   return (
-    <GlassBubble headerRef={headerRef} blurBg={blurBg} className="p-3.5 md:p-4">
+    <GlassBubble className="p-3.5 md:p-4">
       <div className="flex flex-col gap-1.5 md:gap-2">
         <div className="flex items-center gap-1.5 text-[11px] text-white/80 md:gap-2 md:text-[12px]">
           <figure className="relative aspect-square size-3.5 overflow-hidden rounded-full md:size-4">
@@ -140,9 +99,9 @@ function UserBubble({ name, avatar, text, headerRef, blurBg }: { name: string; a
   );
 }
 
-function AgentBubble({ text, agentName, headerRef, blurBg }: { text: string; agentName?: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
+function AgentBubble({ text, agentName }: { text: string; agentName?: string }) {
   return (
-    <GlassBubble headerRef={headerRef} blurBg={blurBg} className="p-3.5 md:p-4">
+    <GlassBubble className="p-3.5 md:p-4">
       <div className="flex flex-col gap-1.5 md:gap-2">
         <div className="flex items-center gap-1.5 text-[11px] text-white/80 md:gap-2 md:text-[12px]">
           <figure className="relative aspect-square size-3.5 overflow-hidden md:size-4">
@@ -156,10 +115,10 @@ function AgentBubble({ text, agentName, headerRef, blurBg }: { text: string; age
   );
 }
 
-function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: string; title?: string; variant?: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
+function ConfirmBubble({ text, title, variant }: { text: string; title?: string; variant?: string }) {
   if (variant === "wifi") {
     return (
-      <GlassBubble headerRef={headerRef} blurBg={blurBg} className="px-3.5 py-3 md:px-4 md:py-3">
+      <GlassBubble className="px-3.5 py-3 md:px-4 md:py-3">
         <div className="flex items-center gap-2.5 md:gap-3">
           <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#34C759] md:size-9">
             <svg viewBox="0 0 24 24" fill="none" className="size-4 text-white md:size-5">
@@ -184,7 +143,7 @@ function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: stri
     );
   }
   return (
-    <GlassBubble headerRef={headerRef} blurBg={blurBg} className="px-4 py-3 md:px-4 md:py-3">
+    <GlassBubble className="px-4 py-3 md:px-4 md:py-3">
       <div className="flex items-center justify-between gap-3">
         <span dir="auto" className="text-[13px] md:text-[13px] font-medium text-white" style={arabicFont(text)}>{text}</span>
         <svg viewBox="0 0 16 16" fill="none" className="size-4 md:size-4 text-pair-blue">
@@ -196,9 +155,9 @@ function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: stri
   );
 }
 
-function PickerBubble({ headerRef, blurBg }: { headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
+function PickerBubble() {
   return (
-    <GlassBubble headerRef={headerRef} blurBg={blurBg} className="p-4">
+    <GlassBubble className="p-4">
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between text-[12px] text-white">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-3.5"><path d="M15 18l-6-6 6-6"/></svg>
@@ -225,12 +184,10 @@ const CROSSFADE_MS = 500;
 export default function HeroSection() {
   const headerRef = useRef<HTMLElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [mounted, setMounted] = useState(false);
   // One video element per item — never swap src, so the browser never
   // shows a black "loading" frame mid-cycle.
   const [activeIndex, setActiveIndex] = useState(0);
-  const [blurBg, setBlurBg] = useState("");
   const [visibleCount, setVisibleCount] = useState(0);
   // Initial paint only downloads the active clip; inactive clips warm up
   // shortly after so they're ready by the time crossfade fires.
@@ -294,69 +251,6 @@ export default function HeroSection() {
     return () => ids.forEach((id) => clearTimeout(id));
   }, [activeIndex]);
 
-  // Capture blurred video frames into a hidden canvas, then use the data URL
-  // as the bubble's blurred backdrop. <video> elements are composited on a
-  // separate GPU layer, so CSS backdrop-filter can't see them — this is the
-  // reliable cross-browser way to make the bubble follow the video.
-  useEffect(() => {
-    if (!mounted || !canvasRef.current || !headerRef.current) return;
-    // Mobile bubbles use CSS backdrop-blur instead of a captured frame —
-    // skip the entire canvas/dataURL pipeline so we don't thrash the phone.
-    if (!window.matchMedia("(min-width: 768px)").matches) return;
-    const video = videoRefs.current[activeIndex];
-    if (!video) return;
-    const canvas = canvasRef.current;
-    const header = headerRef.current;
-    const ctx = canvas.getContext("2d", { willReadFrequently: false });
-    if (!ctx) return;
-
-    const CW = 960;
-    let prevHW = 0;
-    let prevHH = 0;
-    let animId: number;
-    let last = 0;
-
-    const draw = (t: number) => {
-      if (t - last > 42 && video.readyState >= 2) {
-        const headerRect = header.getBoundingClientRect();
-        const hW = headerRect.width;
-        const hH = headerRect.height;
-        if (hW <= 0 || hH <= 0) {
-          animId = requestAnimationFrame(draw);
-          return;
-        }
-
-        if (hW !== prevHW || hH !== prevHH) {
-          prevHW = hW;
-          prevHH = hH;
-          canvas.width = CW;
-          canvas.height = Math.round(CW * (hH / hW));
-        }
-
-        const vw = video.videoWidth || 1920;
-        const vh = video.videoHeight || 1080;
-        const videoAspect = vw / vh;
-        const headerAspect = hW / hH;
-        let sx = 0, sy = 0, sw = vw, sh = vh;
-        if (videoAspect > headerAspect) {
-          sw = vh * headerAspect;
-          sx = (vw - sw) * 0.5;
-        } else {
-          sh = vw / headerAspect;
-          sy = (vh - sh) * 0.5;
-        }
-
-        ctx.filter = "blur(28px) saturate(0.9)";
-        ctx.drawImage(video, sx, sy, sw, sh, 0, 0, CW, canvas.height);
-        setBlurBg(canvas.toDataURL("image/jpeg", 0.9));
-        last = t;
-      }
-      animId = requestAnimationFrame(draw);
-    };
-    animId = requestAnimationFrame(draw);
-    return () => cancelAnimationFrame(animId);
-  }, [mounted, activeIndex]);
-
   const scenario = HERO_ITEMS[activeIndex];
 
   return (
@@ -371,9 +265,6 @@ export default function HeroSection() {
           "#000 url(\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAHAAbAAD//gAQTGF2YzYyLjI4LjEwMAD/2wBDAAgoKC8oLzc3Nzc3N0E8QUNDQ0FBQUFDQ0NISEhVVVVISEhDQ0hIUFBVVVxfXFdXVVdfX2RkZHh4c3OMjJGsrM//xABfAAADAQEAAAAAAAAAAAAAAAAFBwYCBAEBAQEAAAAAAAAAAAAAAAAAAwACEAABAwIGAwEAAAAAAAAAAAABAgAxEQMSURMhMkGhYYHxEQEAAAAAAAAAAAAAAAAAAAAA/8AAEQgADgAYAwEiAAIRAAMRAP/aAAwDAQACEQMRAD8AaN2WI1ClYEAcvrypeIxm4BdzkN6lVSfQ6YEMS8vCqKx+vk1RkfDD26lCd+3SOYf/2Q==\") center/cover no-repeat",
       }}
     >
-      {/* Hidden canvas for capturing blurred video frames */}
-      <canvas ref={canvasRef} className="hidden" />
-
       {/* Background videos: one element per clip, all preloaded so swaps
           never wait on a decoder. The active clip plays from 0; ended clips
           stay on their last frame while opacity crossfades, then quietly
@@ -436,16 +327,16 @@ export default function HeroSection() {
                 }`}
               >
                 {bubble.type === "user" && (
-                  <UserBubble name={(bubble as { name: string; avatar: string; text: string }).name} avatar={(bubble as { name: string; avatar: string; text: string }).avatar} text={bubble.text!} headerRef={headerRef} blurBg={blurBg} />
+                  <UserBubble name={(bubble as { name: string; avatar: string; text: string }).name} avatar={(bubble as { name: string; avatar: string; text: string }).avatar} text={bubble.text!} />
                 )}
                 {bubble.type === "agent" && (
-                  <AgentBubble text={bubble.text!} agentName={(bubble as { agentName?: string }).agentName} headerRef={headerRef} blurBg={blurBg} />
+                  <AgentBubble text={bubble.text!} agentName={(bubble as { agentName?: string }).agentName} />
                 )}
                 {bubble.type === "confirm" && (
-                  <ConfirmBubble text={bubble.text!} title={(bubble as { title?: string }).title} variant={(bubble as { variant?: string }).variant} headerRef={headerRef} blurBg={blurBg} />
+                  <ConfirmBubble text={bubble.text!} title={(bubble as { title?: string }).title} variant={(bubble as { variant?: string }).variant} />
                 )}
                 {bubble.type === "picker" && (
-                  <PickerBubble headerRef={headerRef} blurBg={blurBg} />
+                  <PickerBubble />
                 )}
               </div>
             ))}
