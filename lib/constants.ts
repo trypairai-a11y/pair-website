@@ -76,8 +76,8 @@ export const TESTIMONIALS = [
     logoSrc: "/logos/boutiqaat.png",
     logoClassName: "h-[72px] lg:h-[80px] xl:h-[88px] w-auto max-w-[260px] lg:max-w-[290px] xl:max-w-[320px] object-contain",
     quote: [
-      "Our AI agent became a personal shopping assistant.",
-      "It learns each customer's taste and points to what they'd love.",
+      "Pair has been a reliable technology partner for our team.",
+      "We value their professionalism and ongoing collaboration.",
     ],
     name: "Abdullah Aljulaibi",
     title: "Co-Founder & Chief Executive Officer",
@@ -88,8 +88,8 @@ export const TESTIMONIALS = [
     logoClassName: "h-5 w-auto object-contain",
     logoContainerClassName: "mb-3 mt-4 flex items-center justify-center min-h-[48px]",
     quote: [
-      "Every caller feels like our most important guest.",
-      "A true partner in the Cinescape experience.",
+      "Pair has been a valuable partner in our customer experience operations.",
+      "We appreciate their professionalism and continued collaboration.",
     ],
     name: "Nasser Bader Al Rowdan",
     title: "Chief Executive Officer",
