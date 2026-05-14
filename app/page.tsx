@@ -36,16 +36,9 @@ const PLATFORM_CARDS = [
 export default function Home() {
   return (
     <>
-      {/* Preload the first hero poster with high priority so it's the LCP
-          candidate. Posters 1 and 3 are needed ~10s later for crossfades —
-          letting the <video poster=...> requests trigger them naturally
-          keeps initial-load bandwidth focused on the first paint. */}
-      <link
-        rel="preload"
-        as="image"
-        href="/hero/posters/Timeline%202.jpg"
-        fetchPriority="high"
-      />
+      {/* HeroSection renders the first poster via next/image with priority,
+          which injects its own high-priority preload. No manual <link
+          rel="preload"> needed. */}
       <HeroSection />
       <ScrollReveal>
         <LogosSection />
