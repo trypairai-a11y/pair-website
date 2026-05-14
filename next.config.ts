@@ -9,7 +9,9 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000,
   },
   experimental: {
-    optimizePackageImports: ["motion"],
+    // Per-icon barrel transforms; without this, lucide-react bundles its
+    // entire icon set instead of just the named imports.
+    optimizePackageImports: ["motion", "lucide-react"],
   },
 };
 
