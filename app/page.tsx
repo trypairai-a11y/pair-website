@@ -36,9 +36,15 @@ const PLATFORM_CARDS = [
 export default function Home() {
   return (
     <>
-      {/* HeroSection renders the first poster via next/image with priority,
-          which injects its own high-priority preload. No manual <link
-          rel="preload"> needed. */}
+      {/* Preload the first hero poster with high priority so it's the LCP
+          candidate. The <video poster=...> attribute would only fetch it
+          lazily, so the preload front-loads it during HTML parse. */}
+      <link
+        rel="preload"
+        as="image"
+        href="/hero/posters/Timeline%202.jpg"
+        fetchPriority="high"
+      />
       <HeroSection />
       <ScrollReveal>
         <LogosSection />

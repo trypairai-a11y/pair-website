@@ -1,14 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import HeroDynamic from "@/components/sections/HeroDynamic";
 
 /* ------------------------------------------------------------------ */
 /*  HeroSection — server-rendered shell                                */
 /*                                                                     */
-/*  All static UI (headline, button, LQIP backdrop, LCP poster) is     */
-/*  plain HTML so it paints instantly on first byte with zero React    */
-/*  boot-up cost. The interactive video + chat bubble pieces are       */
-/*  isolated in HeroDynamic, which hydrates separately.                */
+/*  All static UI (headline, button, LQIP backdrop) is plain HTML so   */
+/*  it paints instantly on first byte with zero React boot-up cost.    */
+/*  The interactive video + chat bubble pieces are isolated in         */
+/*  HeroDynamic, which hydrates separately.                            */
 /* ------------------------------------------------------------------ */
 
 export default function HeroSection() {
@@ -23,18 +22,6 @@ export default function HeroSection() {
           "#000 url(\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAHAAbAAD//gAQTGF2YzYyLjI4LjEwMAD/2wBDAAgoKC8oLzc3Nzc3N0E8QUNDQ0FBQUFDQ0NISEhVVVVISEhDQ0hIUFBVVVxfXFdXVVdfX2RkZHh4c3OMjJGsrM//xABfAAADAQEAAAAAAAAAAAAAAAAFBwYCBAEBAQEAAAAAAAAAAAAAAAAAAwACEAABAwIGAwEAAAAAAAAAAAABAgAxEQMSURMhMkGhYYHxEQEAAAAAAAAAAAAAAAAAAAAA/8AAEQgADgAYAwEiAAIRAAMRAP/aAAwDAQACEQMRAD8AaN2WI1ClYEAcvrypeIxm4BdzkN6lVSfQ6YEMS8vCqKx+vk1RkfDD26lCd+3SOYf/2Q==\") center/cover no-repeat",
       }}
     >
-      {/* First-scenario poster as a priority Image — Next will serve AVIF/WebP
-          and inject a high-priority preload. This is the LCP candidate; the
-          videos crossfade in on top once they're ready. */}
-      <Image
-        src="/hero/posters/Timeline 2.jpg"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="absolute inset-0 z-0 object-cover object-center"
-      />
-
       {/* Videos + chat bubbles — only client-hydrated piece on this page. */}
       <HeroDynamic />
 
