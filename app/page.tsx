@@ -36,16 +36,16 @@ const PLATFORM_CARDS = [
 export default function Home() {
   return (
     <>
-      {/* Preload all three hero posters so the first paint is colour-correct
-          and crossfades to subsequent scenarios never wait on the network. */}
+      {/* Preload the first hero poster with high priority so it's the LCP
+          candidate. Posters 1 and 3 are needed ~10s later for crossfades —
+          letting the <video poster=...> requests trigger them naturally
+          keeps initial-load bandwidth focused on the first paint. */}
       <link
         rel="preload"
         as="image"
         href="/hero/posters/Timeline%202.jpg"
         fetchPriority="high"
       />
-      <link rel="preload" as="image" href="/hero/posters/Timeline%203.jpg" />
-      <link rel="preload" as="image" href="/hero/posters/Timeline%201.jpg" />
       <HeroSection />
       <ScrollReveal>
         <LogosSection />

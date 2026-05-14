@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const HERO_ITEMS = [
   {
-    video: "/hero/Timeline 2.mp4",
+    video: "/hero/Timeline 2.opt.mp4",
     poster: "/hero/posters/Timeline 2.jpg",
     bubbles: [
       { type: "user", name: "Maryam", avatar: "/photos/headshots/spiral-1.png", text: "My WiFi keeps dropping." },
@@ -19,7 +19,7 @@ const HERO_ITEMS = [
     ],
   },
   {
-    video: "/hero/Timeline 3.mp4",
+    video: "/hero/Timeline 3.opt.mp4",
     poster: "/hero/posters/Timeline 3.jpg",
     bubbles: [
       { type: "user", name: "Faisal", avatar: "/photos/headshots/spiral-3.png", text: "Same suite next week?" },
@@ -28,7 +28,7 @@ const HERO_ITEMS = [
     ],
   },
   {
-    video: "/hero/Timeline 1.mp4",
+    video: "/hero/Timeline 1.opt.mp4",
     poster: "/hero/posters/Timeline 1.jpg",
     bubbles: [
       { type: "user", name: "Danah", avatar: "/photos/headshots/spiral-5.png", text: "Any appointments today?" },
