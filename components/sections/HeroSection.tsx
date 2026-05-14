@@ -81,7 +81,7 @@ function GlassBubble({ align, className, headerRef, blurBg, children }: {
     <div className={align === "end" ? "place-self-end" : "place-self-start"}>
       <div
         ref={ref}
-        className={`relative overflow-hidden w-full max-w-none rounded-2xl text-white md:w-[75vw] md:max-w-[334px] ${className ?? ""}`}
+        className={`relative overflow-hidden w-full max-w-[280px] rounded-2xl text-white md:w-[75vw] md:max-w-[334px] ${className ?? ""}`}
       >
         {/* Blurred video frame, positioned to match the header crop. Hidden on
             mobile where we fall back to CSS backdrop-blur to avoid the
@@ -129,15 +129,15 @@ const arabicFont = (text: string) => (isArabic(text) ? { fontFamily: "var(--font
 
 function UserBubble({ name, avatar, text, headerRef, blurBg }: { name: string; avatar: string; text: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
   return (
-    <GlassBubble align="end" headerRef={headerRef} blurBg={blurBg} className="p-5 md:p-4">
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2 text-[14px] text-white/80 md:text-[12px]">
-          <figure className="relative aspect-square size-5 overflow-hidden rounded-full md:size-4">
+    <GlassBubble align="end" headerRef={headerRef} blurBg={blurBg} className="p-3.5 md:p-4">
+      <div className="flex flex-col gap-1.5 md:gap-2">
+        <div className="flex items-center gap-1.5 text-[11px] text-white/80 md:gap-2 md:text-[12px]">
+          <figure className="relative aspect-square size-3.5 overflow-hidden rounded-full md:size-4">
             <Image src={avatar} alt={name} fill sizes="20px" className="object-cover" />
           </figure>
           <span style={arabicFont(name)}>{name}</span>
         </div>
-        <div dir="auto" className="text-[17px] md:text-[14px] font-normal text-white leading-snug" style={arabicFont(text)}>{text}</div>
+        <div dir="auto" className="text-[13px] md:text-[14px] font-normal text-white leading-snug" style={arabicFont(text)}>{text}</div>
       </div>
     </GlassBubble>
   );
@@ -145,15 +145,15 @@ function UserBubble({ name, avatar, text, headerRef, blurBg }: { name: string; a
 
 function AgentBubble({ text, agentName, headerRef, blurBg }: { text: string; agentName?: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
   return (
-    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="p-5 md:p-4">
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2 text-[14px] text-white/80 md:text-[12px]">
-          <figure className="relative aspect-square size-5 overflow-hidden md:size-4">
+    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="p-3.5 md:p-4">
+      <div className="flex flex-col gap-1.5 md:gap-2">
+        <div className="flex items-center gap-1.5 text-[11px] text-white/80 md:gap-2 md:text-[12px]">
+          <figure className="relative aspect-square size-3.5 overflow-hidden md:size-4">
             <Image src="/branding/pair-icon-white.png" alt="Pair" width={20} height={20} className="block h-auto w-full object-cover" />
           </figure>
           <span>{agentName ?? "Pair Agent"}</span>
         </div>
-        <div dir="auto" className="text-[17px] md:text-[14px] font-normal text-white leading-snug" style={arabicFont(text)}>{text}</div>
+        <div dir="auto" className="text-[13px] md:text-[14px] font-normal text-white leading-snug" style={arabicFont(text)}>{text}</div>
       </div>
     </GlassBubble>
   );
@@ -162,10 +162,10 @@ function AgentBubble({ text, agentName, headerRef, blurBg }: { text: string; age
 function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: string; title?: string; variant?: string; headerRef: React.RefObject<HTMLElement | null>; blurBg: string }) {
   if (variant === "wifi") {
     return (
-      <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="px-5 py-4 md:px-4 md:py-3">
-        <div className="flex items-center gap-3">
-          <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#34C759] md:size-9">
-            <svg viewBox="0 0 24 24" fill="none" className="size-6 text-white md:size-5">
+      <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="px-3.5 py-3 md:px-4 md:py-3">
+        <div className="flex items-center gap-2.5 md:gap-3">
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#34C759] md:size-9">
+            <svg viewBox="0 0 24 24" fill="none" className="size-4 text-white md:size-5">
               <path d="M2.5 9.5C5.2 7 8.5 5.5 12 5.5s6.8 1.5 9.5 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               <path d="M5.5 12.5C7.4 10.9 9.6 10 12 10s4.6.9 6.5 2.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               <path d="M8.5 15.5C9.5 14.7 10.7 14.2 12 14.2s2.5.5 3.5 1.3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -173,10 +173,10 @@ function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: stri
             </svg>
           </div>
           <div className="flex flex-col gap-0.5 min-w-0">
-            <span className="text-[17px] md:text-[14px] font-medium text-white truncate" style={arabicFont(title ?? "")}>{title}</span>
-            <span className="flex items-center gap-1.5 text-[14px] md:text-[12px] text-white/80">
+            <span className="text-[13px] md:text-[14px] font-medium text-white truncate" style={arabicFont(title ?? "")}>{title}</span>
+            <span className="flex items-center gap-1.5 text-[11px] text-white/80 md:text-[12px]">
               <span style={arabicFont(text)}>{text}</span>
-              <svg viewBox="0 0 16 16" fill="none" className="size-4 md:size-3.5 text-white/70">
+              <svg viewBox="0 0 16 16" fill="none" className="size-3 text-white/70 md:size-3.5">
                 <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.2"/>
                 <path d="M5 8l2 2 4-4.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -187,10 +187,10 @@ function ConfirmBubble({ text, title, variant, headerRef, blurBg }: { text: stri
     );
   }
   return (
-    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="px-6 py-5 md:px-4 md:py-3">
+    <GlassBubble align="start" headerRef={headerRef} blurBg={blurBg} className="px-4 py-3 md:px-4 md:py-3">
       <div className="flex items-center justify-between gap-3">
-        <span dir="auto" className="text-[17px] md:text-[13px] font-medium text-white" style={arabicFont(text)}>{text}</span>
-        <svg viewBox="0 0 16 16" fill="none" className="size-6 md:size-4 text-pair-blue">
+        <span dir="auto" className="text-[13px] md:text-[13px] font-medium text-white" style={arabicFont(text)}>{text}</span>
+        <svg viewBox="0 0 16 16" fill="none" className="size-4 md:size-4 text-pair-blue">
           <circle cx="8" cy="8" r="7" fill="currentColor"/>
           <path d="M5.5 8l2 2 3-3.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
@@ -363,7 +363,17 @@ export default function HeroSection() {
   const scenario = HERO_ITEMS[activeIndex];
 
   return (
-    <header ref={headerRef} className="relative h-[100svh] w-full overflow-hidden bg-black md:h-[88svh] xl:h-[92svh]">
+    <header
+      ref={headerRef}
+      className="relative h-[100svh] w-full overflow-hidden md:h-[88svh] xl:h-[92svh]"
+      style={{
+        // Inline LQIP (24px-wide JPEG, ~280 bytes) of the first hero scene so
+        // the header paints a colour-correct blurred backdrop during HTML
+        // parse — the poster and then the video crossfade over it.
+        background:
+          "#000 url(\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAHAAbAAD//gAQTGF2YzYyLjI4LjEwMAD/2wBDAAgoKC8oLzc3Nzc3N0E8QUNDQ0FBQUFDQ0NISEhVVVVISEhDQ0hIUFBVVVxfXFdXVVdfX2RkZHh4c3OMjJGsrM//xABfAAADAQEAAAAAAAAAAAAAAAAFBwYCBAEBAQEAAAAAAAAAAAAAAAAAAwACEAABAwIGAwEAAAAAAAAAAAABAgAxEQMSURMhMkGhYYHxEQEAAAAAAAAAAAAAAAAAAAAA/8AAEQgADgAYAwEiAAIRAAMRAP/aAAwDAQACEQMRAD8AaN2WI1ClYEAcvrypeIxm4BdzkN6lVSfQ6YEMS8vCqKx+vk1RkfDD26lCd+3SOYf/2Q==\") center/cover no-repeat",
+      }}
+    >
       {/* Hidden canvas for capturing blurred video frames */}
       <canvas ref={canvasRef} className="hidden" />
 
