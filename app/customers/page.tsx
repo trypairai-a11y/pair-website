@@ -87,15 +87,6 @@ const stories: Story[] = [
     zoomIn: true,
   },
   {
-    company: "Macro",
-    slug: "macro",
-    logoSrc: "/logos/macro.png",
-    imageSrc: "/photos/customers/macro.jpg",
-    metricLabel: "Faster response",
-    metricValue: "75%",
-    tagline: "How Macro delivers compliant client service with AI.",
-  },
-  {
     company: "Flash",
     slug: "flash",
     logoSrc: "/logos/flash.png",
@@ -121,14 +112,6 @@ const stories: Story[] = [
     metricLabel: "Capacity increase",
     metricValue: "5x",
     tagline: "How Yiswa scaled support to thousands of users with AI.",
-  },
-  {
-    company: "The Burrow",
-    logoSrc: "/logos/the-burrow.png",
-    imageSrc: "/photos/customers/the-burrow.jpg",
-    metricLabel: "Customer satisfaction",
-    metricValue: "4.9/5",
-    tagline: "How The Burrow makes every guest feel at home with AI.",
   },
   {
     company: "Banta Furniture",

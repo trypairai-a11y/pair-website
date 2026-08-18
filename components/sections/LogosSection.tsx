@@ -19,7 +19,7 @@ export default function LogosSection() {
           </Link>
         </div>
 
-        <div className="mt-12 grid grid-cols-3 gap-0 items-stretch max-w-3xl mx-auto">
+        <div className="mt-12 grid grid-cols-3 gap-x-10 gap-y-8 md:gap-x-16 md:gap-y-12 items-stretch max-w-4xl mx-auto">
           {COMPANY_LOGOS.map((logo) => (
             <div
               key={logo.name}

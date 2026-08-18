@@ -24,19 +24,19 @@ export const NAV_LINKS = [
 export const COMPANY_LOGOS = [
   // Top row
   { name: "Boutiqaat",          src: "/logos/boutiqaat.png",     imgClassName: "h-28 w-[200px]", opacityClass: "lg:opacity-50 lg:group-hover:opacity-100" },
-  { name: "ktech",              src: "/logos/ktech.png",         imgClassName: "h-20 w-[164px]" },
-  { name: "Provin",             src: "/logos/provin.png",        imgClassName: "h-20 w-[164px]" },
+  { name: "ktech",              src: "/logos/ktech.png",         imgClassName: "h-24 w-[196px]" },
+  { name: "DISC",               src: "/logos/disc.png",          imgClassName: "h-10 w-[128px]" },
   // Middle
-  { name: "CCK",                src: "/logos/cck.png",           imgClassName: "h-20 w-[164px]" },
-  { name: "Cinescape",          src: "/logos/cinescape.png",     imgClassName: "h-5 w-[174px]" },
-  { name: "Macro",              src: "/logos/macro.png",         imgClassName: "h-24 w-[182px] lg:brightness-75 lg:group-hover:brightness-100", opacityClass: "opacity-100" },
+  { name: "CCK",                src: "/logos/cck.png",           imgClassName: "h-[88px] w-[180px]" },
+  { name: "Cinescape",          src: "/logos/cinescape.png",     imgClassName: "h-6 w-[200px]" },
+  { name: "PICK",               src: "/logos/pick.png",          imgClassName: "h-[76px] w-[76px]" },
   { name: "Flash",              src: "/logos/flash.png",         imgClassName: "h-20 w-[164px]" },
   // Bottom rows
-  { name: "The Burrow",         src: "/logos/the-burrow.png",    imgClassName: "h-24 w-[120px]", opacityClass: "lg:opacity-40 lg:group-hover:opacity-100" },
-  { name: "Portarage",          src: "/logos/portarage.png",     imgClassName: "h-24 w-[200px]" },
-  { name: "Yiswa",              src: "/logos/yiswa.png",         imgClassName: "h-20 w-[164px]" },
-  { name: "Flare Fitness",      src: "/logos/flare-fitness.png", imgClassName: "h-16 w-[180px]" },
-  { name: "Future Kid",         src: "/logos/future-kid.png",    imgClassName: "h-16 w-16" },
+  { name: "Cure Recovery",      src: "/logos/cure-recovery.png", imgClassName: "h-8 w-[120px]" },
+  { name: "Deboned",            src: "/logos/deboned.svg",       imgClassName: "h-10 w-[108px]" },
+  { name: "Yiswa",              src: "/logos/yiswa.png",         imgClassName: "h-28 w-[228px]" },
+  { name: "Flare Fitness",      src: "/logos/flare-fitness.png", imgClassName: "h-24 w-[270px]" },
+  { name: "Future Kid",         src: "/logos/future-kid.png",    imgClassName: "h-[76px] w-[76px]" },
 ];
 
 export const FEATURE_CARDS = [

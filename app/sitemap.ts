@@ -15,7 +15,6 @@ const STATIC_ROUTES = [
   "/customers/flare-fitness",
   "/customers/flash",
   "/customers/ktech",
-  "/customers/macro",
   "/customers/provin",
   "/customers/yaqoub-al-sanea",
   "/customers/yiswa",
