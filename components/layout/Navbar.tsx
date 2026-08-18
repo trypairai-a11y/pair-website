@@ -75,13 +75,6 @@ export default function Navbar() {
         return;
       }
 
-      const isHome = pathname === "/";
-      if (forceLight || !isHome) {
-        setVisible(true);
-        lastScrollY.current = y;
-        return;
-      }
-
       if (delta > 0 && y > 10) {
         setVisible(false);
         setActiveDropdown(null);
@@ -92,7 +85,13 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [forceLight, pathname]);
+  }, []);
+
+  // A new page always starts with the nav shown.
+  useEffect(() => {
+    setVisible(true);
+    lastScrollY.current = typeof window !== "undefined" ? window.scrollY : 0;
+  }, [pathname]);
 
   const openDropdown = (label: string) => {
     if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
@@ -108,6 +107,15 @@ export default function Navbar() {
 
   return (
     <>
+    {/* Top-edge hover zone: brings the nav back without needing to scroll up.
+        Pointer devices only, and it never sits above the open nav. */}
+    {canHover && !visible && !mobileOpen && (
+      <div
+        aria-hidden
+        onMouseEnter={() => setVisible(true)}
+        className="fixed inset-x-0 top-0 z-40 h-5"
+      />
+    )}
     <header
       onMouseEnter={() => setNavHovered(true)}
       onMouseLeave={() => setNavHovered(false)}
