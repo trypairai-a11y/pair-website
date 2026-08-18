@@ -30,7 +30,7 @@ export const COMPANY_LOGOS = [
   { name: "CCK",                src: "/logos/cck.png",           imgClassName: "h-[88px] w-[180px]" },
   { name: "Cinescape",          src: "/logos/cinescape.png",     imgClassName: "h-6 w-[200px]" },
   { name: "PICK",               src: "/logos/pick.png",          imgClassName: "h-[76px] w-[76px]" },
-  { name: "Banta Furniture",    src: "/logos/banta-furniture.svg", imgClassName: "h-4 w-[78px]" },
+  { name: "Banta Furniture",    src: "/logos/banta-furniture.svg", imgClassName: "h-7 w-[137px]" },
   // Bottom rows
   { name: "Cure Recovery",      src: "/logos/cure-recovery.png", imgClassName: "h-8 w-[120px]" },
   { name: "Deboned",            src: "/logos/deboned.svg",       imgClassName: "h-10 w-[108px]" },
