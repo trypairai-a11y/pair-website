@@ -145,6 +145,22 @@ function ConfirmBubble({ text, title, variant }: { text: string; title?: string;
   );
 }
 
+function TypingBubble() {
+  return (
+    <GlassBubble className="px-4 py-3.5 md:px-4 md:py-4">
+      <div className="flex items-center gap-1.5" aria-label="Pair Agent is typing">
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className="hero-typing-dot block size-1.5 rounded-full bg-white/85"
+            style={{ animationDelay: `${i * 160}ms` }}
+          />
+        ))}
+      </div>
+    </GlassBubble>
+  );
+}
+
 function PickerBubble() {
   return (
     <GlassBubble className="p-4">
@@ -166,11 +182,18 @@ function PickerBubble() {
 }
 
 const CROSSFADE_MS = 500;
+const EXIT_MS = 300;
+const FIRST_BUBBLE_MS = 250;
+const BUBBLE_GAP_MS = 1400;
+const TYPING_LEAD_MS = 700;
 
 export default function HeroDynamic() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(0);
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const [leaving, setLeaving] = useState(false);
+  const [typingIndex, setTypingIndex] = useState(-1);
   // Initial paint only downloads the active clip; inactive clips warm up
   // shortly after so they're ready by the time crossfade fires.
   const [preloadAll, setPreloadAll] = useState(false);
@@ -214,20 +237,40 @@ export default function HeroDynamic() {
     return () => timeouts.forEach(clearTimeout);
   }, [activeIndex]);
 
-  // Reveal bubbles one at a time when the scenario changes
+  // The rendered scenario lags activeIndex by one exit beat, so the outgoing
+  // bubbles fade out over the video crossfade instead of blinking away.
   useEffect(() => {
-    setVisibleCount(0);
-    const total = HERO_ITEMS[activeIndex].bubbles.length;
-    const ids: number[] = [];
-    for (let i = 0; i < total; i++) {
-      ids.push(window.setTimeout(() => {
-        setVisibleCount((c) => Math.max(c, i + 1));
-      }, i * 1400));
-    }
-    return () => ids.forEach((id) => clearTimeout(id));
-  }, [activeIndex]);
+    if (displayIndex === activeIndex) return;
+    setLeaving(true);
+    const id = window.setTimeout(() => {
+      setDisplayIndex(activeIndex);
+      setLeaving(false);
+    }, EXIT_MS);
+    return () => clearTimeout(id);
+  }, [activeIndex, displayIndex]);
 
-  const scenario = HERO_ITEMS[activeIndex];
+  // Reveal bubbles one at a time, with the agent "typing" just before it answers
+  useEffect(() => {
+    if (leaving) return;
+    setVisibleCount(0);
+    setTypingIndex(-1);
+    const bubbles = HERO_ITEMS[displayIndex].bubbles;
+    const ids: number[] = [];
+    bubbles.forEach((bubble, i) => {
+      const at = FIRST_BUBBLE_MS + i * BUBBLE_GAP_MS;
+      if (bubble.type === "agent") {
+        ids.push(window.setTimeout(() => setTypingIndex(i), Math.max(0, at - TYPING_LEAD_MS)));
+      }
+      ids.push(window.setTimeout(() => {
+        setTypingIndex((t) => (t === i ? -1 : t));
+        setVisibleCount((c) => Math.max(c, i + 1));
+      }, at));
+    });
+    return () => ids.forEach((id) => clearTimeout(id));
+  }, [displayIndex, leaving]);
+
+  const scenario = HERO_ITEMS[displayIndex];
+  const showTyping = !leaving && typingIndex === visibleCount;
 
   return (
     <>
@@ -265,9 +308,15 @@ export default function HeroDynamic() {
           <div className="flex w-full flex-col gap-2 md:px-2">
             {scenario.bubbles.slice(0, visibleCount).map((bubble, i) => (
               <div
-                key={`${activeIndex}-${i}`}
+                key={`${displayIndex}-${i}`}
                 className={`flex ${
                   bubble.type === "user" ? "justify-end" : "justify-start"
+                } ${
+                  leaving
+                    ? "hero-chat-leaving"
+                    : bubble.type === "user"
+                      ? "hero-chat-in-right"
+                      : "hero-chat-in-left"
                 }`}
               >
                 {bubble.type === "user" && (
@@ -284,6 +333,11 @@ export default function HeroDynamic() {
                 )}
               </div>
             ))}
+            {showTyping && (
+              <div key={`${displayIndex}-typing`} className="flex justify-start hero-chat-in-left">
+                <TypingBubble />
+              </div>
+            )}
           </div>
         </div>
       </div>
