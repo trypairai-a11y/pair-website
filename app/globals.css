@@ -567,19 +567,21 @@ body {
   to   { opacity: 0; transform: translate3d(0, -6px, 0) scale(0.99); filter: blur(4px); }
 }
 
+/* fill-mode is `backwards`, never `both`: a retained transform/filter would
+   make the bubble a backdrop root and permanently disable its backdrop-blur.
+   Letting the element settle to no filter at all restores the glass. */
 .hero-chat-in-left,
 .hero-chat-in-right {
   animation-duration: 560ms;
   animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  animation-fill-mode: both;
-  will-change: transform, opacity, filter;
+  animation-fill-mode: backwards;
 }
 
 .hero-chat-in-left  { animation-name: hero-chat-in-left; }
 .hero-chat-in-right { animation-name: hero-chat-in-right; }
 
 .hero-chat-leaving {
-  animation: hero-chat-out 300ms cubic-bezier(0.4, 0, 1, 1) both;
+  animation: hero-chat-out 300ms cubic-bezier(0.4, 0, 1, 1) forwards;
 }
 
 /* Typing dots shown while the agent composes its reply */
