@@ -54,14 +54,14 @@ function GlassBubble({ className, children }: {
           blur resolve. Motion is transform only, on the column. */}
       <div
         className="absolute inset-0 pointer-events-none backdrop-blur-xl"
-        style={{ background: "rgba(16, 16, 18, 0.30)" }}
+        style={{ background: "rgba(16, 16, 18, 0.22)" }}
       />
       <span
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-2xl"
         style={{
-          padding: "2px",
-          background: "linear-gradient(rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 100%)",
+          padding: "0.5px",
+          background: "linear-gradient(rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%)",
           WebkitMask: "conic-gradient(#000 0 0) content-box, conic-gradient(#000 0 0)",
           mask: "conic-gradient(#000 0 0) content-box, conic-gradient(#000 0 0)",
           WebkitMaskComposite: "xor",
@@ -186,7 +186,7 @@ function PickerBubble() {
 
 const CROSSFADE_MS = 500;
 const EXIT_MS = 160;
-const RISE_MS = 520;
+const RISE_MS = 640;
 const FIRST_BUBBLE_MS = 250;
 const BUBBLE_GAP_MS = 1400;
 const TYPING_LEAD_MS = 700;
@@ -295,7 +295,7 @@ export default function HeroDynamic() {
     el.style.transition = "none";
     el.style.transform = `translateY(${delta}px)`;
     void el.offsetHeight;
-    el.style.transition = `transform ${RISE_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+    el.style.transition = `transform ${RISE_MS}ms cubic-bezier(0.16, 1, 0.3, 1)`;
     el.style.transform = "translateY(0)";
   }, [visibleCount, typingIndex, displayIndex, leaving]);
 
@@ -357,7 +357,7 @@ export default function HeroDynamic() {
                 key={`${displayIndex}-${i}`}
                 className={`hero-chat-slot flex ${
                   bubble.type === "user" ? "justify-end" : "justify-start"
-                }`}
+                } ${i === visibleCount - 1 ? "hero-chat-enter" : ""}`}
               >
                 {bubble.type === "user" && (
                   <UserBubble name={(bubble as { name: string; avatar: string; text: string }).name} avatar={(bubble as { name: string; avatar: string; text: string }).avatar} text={bubble.text!} />
