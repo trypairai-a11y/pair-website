@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 /* ------------------------------------------------------------------ */
@@ -38,7 +38,7 @@ const HERO_ITEMS = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Glass bubble wrapper — CSS backdrop-blur over the hero video       */
+/*  Bubble wrapper: painted translucent fill over the hero video        */
 /* ------------------------------------------------------------------ */
 
 function GlassBubble({ className, children }: {
@@ -49,16 +49,19 @@ function GlassBubble({ className, children }: {
     <div
       className={`relative overflow-hidden w-full max-w-[280px] rounded-2xl text-white md:w-[75vw] md:max-w-[334px] ${className ?? ""}`}
     >
+      {/* Glass. Nothing animates opacity, size or filter on this element or any
+          ancestor of it: that is what forced a re-raster and let you watch the
+          blur resolve. Motion is transform only, on the column. */}
       <div
         className="absolute inset-0 pointer-events-none backdrop-blur-xl"
-        style={{ background: "rgba(255, 255, 255, 0.10)" }}
+        style={{ background: "rgba(16, 16, 18, 0.30)" }}
       />
       <span
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-2xl"
         style={{
           padding: "2px",
-          background: "linear-gradient(rgba(248, 248, 248, 0.12) 0%, rgba(255, 255, 255, 0) 100%)",
+          background: "linear-gradient(rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 100%)",
           WebkitMask: "conic-gradient(#000 0 0) content-box, conic-gradient(#000 0 0)",
           mask: "conic-gradient(#000 0 0) content-box, conic-gradient(#000 0 0)",
           WebkitMaskComposite: "xor",
@@ -92,7 +95,7 @@ function UserBubble({ name, avatar, text }: { name: string; avatar: string; text
 function AgentBubble({ text, agentName }: { text: string; agentName?: string }) {
   return (
     <GlassBubble className="p-3.5 md:p-4">
-      <div className="flex flex-col gap-1.5 md:gap-2">
+      <div className="hero-chat-content flex flex-col gap-1.5 md:gap-2">
         <div className="flex items-center gap-1.5 text-[11px] text-white/80 md:gap-2 md:text-[12px]">
           <figure className="relative aspect-square size-3.5 overflow-hidden md:size-4">
             <Image src="/branding/pair-icon-white.png" alt="Pair" width={20} height={20} className="block h-auto w-full object-cover" />
@@ -182,7 +185,8 @@ function PickerBubble() {
 }
 
 const CROSSFADE_MS = 500;
-const EXIT_MS = 300;
+const EXIT_MS = 160;
+const RISE_MS = 520;
 const FIRST_BUBBLE_MS = 250;
 const BUBBLE_GAP_MS = 1400;
 const TYPING_LEAD_MS = 700;
@@ -194,6 +198,8 @@ export default function HeroDynamic() {
   const [displayIndex, setDisplayIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const [typingIndex, setTypingIndex] = useState(-1);
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const prevHeight = useRef(0);
   // Initial paint only downloads the active clip; inactive clips warm up
   // shortly after so they're ready by the time crossfade fires.
   const [preloadAll, setPreloadAll] = useState(false);
@@ -259,7 +265,12 @@ export default function HeroDynamic() {
     bubbles.forEach((bubble, i) => {
       const at = FIRST_BUBBLE_MS + i * BUBBLE_GAP_MS;
       if (bubble.type === "agent") {
-        ids.push(window.setTimeout(() => setTypingIndex(i), Math.max(0, at - TYPING_LEAD_MS)));
+        // Reveal the row early holding the typing dots, then swap in the text.
+        const typingAt = Math.max(0, at - TYPING_LEAD_MS);
+        ids.push(window.setTimeout(() => {
+          setTypingIndex(i);
+          setVisibleCount((c) => Math.max(c, i + 1));
+        }, typingAt));
       }
       ids.push(window.setTimeout(() => {
         setTypingIndex((t) => (t === i ? -1 : t));
@@ -269,8 +280,38 @@ export default function HeroDynamic() {
     return () => ids.forEach((id) => clearTimeout(id));
   }, [displayIndex, leaving]);
 
+  // The column is bottom anchored and clipped, so a new row lands below the
+  // visible edge. Shift the column down by the height it just gained, then
+  // release it: the stack rises as one and the new bubble is fully rendered
+  // before it clears the edge. Transform only, so the glass behind each
+  // bubble is never re-rasterised and never resolves in view.
+  useLayoutEffect(() => {
+    const el = listRef.current;
+    if (!el || leaving) return;
+    const h = el.offsetHeight;
+    const delta = h - prevHeight.current;
+    prevHeight.current = h;
+    if (delta <= 0) return;
+    el.style.transition = "none";
+    el.style.transform = `translateY(${delta}px)`;
+    void el.offsetHeight;
+    el.style.transition = `transform ${RISE_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+    el.style.transform = "translateY(0)";
+  }, [visibleCount, typingIndex, displayIndex, leaving]);
+
+  // A scenario change slides the column out through the clip and back in.
+  // Never a fade: opacity below 1 would drop the blur on the way out.
+  useLayoutEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    // Leaving is not animated: the bubbles just go. Sliding the column out
+    // read as the stack falling away, which was more noticeable than the swap.
+    prevHeight.current = 0;
+    el.style.transition = "none";
+    el.style.transform = "translateY(0)";
+  }, [leaving]);
+
   const scenario = HERO_ITEMS[displayIndex];
-  const showTyping = !leaving && typingIndex === visibleCount;
 
   return (
     <>
@@ -303,27 +344,28 @@ export default function HeroDynamic() {
 
       {/* Chat bubbles — anchored to the hero bottom. pointer-events-none keeps
           the Learn more button (rendered by the server shell) clickable. */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-[10px] z-20 flex justify-center">
-        <div className="relative w-full max-w-[1160px] px-5 md:px-7 lg:px-10 xl:pl-6">
-          <div className="flex w-full flex-col gap-2 md:px-2">
-            {scenario.bubbles.slice(0, visibleCount).map((bubble, i) => (
+      {/* Chat column, matching sierra.ai's hero: a fixed-height, bottom-anchored
+          stack pinned to the right of the 1160px container and clipped
+          vertically, so each new bubble pushes the older ones up and out. */}
+      <div className="pointer-events-none absolute inset-0 z-20">
+        <div className="relative mx-auto h-full w-full max-w-[1160px] px-1 md:px-3 lg:px-6">
+          <div className="absolute bottom-0 left-0 w-full min-[600px]:right-0 min-[600px]:bottom-0 min-[600px]:left-auto min-[600px]:w-auto">
+            <div className="flex w-full flex-col justify-end overflow-y-clip p-4 min-[600px]:w-[454px] md:h-[386px] xl:pb-8">
+              <div ref={listRef} className="flex w-full flex-col will-change-transform">
+            {(leaving ? [] : scenario.bubbles.slice(0, visibleCount)).map((bubble, i) => (
               <div
                 key={`${displayIndex}-${i}`}
-                className={`flex ${
+                className={`hero-chat-slot flex ${
                   bubble.type === "user" ? "justify-end" : "justify-start"
-                } ${
-                  leaving
-                    ? "hero-chat-leaving"
-                    : bubble.type === "user"
-                      ? "hero-chat-in-right"
-                      : "hero-chat-in-left"
                 }`}
               >
                 {bubble.type === "user" && (
                   <UserBubble name={(bubble as { name: string; avatar: string; text: string }).name} avatar={(bubble as { name: string; avatar: string; text: string }).avatar} text={bubble.text!} />
                 )}
                 {bubble.type === "agent" && (
-                  <AgentBubble text={bubble.text!} agentName={(bubble as { agentName?: string }).agentName} />
+                  typingIndex === i && !leaving
+                    ? <TypingBubble />
+                    : <AgentBubble text={bubble.text!} agentName={(bubble as { agentName?: string }).agentName} />
                 )}
                 {bubble.type === "confirm" && (
                   <ConfirmBubble text={bubble.text!} title={(bubble as { title?: string }).title} variant={(bubble as { variant?: string }).variant} />
@@ -333,11 +375,9 @@ export default function HeroDynamic() {
                 )}
               </div>
             ))}
-            {showTyping && (
-              <div key={`${displayIndex}-typing`} className="flex justify-start hero-chat-in-left">
-                <TypingBubble />
               </div>
-            )}
+
+            </div>
           </div>
         </div>
       </div>

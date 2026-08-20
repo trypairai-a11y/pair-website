@@ -546,42 +546,33 @@ body {
     @apply font-sans;
   }
 }
-/* --- HeroDynamic chat bubbles: direction-aware entrance -------------------
-   Bubbles arrive from the side they sit on, settling with a short blur-off so
-   they read as glass condensing over the video rather than a hard pop. */
+/* --- HeroDynamic chat column ----------------------------------------------
+   Bottom-anchored, vertically clipped stack, as on sierra.ai's hero.
 
-@keyframes hero-chat-in-left {
-  from { opacity: 0; transform: translate3d(-16px, 14px, 0) scale(0.965); filter: blur(7px); }
-  55%  { filter: blur(0.5px); }
-  to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+   Deliberately no height, opacity or filter animation anywhere near a bubble:
+   each of those forces the backdrop-filter to re-rasterise, which is what made
+   the glass resolve in view and the motion feel glitchy. The only thing that
+   moves is a transform on the column, driven from HeroDynamic. */
+
+.hero-chat-slot {
+  padding-top: 8px;
 }
 
-@keyframes hero-chat-in-right {
-  from { opacity: 0; transform: translate3d(16px, 14px, 0) scale(0.965); filter: blur(7px); }
-  55%  { filter: blur(0.5px); }
-  to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+@media (min-width: 768px) {
+  .hero-chat-slot {
+    padding-top: 12px;
+  }
 }
 
-@keyframes hero-chat-out {
-  from { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
-  to   { opacity: 0; transform: translate3d(0, -6px, 0) scale(0.99); filter: blur(4px); }
+/* The reply crossfades in where the typing dots were. Bubble content only,
+   never the glass wrapper. */
+@keyframes hero-chat-content-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-/* fill-mode is `backwards`, never `both`: a retained transform/filter would
-   make the bubble a backdrop root and permanently disable its backdrop-blur.
-   Letting the element settle to no filter at all restores the glass. */
-.hero-chat-in-left,
-.hero-chat-in-right {
-  animation-duration: 560ms;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  animation-fill-mode: backwards;
-}
-
-.hero-chat-in-left  { animation-name: hero-chat-in-left; }
-.hero-chat-in-right { animation-name: hero-chat-in-right; }
-
-.hero-chat-leaving {
-  animation: hero-chat-out 300ms cubic-bezier(0.4, 0, 1, 1) forwards;
+.hero-chat-content {
+  animation: hero-chat-content-in 240ms ease-out backwards;
 }
 
 /* Typing dots shown while the agent composes its reply */
@@ -595,9 +586,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-chat-in-left,
-  .hero-chat-in-right,
-  .hero-chat-leaving,
+  .hero-chat-content,
   .hero-typing-dot {
     animation: none;
   }
